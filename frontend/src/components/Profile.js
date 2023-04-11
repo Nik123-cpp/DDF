@@ -1,16 +1,15 @@
 import React from 'react'
-import {useParams} from 'react-router-dom'
+import Faculty_Navbar from './Faculty/Faculty_Navbar1'
 
 function Profile() {
 
-  const params = useParams()
-  const user_id = params.user_id
 
   return (
     <div>
-      <h1>
-        Profile  of User_ID :  {user_id}
-      </h1>
+      <Faculty_Navbar />
+      <h2>
+        Profile  Page
+      </h2>
     </div>
   )
 }

@@ -1,0 +1,23 @@
+body {
+    height:100vh;
+}
+
+#root {
+    height: 100%;
+}
+
+#Login_container {
+    place-items: center center;
+    min-height: 100px;
+    min-width: 250px;
+    padding: 1em;
+  }
+  
+  #Login_Form {
+    padding: 1em;
+    min-width:300px;
+    max-width: 350px;
+    background-color: rgb(233, 224, 232);
+    
+  }
+  

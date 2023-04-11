@@ -1,4 +1,6 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import {Routes , Route} from 'react-router-dom'
 import Home from './components/Home';
 import Login from './components/Login';
@@ -13,11 +15,13 @@ import NP from './components/NP';
 
 function App() {
   return (
+    
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/Login" element={<Login />} />
       
-      <Route path="/Faculty/:user_id" >
+      <Route path="/Faculty/:user_id">
+
         <Route path="" element={<Faculty_Home />} />
 
         <Route path="AllRequests">
@@ -32,13 +36,12 @@ function App() {
 
         <Route path="NewRequest" element={<Faculty_NewRequest />} />
         <Route path="Profile" element={<Profile />} />
-
-        <Route path="*" element={<NP />} />
- 
+ s
       </Route>
 
-
+      <Route path="*" element={<NP />} />
     </Routes>
+
   );
 }
 

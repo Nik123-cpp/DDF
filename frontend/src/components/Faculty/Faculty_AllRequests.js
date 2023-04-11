@@ -1,19 +1,16 @@
 import React from 'react'
-import {useParams} from 'react-router-dom'
+import {Outlet} from 'react-router-dom'
+import Faculty_Navbar from './Faculty_Navbar1'
 
 function Faculty_AllRequests() {
-    const params = useParams()
-    const user_id = params.user_id
-    const request_id = params.request_id
 
     return (
       <div>
-        <h1>
-            Faculty :{user_id} ,
-        </h1>
+        <Faculty_Navbar />
         <h2>
           ALL Requests Page
         </h2>
+        <Outlet />
       </div>
     )
 

@@ -1,15 +1,11 @@
 import React from 'react'
-import {useParams} from 'react-router-dom'
+import Faculty_Navbar from './Faculty_Navbar1'
 
 function Faculty_NewRequest() {
-    const params = useParams()
-    const user_id = params.user_id
 
     return (
       <div>
-        <h1>
-            Faculty :{user_id} 
-        </h1>
+        <Faculty_Navbar />
         <h2>
             New Requests Page
         </h2>

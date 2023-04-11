@@ -1,5 +1,6 @@
 import React from 'react'
-import {useParams} from 'react-router-dom'
+import {useParams , Outlet} from 'react-router-dom'
+import Faculty_Navbar from './Faculty_Navbar1'
 
 function Faculty_Home() {
     const params = useParams()
@@ -7,12 +8,11 @@ function Faculty_Home() {
 
     return (
       <div>
-        <h1>
-            Faculty :{user_id} ,
-        </h1>
+        <Faculty_Navbar />
         <h2>
           Home Page
         </h2>
+      <Outlet/>
       </div>
     )
 
