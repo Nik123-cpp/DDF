@@ -16,3 +16,47 @@ function Profile() {
 }
 
 export default Profile
+
+
+function profile()
+{
+  return 
+  (
+    <div>
+      <h1>
+        Profile  of User_ID :  {user_id}
+      </h1>
+      <div>
+        UserName : {}
+      </div>
+      <div>
+        Email address : {}
+      </div>
+      <div>
+        Contact : {}
+      </div>
+      
+
+    </div>
+  )
+}
+
+function change_password()
+{ 
+  return (
+    <div>
+      <div className="oldpassword">
+        <input type="password" name="oldpassword" id="" />
+      </div>
+
+      <div className="newpassword">
+        <input type="password" name="" id="" />
+      </div>
+
+      <div className="reenternewpassword">
+      <input type="password" name="" id="" />
+      </div>
+
+    </div>
+  )
+}
