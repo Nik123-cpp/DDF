@@ -7,8 +7,8 @@ import { Faculty_email_address } from "./Login";
 
 function Profile() {
 
-  const UserName =""
-  const EmailAddress=""
+  var UserName =""
+  var EmailAddress=""
   const url = "/users/"+Faculty_email_address
 
   fetch(url)

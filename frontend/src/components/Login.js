@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { Button , Form , Container } from 'react-bootstrap';
 
-const Faculty_email_address=""
+var Faculty_email_address=""
 
 function Login() {
   const navigate = useNavigate()
