@@ -19,6 +19,7 @@ const requestSchema = Schema({
         required: true,
         enum: ["Requested", "Verified", "Approved"],
         default: "Requested"
-    }
+    },
+    created : { type: Date, default: Date.now }
 })
 module.exports = mongoose.model("Request", requestSchema);
