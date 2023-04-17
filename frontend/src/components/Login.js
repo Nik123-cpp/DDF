@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { Button , Form , Container } from 'react-bootstrap';
 
+var Faculty_email_address=""
+
 function Login() {
   const navigate = useNavigate()
 
@@ -43,6 +45,7 @@ function Login() {
       })
       console.log("End")
       
+      Faculty_email_address = email_id;
 
   }
 
@@ -93,3 +96,5 @@ function Login() {
 }
 
 export default Login
+
+export  {Faculty_email_address};
