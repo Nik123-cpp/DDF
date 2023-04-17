@@ -26,7 +26,7 @@ function Login() {
       event.preventDefault();
 
       console.log("Start")
-      const url = "/users/" + email_id
+      const url = "/profile/" + email_id
 
       fetch(url)
       .then((response) => response.json())

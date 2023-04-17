@@ -1,17 +1,35 @@
 import './Faculty_Styles/DDF_NewRequest.css'
 
-import React from 'react'
+import React , {useState} from 'react'
 import Faculty_Navbar from './Faculty_Navbar1'
 import { Container, Row, Col, Form} from 'react-bootstrap';
 
+
 function Faculty_NewRequest() {
+
+
+    const [request_type, setrequest_type] = useState("Public");
+
+    const [title, settitle] = useState("");
+
+    const [amount,setamount] = useState(0);
+
+    const [doc_link,setdoc_link] = useState("");
+
+    const [descriptiom,setdescription] = useState("");
+    
+
+    const handle_submit = event => {
+
+        event.preventDefault();
+    }
 
     return (
       <div>
         <Faculty_Navbar />
 
         <Container className="reqform">
-            <Form className="form-horizontal" action="">
+            <Form className="form-horizontal" onSubmit={handle_submit}>
                 <Form.Group as={Row}>
                     <Form.Label htmlFor="reqtype" className="control-label col-sm-2">Request Type:</Form.Label>
                     <Col sm={10}>

@@ -32,7 +32,7 @@ exports.my_requests = (req, res, next) => {
     Profile.findOne({ email_address: req.params.email_id })
         .exec((err, profile) => {
             console.log(profile._id)
-            Request.find({ faculty: profile._id, status: { $in: ["Requested", "Verified"] } },{_id:1,requestType:1,created:1,amount:1,status:1})
+            Request.find({ faculty: profile._id, status: { $in: ["Requested", "Verified"] } },{_id:1,title:1,requestType:1,created:1,amount:1,status:1})
                 .sort({ created: -1 })
                 .exec((err, request) => {
                     if (err) {

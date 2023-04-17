@@ -20,7 +20,11 @@ try {
 }
 
 async function profileCreate(username, email_address, password) {
-    profileObject = { username: username, email_address: email_address, password: password };
+    
+    profileObject = { username: username, 
+        email_address: email_address, 
+        password: password };
+
     const profile = new Profile(profileObject);
     await profile.save();
     console.log(`create a profile of ${username}`);
@@ -29,7 +33,12 @@ async function profileCreate(username, email_address, password) {
 
 function requestCreate(mail, title, requestType, amount, documents, description) {
 
-    requestObject = { faculty: mongoose.Types.ObjectId(), title: title, requestType: requestType, amount: amount, documents: documents, description: description };
+    requestObject = { faculty: mongoose.Types.ObjectId(), 
+        title: title, 
+        requestType: requestType, 
+        amount: amount, 
+        documents: documents, 
+        description: description };
 
     const query = Profile.findOne({ email_address: mail });
 
