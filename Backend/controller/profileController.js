@@ -12,6 +12,7 @@ exports.user_datails = (req, res, next) => {
                 next(err);
             }
             console.log(profile);
-            res.status(200).json(profile);
+            user = {user : profile}
+            res.status(200).json(user);
      });
 }
