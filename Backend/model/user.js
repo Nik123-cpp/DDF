@@ -64,6 +64,23 @@ class user{
             console.log(err);
         }
     }
+
+    async change_password(new_password) {
+
+        try{
+            const user = await User.findOne({ email_address:this.email_id })
+            user.password = new_password
+            user.save()
+            console.log(user)
+            return 1
+        }catch(err){
+            console.log(err);
+            return 0
+        }
+
+    }
+
+
 }
 
 
