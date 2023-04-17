@@ -1,0 +1,28 @@
+#pendingreq {
+    width: 20%;
+    padding: 10px;
+    margin: 10px;
+    background-color: #f0f0f0;
+    text-align: center;
+    font-size: large;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+  }
+  
+  table thead th {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  table tbody td {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  table tbody tr {
+    padding: 20px;
+  }
