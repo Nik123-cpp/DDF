@@ -12,6 +12,16 @@ exports.user_datails = (req, res, next) => {
                 next(err);
             }
             console.log(profile);
-            res.status(200).json(profile);
+            user = {"User" : profile}
+            res.status(200).json(user);
      });
 }
+
+exports.register = (req, res, next) => {
+    profileObject = { username: req.params.username, email_address: req.params.email_address, password: req.params.password };
+    const profile = new Profile(profileObject);
+    profile.save();
+    log.console(profile);
+    res.status(200).json({ message: "Profile Created" });
+}
+
