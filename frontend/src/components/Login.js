@@ -4,7 +4,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { Button , Form , Container } from 'react-bootstrap';
 
-var Faculty_email_address=""
+import {Link} from "react-router-dom"
+
+
 
 function Login() {
   const navigate = useNavigate()
@@ -14,9 +16,11 @@ function Login() {
 
   const [password, setPassword] = useState("");
 
+  
+
   const nav_faculty_home = (username) => {
     console.log("start navigation")
-    navigate('/Faculty/' + username)
+    navigate('/Faculty/' + username , {state:email_id})
     
   }
 
@@ -27,6 +31,8 @@ function Login() {
 
       console.log("Start")
       const url = "/profile/" + email_id
+      
+      
 
       fetch(url)
       .then((response) => response.json())
@@ -44,9 +50,8 @@ function Login() {
         }
       })
       console.log("End")
-      
-      Faculty_email_address = email_id;
 
+      
   }
 
   const handle_email = event => {
@@ -97,4 +102,3 @@ function Login() {
 
 export default Login
 
-export  {Faculty_email_address};

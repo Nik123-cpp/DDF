@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom'
 import Faculty_Navbar from './Faculty_Navbar1'
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { Container } from 'react-bootstrap';
-
+import { useLocation } from 'react-router-dom';
 const columns = [
   { field: '_id', headerName: 'Request ID',type:'string' , width: 150 },
   {
@@ -57,10 +57,13 @@ const Faculty_PendingRequests = ()  =>{
   // const user_id = params.user_id
 
   const [data,setdata] = useState([])
+  const location = useLocation();
+  let faculty_email=location.state;
+  console.log("faculty data is ", faculty_email)
 
 
   useEffect(() => {
-    const url = "/pendingrequest/faculty/" + "cs20btech11036@iith.ac.in"
+    const url = "/pendingrequest/faculty/" + faculty_email
     fetch(url)
       .then((res) => res.json())
       .then((d) => {
@@ -74,7 +77,7 @@ const Faculty_PendingRequests = ()  =>{
     return (
       <Container style={{ height: '60%', width: '100%' }}>
      
-      <Faculty_Navbar/>
+      <Faculty_Navbar state = {faculty_email}/>
       <Container>
         <h3 style={{paddingTop : '1em' , paddingBottom: '0.5em'}} >
           Pending Requests

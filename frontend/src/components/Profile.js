@@ -1,41 +1,58 @@
-import React from "react";
+import React , {Component}from "react";
 import Faculty_Navbar from "./Faculty/Faculty_Navbar1";
 import "../Styles/Profile.css";
 
-import { Faculty_email_address } from "./Login";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+
+import { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
+import { Link, useLocation } from "react-router-dom";
 // On click of Change password button new component will be shown/Added with new password fields
 
 function Profile() {
-  var UserName = "";
-  var EmailAddress = "";
-  const url = "/users/" + Faculty_email_address;
+  
+  const [UserName , setusername] = useState("");
+  const location = useLocation();
+  let data=location.state;
+  
+  // Function to collect data
+  const getdetails = async () => {
+    
+    const url = "/profile/" + data;
+    const response= await fetch("http://localhost:8000"+url , {mode:'cors'})
+      .then((response) => response.json())
+      .then((data) => {
+        const user = data.User;
+        if (user === null) {
+          alert(`User with ${data} doesnot exist`);
+        }
+        //console.log(user)
+        setusername(user.username);
+      });
+  };
 
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      const user = data.User;
-      if (user === null) {
-        alert(`User with ${Faculty_email_address} doesnot exist`);
-      }
-      UserName = user.username;
-    });
+  useEffect(() => {
+    getdetails();
+  }, []);
 
   const [change_pwd_button_popup, set_popup_change_pwd] = useState(false);
 
   return (
     <div>
-      <Faculty_Navbar />
-      <div class="Profile_block">
+      <Faculty_Navbar state = {data}/>
+
+      <div className="Profile_block">
         <div className="Profile_block_inner">
           <h2>Profile Page</h2>
           <div>
             <img src="" alt="Profile Pic" />
           </div>
           <div className="Profile_content">
+            
             <div className="Profile_label">Name :</div> <div>{UserName}</div>
-            <div className="Profile_label">Email address :</div>{" "}
-            <div> {Faculty_email_address}</div>
+            <div className="Profile_label">Email address :</div>
+            <div> {data}</div>
             <div className="Profile_label">contact :</div> <div> {} </div>
           </div>
           <div>
