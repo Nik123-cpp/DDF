@@ -1,9 +1,9 @@
 import React ,{useEffect,useState} from 'react'
-import {useParams} from 'react-router-dom'
 import Faculty_Navbar from './Faculty_Navbar1'
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { Container } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
+import Table from '../table';
+
 const columns = [
   { field: '_id', headerName: 'Request ID',type:'string' , width: 150 },
   {
@@ -53,9 +53,6 @@ const columns = [
 
 const Faculty_PendingRequests = ()  =>{
 
-  // const params = useParams()
-  // const user_id = params.user_id
-
   const [data,setdata] = useState([])
   const location = useLocation();
   let faculty_email=location.state;
@@ -75,29 +72,19 @@ const Faculty_PendingRequests = ()  =>{
 
 
     return (
-      <Container style={{ height: '60%', width: '100%' }}>
-     
-      <Faculty_Navbar state = {faculty_email}/>
-      <Container>
-        <h3 style={{paddingTop : '1em' , paddingBottom: '0.5em'}} >
-          Pending Requests
-        </h3>
+      <>
+        <Faculty_Navbar state = {faculty_email}/>
 
-      </Container>
-        <DataGrid getRowId={(row) => row._id}
-          rows={data}
-          columns={columns}
-          initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 5,
-            },
-          },
-        }}
-          pageSize={[5]}
-        />
+        <Container style={{ height: '70%', width: '100%' }} >
+          <h3 style={{paddingTop : '1em' , paddingBottom: '0.5em'}} >
+            Pending Requests
+          </h3>
+          
+          <Table rows={data} coloumns={columns} />
 
-    </Container>
+        </Container>
+
+      </>  
     )
 
 }
