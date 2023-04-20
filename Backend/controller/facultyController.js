@@ -19,6 +19,6 @@ exports.create_request = (req, res, next) => {
         const request = new Request(requestObject);
         request.save();
         console.log(`created the request ${title}`);
-        res.status(200).json({ message: "Request Created" });
+        res.status(200).json({ message: "Request Succesfully Created with ID : " + request._id });
     });
 }
