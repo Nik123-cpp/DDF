@@ -1,22 +1,84 @@
-import React from 'react'
-import {Outlet} from 'react-router-dom'
+import React ,{useEffect,useState} from 'react'
 import Faculty_Navbar from './Faculty_Navbar1'
+import { Container } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
+import Table from '../table';
 
-import { useLocation } from 'react-router-dom'
+const columns = [
+  { field: '_id', headerName: 'Request ID',type:'string' , width: 150 },
+  {
+    field: 'title',
+    headerName: 'Title',
+    type: 'string',
+    flex: 1,
+    width: 120
+  },
+  {
+    field: 'requestType',
+    headerName: 'Request type',
+    type: 'string',
+    flex: 0.9,
+    width: 120
+
+  },
+  {
+    field: 'created',
+    headerName: 'Date Submitted',
+    type: 'string',
+    flex: 1.1,
+    width: 200
+  },
+  {
+    field: 'amount',
+    headerName: 'Amount Requested',
+    type: 'number',
+    headerAlign: 'left',
+    flex : 1,
+    width: 120
+  },
+
+  {
+    field: 'status',
+    headerName: 'Approval status',
+    type: 'string',
+    flex : 1,
+    width: 200
+  }
+];
+
 
 function Faculty_AllRequests() {
 
+  const [data,setdata] = useState([])
   const location = useLocation();
   let faculty_email=location.state;
+  console.log("faculty data is ", faculty_email)
+
+
+  useEffect(() => {
+    const url = "/allrequest/personal/" + faculty_email
+    fetch(url)
+      .then((res) => res.json())
+      .then((d) => {
+        setdata(d)}
+        );
+  }, []);
+
 
     return (
-      <div>
+      <>
         <Faculty_Navbar state={faculty_email} />
-        <h2>
-          ALL Requests Page
-        </h2>
-        <Outlet />
-      </div>
+        
+        <Container style={{ height: '70%', width: '100%' }} >
+          <h3 style={{paddingTop : '1em' , paddingBottom: '0.5em'}} >
+            All Requests
+          </h3>
+          
+          <Table rows={data} coloumns={columns} />
+
+        </Container>
+
+      </>
     )
 
 }
