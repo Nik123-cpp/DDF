@@ -51,6 +51,16 @@
     margin-bottom: 20px;
 }
 
+
+.reqform form input[type="number"],
+.reqform form textarea {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
 /* Style the form select */
 .reqform form select {
     width: 60%;
