@@ -3,19 +3,21 @@ import {useParams} from 'react-router-dom'
 import Faculty_Navbar from './Faculty_Navbar1'
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { Container } from 'react-bootstrap';
-
+import { useLocation } from 'react-router-dom';
 const columns = [
   { field: '_id', headerName: 'Request ID',type:'string' , width: 150 },
   {
     field: 'title',
     headerName: 'Title',
     type: 'string',
+    flex: 1,
     width: 120
   },
   {
     field: 'requestType',
     headerName: 'Request type',
     type: 'string',
+    flex: 0.9,
     width: 120
 
   },
@@ -23,12 +25,15 @@ const columns = [
     field: 'created',
     headerName: 'Date Submitted',
     type: 'string',
+    flex: 1.1,
     width: 200
   },
   {
     field: 'amount',
     headerName: 'Amount Requested',
     type: 'number',
+    headerAlign: 'left',
+    flex : 1,
     width: 120
   },
 
@@ -36,6 +41,7 @@ const columns = [
     field: 'status',
     headerName: 'Approval status',
     type: 'string',
+    flex : 1,
     width: 200
   }
 ];
@@ -50,16 +56,17 @@ const Faculty_PendingRequests = ()  =>{
   // const params = useParams()
   // const user_id = params.user_id
 
-  const [data,setdata] = useState([{_id: 1,title: "Fun"}])
-  const [dat,setdat] = useState(1)
+  const [data,setdata] = useState([])
+  const location = useLocation();
+  let faculty_email=location.state;
+  console.log("faculty data is ", faculty_email)
 
 
   useEffect(() => {
-    const url = "/pendingrequest/faculty/" + "cs20btech11036@iith.ac.in"
+    const url = "/pendingrequest/faculty/" + faculty_email
     fetch(url)
       .then((res) => res.json())
       .then((d) => {
-        setdat(2)
         setdata(d)}
         );
   }, []);
@@ -68,16 +75,15 @@ const Faculty_PendingRequests = ()  =>{
 
 
     return (
-      <div style={{ height: 800, width: '100%' }}>
+      <Container style={{ height: '60%', width: '100%' }}>
      
-      <Faculty_Navbar/>
+      <Faculty_Navbar state = {faculty_email}/>
       <Container>
         <h3 style={{paddingTop : '1em' , paddingBottom: '0.5em'}} >
           Pending Requests
         </h3>
 
       </Container>
-      {/* <Container > */}
         <DataGrid getRowId={(row) => row._id}
           rows={data}
           columns={columns}
@@ -90,13 +96,8 @@ const Faculty_PendingRequests = ()  =>{
         }}
           pageSize={[5]}
         />
-      {/* </Container> */}
 
-      <h1>
-        {dat}
-      </h1>
-     
-    </div>
+    </Container>
     )
 
 }

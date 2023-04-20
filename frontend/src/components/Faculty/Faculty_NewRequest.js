@@ -3,7 +3,7 @@ import './Faculty_Styles/DDF_NewRequest.css'
 import React , {useState} from 'react'
 import Faculty_Navbar from './Faculty_Navbar1'
 import { Container, Row, Col, Form} from 'react-bootstrap';
-
+import { useLocation } from 'react-router-dom';
 
 function Faculty_NewRequest() {
 
@@ -24,9 +24,12 @@ function Faculty_NewRequest() {
         event.preventDefault();
     }
 
+    const location = useLocation();
+    let faculty_email=location.state;
+
     return (
       <div>
-        <Faculty_Navbar />
+        <Faculty_Navbar state={faculty_email} />
 
         <Container className="reqform">
             <Form className="form-horizontal" onSubmit={handle_submit}>

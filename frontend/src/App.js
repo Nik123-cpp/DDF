@@ -36,7 +36,6 @@ function App() {
 
         <Route path="NewRequest" element={<Faculty_NewRequest />} />
         <Route path="Profile" element={<Profile />} />
- s
       </Route>
 
       <Route path="*" element={<NP />} />
