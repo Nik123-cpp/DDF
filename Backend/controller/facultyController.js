@@ -1,6 +1,7 @@
 const Profile = require("../model/profile");
 const Request = require("../model/request");
 
+//creates a requests
 exports.create_request = (req, res, next) => {
     let {title,requestType,amount,documents,description,email_address} = req.body;
     requestObject = { title: title, requestType: requestType, amount: amount, documents: documents, description: description };
@@ -11,7 +12,7 @@ exports.create_request = (req, res, next) => {
     query.exec((err, profile) => {
         if (err) {
             console.log(err);
-            return;
+            next(err);
         }
         requestObject.faculty = profile._id;
         console.log(`created the request ${profile._id}`);

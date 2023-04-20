@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Profile = require('../model/profile');
 
+// get user details based on email id
 exports.user_datails = (req, res, next) => {
     email_id = req.params.email_id;
     email_id = email_id.toLowerCase();
@@ -17,6 +18,7 @@ exports.user_datails = (req, res, next) => {
      });
 }
 
+// register a user i.e, creates a new profile
 exports.register = (req, res, next) => {
     profileObject = { username: req.params.username, email_address: req.params.email_address, password: req.params.password };
     const profile = new Profile(profileObject);

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Profile = require('../model/profile');
 const Request = require('../model/request');
 
+//approve the request
 exports.approve = (req, res, next) => {
     Request.findOneAndUpdate({ _id: req.params.request_id, status: "Verified" }, { status: "Approved" },{new: true})
         .exec((err, request) => {

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Profile = require('../model/profile');
 const Request = require('../model/request');
 
+//verify the request
 exports.verify = (req, res, next) => {
     
     Request.findOneAndUpdate({ _id: req.params.request_id, status: "Requested" }, { status: "Verified" },{new: true})
