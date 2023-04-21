@@ -34,7 +34,8 @@ function Login() {
       const url = "/profile/" + email_id
       
       // local storage for accessing details anywhere in app
-      localStorage.setItem("UserEmail",email_id)
+      let email_address = email_id.toLowerCase()
+      localStorage.setItem("UserEmail",email_address)
 
       fetch(url)
       .then((response) => response.json())
