@@ -7,8 +7,10 @@ import { useLocation } from 'react-router-dom';
 
 function Faculty_NewRequest() {
 
-    const location = useLocation();
-    const faculty_email=location.state;
+    
+    //const faculty_email=location.state;
+
+    const faculty_email = localStorage.getItem("UserEmail")
 
     const [request_type, setrequest_type] = useState("Public");
 
@@ -64,7 +66,7 @@ function Faculty_NewRequest() {
 
     return (
       <div>
-        <Faculty_Navbar state={faculty_email} />
+        <Faculty_Navbar  />
 
         <Container className="reqform">
             <Form className="form-horizontal" onSubmit={handle_submit}>
@@ -106,7 +108,7 @@ function Faculty_NewRequest() {
                     </Col>
                 </Form.Group>
 
-                <Form.Group class="col-md-12 text-center">
+                <Form.Group className="col-md-12 text-center">
                 <input type="submit" value='Submit Request' name="submit" />
                 </Form.Group>
             </Form>

@@ -54,10 +54,10 @@ const columns = [
 const Faculty_PendingRequests = ()  =>{
 
   const [data,setdata] = useState([])
-  const location = useLocation();
-  let faculty_email=location.state;
-  console.log("faculty data is ", faculty_email)
 
+  //console.log("faculty data is ", faculty_email)
+  let faculty_email = localStorage.getItem("UserEmail")
+  
 
   useEffect(() => {
     const url = "/pendingrequest/faculty/" + faculty_email
@@ -73,7 +73,7 @@ const Faculty_PendingRequests = ()  =>{
 
     return (
       <>
-        <Faculty_Navbar state = {faculty_email}/>
+        <Faculty_Navbar />
 
         <Container style={{ height: '70%', width: '100%' }} >
           <h3 style={{paddingTop : '1em' , paddingBottom: '0.5em'}} >

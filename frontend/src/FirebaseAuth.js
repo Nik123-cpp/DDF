@@ -14,7 +14,7 @@ const firebaseConfig = {
   storageBucket: "ddf-auth.appspot.com",
   messagingSenderId: "8695690421",
   appId: "1:8695690421:web:3e9f8c6f7e595b4dc37afc",
-  measurementId: "G-H2TFG8KHEP",
+  measurementId: "G-H2TFG8KHEP"
 };
 
 // Initialize Firebase
@@ -34,6 +34,8 @@ export const signwithgoogle = () => {
     localStorage.setItem("Faculty_email_address",email)
     localStorage.setItem("FacultyName",displayname)
     localStorage.setItem("Profile_pic", Profile_pic)
+
+    
 
     
   }).catch((error)=>{

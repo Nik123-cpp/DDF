@@ -8,11 +8,13 @@ function Faculty_ReqDetails() {
     const params = useParams()
     const request_id = params.request_id
 
-    const location = useLocation();
-    let faculty_email= location.state;
+    
+    
+    let facutly_email = localStorage.getItem("UserEmail")
+    
     return (
       <div>
-        <Faculty_Navbar state={faculty_email} />
+        <Faculty_Navbar  />
         <h2>
           Request Details of Request id : {request_id}
         </h2>

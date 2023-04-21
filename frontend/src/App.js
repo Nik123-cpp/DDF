@@ -12,6 +12,8 @@ import Faculty_ReqDetails from './components/Faculty/Faculty_ReqDetails';
 import Faculty_PendingRequests from './components/Faculty/Faculty_PendingRequests';
 import NP from './components/NP';
 
+import HOD_Home from './components/HOD/hod_homePage';
+
 
 function App() {
   return (
@@ -36,6 +38,13 @@ function App() {
 
         <Route path="NewRequest" element={<Faculty_NewRequest />} />
         <Route path="Profile" element={<Profile />} />
+      </Route>
+
+
+      <Route path= "/hod/" >
+        <Route path='' element={<HOD_Home/>}>
+
+        </Route>
       </Route>
 
       <Route path="*" element={<NP />} />

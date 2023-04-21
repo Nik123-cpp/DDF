@@ -14,8 +14,10 @@ function Profile() {
   
   const [UserName , setusername] = useState("");
   const location = useLocation();
-  let data=location.state;
-  
+  //let data=location.state;
+  let result_email = localStorage.getItem("UserEmail")
+  //console.log("user email is :" , result_email)
+  let data = result_email
   // Function to collect data
   const getdetails = async () => {
     
