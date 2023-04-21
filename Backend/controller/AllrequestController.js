@@ -27,6 +27,7 @@ exports.all_request = (req, res, next) => {
 //get all public requests
 exports.public_request = (req, res, next) => {
     Request.find({ requestType: "Public" })
+        .populate('faculty')
         .sort({ created: -1 })
         .exec((err, request) => {
             if (err) {
@@ -44,7 +45,8 @@ exports.personal_request = (req, res, next) => {
     Profile.findOne({ email_address: req.params.email_id })
         .exec((err, profile) => {
             console.log(profile._id)
-            Request.find({ requestType: "Personal", faculty: profile._id })
+            Request.find({ $or: [{ requestType: "Personal", faculty: profile._id }, { requestType: "Public" }] })
+                .populate('faculty')
                 .sort({ created: -1 })
                 .exec((err, request) => {
                     if (err) {

@@ -47,21 +47,6 @@ app.get("/api", function(req,res) {
     res.send("{Hello world}")
 })
 
-app.use(express.json());
-app.use(cors());
-
-app.use("/users", user_route);
-app.use("/profile", profile_route);
-app.use("/allrequest", allrequest_route);
-app.use("/pendingrequest", pendingrequest_route);
-app.use("/committee", committee_route);
-app.use("/hod", hod_route);
-app.use("/faculty", faculty_route);
-
-app.get("/api", function (req, res) {
-  console.log("Got Request");
-  res.send("{Hello world}");
-});
 
 app.listen(port, () => {
   console.log("Server started on port 8000 ");

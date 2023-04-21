@@ -5,6 +5,7 @@ const Profile = require('../model/profile');
 //requests not yet verfied 
 exports.requested_requests = (req, res, next) => {
     Request.find({ status: "Requested" })
+        .populate('faculty')
         .sort({ created: -1 })
         .exec((err, request) => {
             if (err) {
@@ -19,6 +20,7 @@ exports.requested_requests = (req, res, next) => {
 //requests verified by committee
 exports.verified_requests = (req, res, next) => {
     Request.find({ status: "Verified" })
+        .populate('faculty')
         .sort({ created: -1 })
         .exec((err, request) => {
             if (err) {
@@ -35,7 +37,8 @@ exports.my_requests = (req, res, next) => {
     Profile.findOne({ email_address: req.params.email_id })
         .exec((err, profile) => {
             console.log(profile._id)
-            Request.find({ faculty: profile._id, status: { $in: ["Requested", "Verified"] } },{_id:1,title:1,requestType:1,created:1,amount:1,status:1})
+            Request.find({ faculty: profile._id, status: { $in: ["Requested", "Verified"] } }, { _id: 1, title: 1, requestType: 1, created: 1, amount: 1, status: 1 })
+                .populate('faculty')
                 .sort({ created: -1 })
                 .exec((err, request) => {
                     if (err) {
