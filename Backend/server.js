@@ -8,7 +8,7 @@ const committee_route = require("./routes/committeeroute.js")
 const hod_route = require("./routes/hodroute.js")
 const faculty_route = require("./routes/facultyroute.js")
 const request_route = require("./routes/requestroute.js")
-const cors = require('cors')
+
 
 const app = express()
 const port = 8000
