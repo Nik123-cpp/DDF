@@ -5,32 +5,32 @@ import { useLocation } from 'react-router-dom';
 import Table from '../table';
 
 const columns = [
-  { field: '_id', headerName: 'Request ID',type:'string' , width: 150 },
+  { accessorKey: '_id', header: 'Request ID',type:'string' , width: 150 },
   {
-    field: 'title',
-    headerName: 'Title',
+    accessorKey: 'title',
+    header: 'Title',
     type: 'string',
     flex: 1,
     width: 120
   },
   {
-    field: 'requestType',
-    headerName: 'Request type',
+    accessorKey: 'requestType',
+    header: 'Request type',
     type: 'string',
     flex: 0.9,
     width: 120
 
   },
   {
-    field: 'created',
-    headerName: 'Date Submitted',
+    accessorKey: 'created',
+    header: 'Date Submitted',
     type: 'string',
     flex: 1.1,
     width: 200
   },
   {
-    field: 'amount',
-    headerName: 'Amount Requested',
+    accessorKey: 'amount',
+    header: 'Amount Requested',
     type: 'number',
     headerAlign: 'left',
     flex : 1,
@@ -38,8 +38,8 @@ const columns = [
   },
 
   {
-    field: 'status',
-    headerName: 'Approval status',
+    accessorKey: 'status',
+    header: 'Approval status',
     type: 'string',
     flex : 1,
     width: 200

@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const user_route = require("./routes/userroute.js")
 const profile_route = require("./routes/profileroute.js")
 const allrequest_route = require("./routes/allrequestroute.js")
