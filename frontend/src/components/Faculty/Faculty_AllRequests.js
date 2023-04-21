@@ -5,6 +5,20 @@ import Table from '../table';
 const columns = [
   { accessorKey: '_id', header: 'Request ID',type:'string' , width: 150 },
   {
+    accessorKey: 'email_address',
+    header: 'Faculty ID',
+    type: 'string',
+    flex: 1,
+    width: 120
+  },
+  {
+    accessorKey: 'faculty_name',
+    header: 'Faculty Name',
+    type: 'string',
+    flex: 1,
+    width: 120
+  },
+  {
     accessorKey: 'title',
     header: 'Title',
     type: 'string',
