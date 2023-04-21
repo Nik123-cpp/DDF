@@ -21,7 +21,7 @@ function Login() {
   const nav_faculty_home = (username) => {
     console.log("start navigation")
     let email_address = email_id.toLowerCase()
-    navigate('/Faculty/' + username , {state:email_address})
+    navigate('/Faculty/' + username )
     
   }
 
