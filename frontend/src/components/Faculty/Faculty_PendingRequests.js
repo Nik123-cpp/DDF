@@ -1,7 +1,5 @@
 import React ,{useEffect,useState} from 'react'
-import Faculty_Navbar from './Faculty_Navbar1'
 import { Container } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
 import Table from '../table';
 
 const columns = [
@@ -67,7 +65,6 @@ const Faculty_PendingRequests = ()  =>{
 
     return (
       <>
-        <Faculty_Navbar />
 
         <Container style={{ height: '70%', width: '100%' }} >
           <h3 style={{paddingTop : '1em' , paddingBottom: '0.5em'}} >

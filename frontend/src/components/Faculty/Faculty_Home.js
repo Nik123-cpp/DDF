@@ -1,8 +1,6 @@
 import React from 'react'
 import {useParams , Outlet} from 'react-router-dom'
-import Faculty_Navbar from './Faculty_Navbar1'
 
-import { useLocation } from 'react-router-dom';
 
 
 
@@ -15,7 +13,6 @@ function Faculty_Home() {
     
     return (
       <div>
-        <Faculty_Navbar/>
         <h2>
           Home Page : {result_email}
         </h2>

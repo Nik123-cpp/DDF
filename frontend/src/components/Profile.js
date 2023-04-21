@@ -1,13 +1,10 @@
-import React , {Component}from "react";
-import Faculty_Navbar from "./Faculty/Faculty_Navbar1";
+import React from "react";
 import "../Styles/Profile.css";
 
-import { useNavigate } from "react-router-dom";
 
 
 import { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 // On click of Change password button new component will be shown/Added with new password fields
 
 function Profile() {
@@ -42,7 +39,6 @@ function Profile() {
 
   return (
     <div>
-      <Faculty_Navbar state = {data}/>
 
       <div className="Profile_block">
         <div className="Profile_block_inner">
