@@ -20,8 +20,13 @@ function Login() {
 
   const nav_faculty_home = (username) => {
     console.log("start navigation")
-    let email_address = email_id.toLowerCase()
     navigate('/Faculty/' + username )
+    
+  }
+
+  const nav_committee_home = (username) => {
+    console.log("start navigation")
+    navigate('/Committee/' + username )
     
   }
 
@@ -45,8 +50,16 @@ function Login() {
           alert(`User with ${email_id} doesnot exist`)
         }
         else if(user.password === password){
-          nav_faculty_home(user.username)
-          alert(`User ${user.username}  Succesfully Loged in`)
+
+          if(email_address === 'committee_cse@iith.ac.in') {
+            nav_committee_home(user.username)
+            alert(`Committe Head , ${user.username}  Succesfully Loged in`)
+          }
+          else {
+            nav_faculty_home(user.username)
+            alert(`Faculty, ${user.username}  Succesfully Loged in`)
+          }
+          
         }
         else {
           alert(`Password is incorrect `)

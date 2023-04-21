@@ -14,7 +14,10 @@ import NP from './components/NP';
 
 import HOD_Home from './components/HOD/hod_homePage';
 import Faculty_Navbar from './components/Faculty/Faculty_Navbar1';
-
+import Committe_Home from './components/Committee/Committee_HomePage';
+import Committee_PendingRequests from './components/Committee/Committee_PendingRequests';
+import Committee_Navbar from './components/Committee/Committee_Navbar';
+import Committe_Allrequests from './components/Committee/Committe_Allrequests';
 
 function App() {
   return (
@@ -40,6 +43,25 @@ function App() {
         <Route path="NewRequest" element={<Faculty_NewRequest />} />
         <Route path="Profile" element={<Profile />} />
       </Route>
+
+
+      <Route path="/Committee/:user_name" element={<Committee_Navbar />}>
+
+        <Route path="" element={<Committe_Home />} />
+
+        <Route path="AllRequests">
+          <Route path=""  element={<Committe_Allrequests />} />
+          <Route path=":request_id" element={<Faculty_ReqDetails />} />
+        </Route>
+
+        <Route path="PendingRequests" >
+          <Route path="" element={<Committee_PendingRequests />} />
+          <Route path=":request_id" element={<Faculty_ReqDetails />}/>
+        </Route>
+
+        <Route path="Profile" element={<Profile />} />
+      </Route>
+
 
 
       <Route path= "/hod/" >
