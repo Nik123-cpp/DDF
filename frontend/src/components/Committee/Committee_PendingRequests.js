@@ -5,6 +5,20 @@ import Table from '../table';
 const columns = [
   {  accessorKey: '_id', header: 'Request ID',type:'string' , width: 150 },
   {
+    accessorKey: 'email_address',
+    header: 'Faculty ID',
+    type: 'string',
+    flex: 1,
+    width: 120
+  },
+  {
+    accessorKey: 'faculty_name',
+    header: 'Faculty Name',
+    type: 'string',
+    flex: 1,
+    width: 120
+  },
+  {
     accessorKey: 'title',
     header: 'Title',
     type: 'string',
@@ -47,17 +61,16 @@ const Committee_PendingRequests = ()  =>{
 
   const [data,setdata] = useState([])
 
-  let committee_email = localStorage.getItem("UserEmail")
   
 
-  // useEffect(() => {
-  //   const url = "/pendingrequest/committee/" + committee_email
-  //   fetch(url)
-  //     .then((res) => res.json())
-  //     .then((d) => {
-  //       setdata(d)}
-  //       );
-  // }, []);
+  useEffect(() => {
+    const url = "/pendingrequest/committee/"
+    fetch(url)
+      .then((res) => res.json())
+      .then((d) => {
+        setdata(d)}
+        );
+  }, []);
 
 
 
@@ -70,6 +83,7 @@ const Committee_PendingRequests = ()  =>{
             Pending Requests
           </h3>
           
+          <Table rows={data} coloumns={columns} />
 
         </Container>
 
