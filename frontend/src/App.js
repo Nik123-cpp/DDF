@@ -13,6 +13,7 @@ import Faculty_PendingRequests from './components/Faculty/Faculty_PendingRequest
 import NP from './components/NP';
 
 import HOD_Home from './components/HOD/hod_homePage';
+import Faculty_Navbar from './components/Faculty/Faculty_Navbar1';
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/Login" element={<Login />} />
       
-      <Route path="/Faculty/:user_id">
+      <Route path="/Faculty/:user_id"  element={<Faculty_Navbar />}>
 
         <Route path="" element={<Faculty_Home />} />
 
