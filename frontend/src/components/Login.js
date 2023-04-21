@@ -6,7 +6,7 @@ import { Button , Form , Container } from 'react-bootstrap';
 
 import {Link} from "react-router-dom"
 
-
+import { signwithgoogle } from '../FirebaseAuth';
 
 function Login() {
   const navigate = useNavigate()
@@ -21,7 +21,7 @@ function Login() {
   const nav_faculty_home = (username) => {
     console.log("start navigation")
     let email_address = email_id.toLowerCase()
-    navigate('/Faculty/' + username , {state:email_address})
+    navigate('/Faculty/' + username )
     
   }
 
@@ -33,7 +33,9 @@ function Login() {
       console.log("Start")
       const url = "/profile/" + email_id
       
-      
+      // local storage for accessing details anywhere in app
+      let email_address = email_id.toLowerCase()
+      localStorage.setItem("UserEmail",email_address)
 
       fetch(url)
       .then((response) => response.json())
@@ -92,6 +94,8 @@ function Login() {
       <Button className='d-flex justify-content-center' variant="primary" type="submit" size='sm' >
         Login
       </Button>
+
+      <button onClick={signwithgoogle}>signin with google</button>
 
       
     </Form>

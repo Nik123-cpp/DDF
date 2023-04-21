@@ -1,66 +1,55 @@
 import React ,{useEffect,useState} from 'react'
-import {useParams} from 'react-router-dom'
-import Faculty_Navbar from './Faculty_Navbar1'
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { Container } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
+import Table from '../table';
+
 const columns = [
-  { field: '_id', headerName: 'Request ID',type:'string' , width: 150 },
+  {  accessorKey: '_id', header: 'Request ID',type:'string' , width: 150 },
   {
-    field: 'title',
-    headerName: 'Title',
+    accessorKey: 'title',
+    header: 'Title',
     type: 'string',
     flex: 1,
     width: 120
   },
   {
-    field: 'requestType',
-    headerName: 'Request type',
+    accessorKey: 'requestType',
+    header: 'Request type',
     type: 'string',
     flex: 0.9,
     width: 120
 
   },
   {
-    field: 'created',
-    headerName: 'Date Submitted',
+    accessorKey: 'created',
+    header: 'Date Submitted',
     type: 'string',
     flex: 1.1,
     width: 200
   },
   {
-    field: 'amount',
-    headerName: 'Amount Requested',
+    accessorKey: 'amount',
+    header: 'Amount Requested',
     type: 'number',
     headerAlign: 'left',
     flex : 1,
     width: 120
   },
-
   {
-    field: 'status',
-    headerName: 'Approval status',
+    accessorKey: 'status',
+    header: 'Approval status',
     type: 'string',
     flex : 1,
     width: 200
   }
-];
-
-
-
-
-
+]
 
 const Faculty_PendingRequests = ()  =>{
 
-  // const params = useParams()
-  // const user_id = params.user_id
-
   const [data,setdata] = useState([])
-  const location = useLocation();
-  let faculty_email=location.state;
-  console.log("faculty data is ", faculty_email)
 
+  //console.log("faculty data is ", faculty_email)
+  let faculty_email = localStorage.getItem("UserEmail")
+  
 
   useEffect(() => {
     const url = "/pendingrequest/faculty/" + faculty_email
@@ -75,29 +64,18 @@ const Faculty_PendingRequests = ()  =>{
 
 
     return (
-      <Container style={{ height: '60%', width: '100%' }}>
-     
-      <Faculty_Navbar state = {faculty_email}/>
-      <Container>
-        <h3 style={{paddingTop : '1em' , paddingBottom: '0.5em'}} >
-          Pending Requests
-        </h3>
+      <>
 
-      </Container>
-        <DataGrid getRowId={(row) => row._id}
-          rows={data}
-          columns={columns}
-          initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 5,
-            },
-          },
-        }}
-          pageSize={[5]}
-        />
+        <Container style={{ height: '70%', width: '100%' }} >
+          <h3 style={{paddingTop : '1em' , paddingBottom: '0.5em'}} >
+            Pending Requests
+          </h3>
+          
+          <Table rows={data} coloumns={columns} />
 
-    </Container>
+        </Container>
+
+      </>  
     )
 
 }

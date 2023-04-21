@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const user_route = require("./routes/userroute.js")
 const profile_route = require("./routes/profileroute.js")
 const allrequest_route = require("./routes/allrequestroute.js")
@@ -7,6 +8,7 @@ const committee_route = require("./routes/committeeroute.js")
 const hod_route = require("./routes/hodroute.js")
 const faculty_route = require("./routes/facultyroute.js")
 const request_route = require("./routes/requestroute.js")
+
 
 const app = express()
 const port = 8000
