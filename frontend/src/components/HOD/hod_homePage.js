@@ -10,14 +10,13 @@ import { useLocation } from 'react-router-dom';
 function HOD_Home() {
     const params = useParams()
     
-    const location = useLocation();
-    const data = location.state;
+    let email_address = localStorage.getItem("UserEmail")
     
     return (
       <div>
-        <Hod_navbar/>
+        
         <h2>
-          Home Page : {data}
+          Home Page : {email_address}
         </h2>
       <Outlet/>
       </div>

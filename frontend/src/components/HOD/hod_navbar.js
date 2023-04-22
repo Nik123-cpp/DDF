@@ -1,11 +1,11 @@
 import React, { Component, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate, Link ,Outlet } from "react-router-dom";
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
 
 function Hod_navbar() {
   const navigate = useNavigate();
   let user_id = "123";
-  const url1 = "/hod/" + user_id;
+  const url1 = "/hod"
   const url2 = url1 + "/AllRequests";
   const url3 = url1 + "/PendingRequests";
   const url4 = url1 + "/DDF";
@@ -16,6 +16,7 @@ function Hod_navbar() {
   };
 
   return (
+    <div>
   <Navbar sticky="top" bg="light" expand="lg" variant="light">
     <Container>
       <Navbar.Brand>HOD : {user_id}</Navbar.Brand>
@@ -32,7 +33,7 @@ function Hod_navbar() {
             PendingRequests
           </Nav.Link>
           <Nav.Link as={Link} to={url4}>
-            New Request
+            DDF
           </Nav.Link>
           <Nav.Link as={Link} to={url5}>
             Profile
@@ -46,6 +47,8 @@ function Hod_navbar() {
       </Navbar.Collapse>
     </Container>
   </Navbar>
+  <Outlet />
+  </div>
   )
 }
 

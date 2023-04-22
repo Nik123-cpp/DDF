@@ -13,6 +13,10 @@ function Profile() {
   const location = useLocation();
   //let data=location.state;
   let result_email = localStorage.getItem("UserEmail")
+  if (result_email==null)
+  {
+    result_email = '123@iith.ac.in'
+  }
   //console.log("user email is :" , result_email)
   let data = result_email
   // Function to collect data
