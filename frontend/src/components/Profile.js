@@ -40,7 +40,7 @@ function Profile() {
 
 
   useEffect(() => {
-    if (isloggedIn ==null || isloggedIn == 'false') {
+    if (isloggedIn ===null || isloggedIn === 'false') {
       navigate('/')
     } else {
       getdetails();

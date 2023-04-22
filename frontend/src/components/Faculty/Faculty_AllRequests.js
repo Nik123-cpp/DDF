@@ -71,7 +71,7 @@ function Faculty_AllRequests() {
 
   useEffect(() => {
 
-    if(isloggedIn==null || isloggedIn =='false'){
+    if(isloggedIn===null || isloggedIn ==='false'){
       navigate('/')
     }
     else{
