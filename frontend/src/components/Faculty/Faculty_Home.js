@@ -1,16 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {useParams , Outlet} from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom'
 
 
 
 function Faculty_Home() {
     const params = useParams()
     const user_id = params.user_id
-    
+    const navigate = useNavigate()
     let result_email = localStorage.getItem("UserEmail")
     //console.log("user email is : ",result_email)
-    
+    let isloggedIn=localStorage.getItem('IsLoggedIn')
+
+    useEffect(()=>{
+      if ( isloggedIn ==null || isloggedIn == 'false'  ){
+        console.log("came ");
+        navigate('/');
+      }
+
+    },[])
+    console.log('Hello backer')
+   
     return (
       <div>
         <h2>

@@ -10,7 +10,7 @@ import { signwithgoogle } from '../FirebaseAuth';
 
 function Login() {
   const navigate = useNavigate()
-
+  
 
   const [email_id, setEmail] = useState("");
 
@@ -41,6 +41,7 @@ function Login() {
       // local storage for accessing details anywhere in app
       let email_address = email_id.toLowerCase()
       localStorage.setItem("UserEmail",email_address)
+      localStorage.setItem('IsLoggedIn',false)
 
       fetch(url)
       .then((response) => response.json())
@@ -59,6 +60,7 @@ function Login() {
             nav_faculty_home(user.username)
             alert(`Faculty, ${user.username}  Succesfully Loged in`)
           }
+          localStorage.setItem('IsLoggedIn',true)  
           
         }
         else {
