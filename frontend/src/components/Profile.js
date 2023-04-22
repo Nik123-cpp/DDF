@@ -4,7 +4,7 @@ import "../Styles/Profile.css";
 
 
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // On click of Change password button new component will be shown/Added with new password fields
 
 function Profile() {
@@ -13,6 +13,13 @@ function Profile() {
   const location = useLocation();
   //let data=location.state;
   let result_email = localStorage.getItem("UserEmail")
+  if (result_email==null)
+  {
+    result_email = '123@iith.ac.in'
+  }
+
+  let isloggedIn = localStorage.getItem('IsLoggedIn')
+  const navigate = useNavigate()
   //console.log("user email is :" , result_email)
   let data = result_email
   // Function to collect data
@@ -31,8 +38,15 @@ function Profile() {
       });
   };
 
+
   useEffect(() => {
-    getdetails();
+    if (isloggedIn ===null || isloggedIn === 'false') {
+      navigate('/')
+    } else {
+      getdetails();
+    }
+
+    
   }, []);
 
   const [change_pwd_button_popup, set_popup_change_pwd] = useState(false);

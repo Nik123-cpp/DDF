@@ -1,7 +1,8 @@
 import './Faculty_Styles/DDF_NewRequest.css'
 
-import React , {useState} from 'react'
+import React , {useEffect, useState} from 'react'
 import { Container, Row, Col, Form} from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 function Faculty_NewRequest() {
 
@@ -20,6 +21,7 @@ function Faculty_NewRequest() {
 
     const [description,setdescription] = useState("");
 
+    const navigate = useNavigate()
 
     const handle_request_type = event => {
         setrequest_type(event.target.value)
@@ -59,6 +61,16 @@ function Faculty_NewRequest() {
         .then(data => alert(data.message))
 
     }
+
+    let isloggedIn = localStorage.getItem('IsLoggedIn')
+    useEffect(()=>{
+        if(isloggedIn===null || isloggedIn==='false')
+        {
+            navigate('/')
+
+        }
+
+    },[])
 
     
 

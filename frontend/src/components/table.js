@@ -1,54 +1,9 @@
-import React, { useMemo } from 'react';
+import React, { useMemo , useState , useEffect} from 'react';
 import MaterialReactTable from 'material-react-table';
 
-//nested data is ok, see accessorKeys in ColumnDef below
-const data = [
-  {
-    name: {
-      firstName: 'John',
-      lastName: 'Doe',
-    },
-    address: '261 Erdman Ford',
-    city: 'East Daphne',
-    state: 'Kentucky',
-  },
-  {
-    name: {
-      firstName: 'Jane',
-      lastName: 'Doe',
-    },
-    address: '769 Dominic Grove',
-    city: 'Columbus',
-    state: 'Ohio',
-  },
-  {
-    name: {
-      firstName: 'Joe',
-      lastName: 'Doe',
-    },
-    address: '566 Brakus Inlet',
-    city: 'South Linda',
-    state: 'West Virginia',
-  },
-  {
-    name: {
-      firstName: 'Kevin',
-      lastName: 'Vandy',
-    },
-    address: '722 Emie Stream',
-    city: 'Lincoln',
-    state: 'Nebraska',
-  },
-  {
-    name: {
-      firstName: 'Joshua',
-      lastName: 'Rolluffs',
-    },
-    address: '32188 Larkin Turnpike',
-    city: 'Charleston',
-    state: 'South Carolina',
-  },
-];
+import {Box , IconButton} from '@mui/material'
+import OpenInNewSharpIcon from '@mui/icons-material/OpenInNewSharp';
+import { useNavigate } from 'react-router-dom';
 
 const Example = (props) => {
   //should be memoized or stable
@@ -59,7 +14,48 @@ const Example = (props) => {
     [],
   );
 
-  return <MaterialReactTable columns={columns} data={rows} />;
+  // handle_OnClick = (req_id) => {
+
+  //   alert("You selected request with" + req_id)
+  // }
+
+  const navigate = useNavigate()
+
+  const  nav_req_details = (req_id) => {
+    navigate(req_id)
+  }
+
+  return (<MaterialReactTable 
+    enableStickyHeader
+    enableStickyFooter
+
+    columns={columns} 
+    data={rows} 
+    
+    enableRowNumbers
+    // enableRowActions
+    // renderRowActions={({ row }) => (
+    //   <Box>
+    //     <OpenInNewSharpIcon onClick={() => {
+    //       console.log(row.original._id)
+    //       nav_req_details(row.original._id)
+    //       }}>
+    //       View
+    //     </OpenInNewSharpIcon>
+    //   </Box>
+    // )}
+
+    muiTableBodyRowProps={({ row }) => ({
+    onClick: (event) => { nav_req_details(row.original._id)
+    },
+    sx: {
+      cursor: 'pointer', //you might want to change the cursor too when adding an onClick
+    },
+  })}
+
+    getRowId={(originalRow) => originalRow._id}
+
+  />);
 };
 
 export default Example;

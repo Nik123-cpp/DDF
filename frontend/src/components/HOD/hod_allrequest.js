@@ -1,6 +1,7 @@
 import React ,{useEffect,useState} from 'react'
 import { Container } from 'react-bootstrap';
 import Table from '../table';
+import Hod_navbar from './hod_navbar';
 
 const columns = [
   { accessorKey: '_id', header: 'Request ID',type:'string' , width: 150 },

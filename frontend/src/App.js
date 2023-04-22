@@ -19,6 +19,11 @@ import Committee_PendingRequests from './components/Committee/Committee_PendingR
 import Committee_Navbar from './components/Committee/Committee_Navbar';
 import Committe_Allrequests from './components/Committee/Committe_Allrequests';
 
+import HOD_PendingRequest from './components/HOD/hod_PendingRequest';
+import HOD_AllRequests from './components/HOD/hod_allrequest';
+import HOD_DDF from './components/HOD/Hod_DDF_page';
+import Hod_navbar from './components/HOD/hod_navbar';
+
 function App() {
   return (
     
@@ -64,10 +69,14 @@ function App() {
 
 
 
-      <Route path= "/hod/" >
-        <Route path='' element={<HOD_Home/>}>
+      <Route path= "/hod/" element={<Hod_navbar/>}>
+        <Route path='' element={<HOD_Home/>}/>
+        <Route path='PendingRequests' element={<HOD_PendingRequest/>} />
+        <Route path='AllRequests' element={<HOD_AllRequests/>} />
+        <Route path='DDF' element={<HOD_DDF/>} />
+        <Route path='Profile' element={<Profile/>}/>
 
-        </Route>
+        
       </Route>
 
       <Route path="*" element={<NP />} />
