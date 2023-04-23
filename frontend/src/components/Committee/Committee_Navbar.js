@@ -9,10 +9,10 @@ function Committee_Navbar() {
     const params = useParams()
     const user_name = params.user_name
 
-    const url1 = "/Committee/" + user_name
-    const url2 = url1 + '/AllRequests'
-    const url3 = url1 + '/PendingRequests'
-    const url4 = url1 + '/Profile'
+    const url1 = "/Committee/"
+    const url2 = url1 + 'AllRequests'
+    const url3 = url1 + 'PendingRequests'
+    const url4 = url1 + 'Profile'
 
     const nav_Home = () => {
         navigate('/')

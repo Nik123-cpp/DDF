@@ -5,11 +5,11 @@ import { Container, Nav, Navbar, Button } from "react-bootstrap";
 function Hod_navbar() {
   const navigate = useNavigate();
   let user_id = "123";
-  const url1 = "/hod"
-  const url2 = url1 + "/AllRequests";
-  const url3 = url1 + "/PendingRequests";
-  const url4 = url1 + "/DDF";
-  const url5 = url1 + "/Profile";
+  const url1 = "/hod/"
+  const url2 = url1 + "AllRequests";
+  const url3 = url1 + "PendingRequests";
+  const url4 = url1 + "DDF";
+  const url5 = url1 + "Profile";
 
   const nav_home = () => {
     navigate("/");
