@@ -34,7 +34,7 @@ function App() {
       <Route path="/Login" element={<Login />} />
 
       <Route
-        path="/Faculty/"
+        path="/Faculty"
         element={
           <ProtectedRoute IsLoggedIn={isloggedin}>
             <Faculty_Navbar />
