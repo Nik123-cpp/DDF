@@ -11,6 +11,8 @@ function Home() {
 
   const nav_Login_page = () => {
     localStorage.setItem('IsLoggedIn',false)
+    localStorage.setItem('IsCommitteeLoggedIn',false)
+    localStorage.setItem('IsHODLoggedIn',false)
     navigate('/Login')
   }
 

@@ -54,16 +54,14 @@ const Faculty_PendingRequests = ()  =>{
   
   let isloggedIn = localStorage.getItem('IsLoggedIn')
   useEffect(() => {
-    if (isloggedIn===null || isloggedIn === 'false') {
-      navigate('/')
-    } else {
+      
       const url = "/pendingrequest/faculty/" + faculty_email
       fetch(url)
         .then((res) => res.json())
         .then((d) => {
           setdata(d)}
           );
-    }
+    
   
   }, []);
 

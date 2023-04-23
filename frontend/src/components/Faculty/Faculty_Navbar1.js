@@ -9,7 +9,7 @@ function Faculty_Navbar() {
   const params = useParams()
   const user_id = params.user_id
 
-  const url1 = "/Faculty/"
+  const url1 = "/Faculty"
   const url2 = url1 + '/AllRequests'
   const url3 = url1 + '/PendingRequests'
   const url4 = url1 + '/NewRequest'

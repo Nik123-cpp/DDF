@@ -26,6 +26,9 @@ import Hod_navbar from "./components/HOD/hod_navbar";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
+  let IsCommitteeLoggedIn = localStorage.getItem("IsCommitteeLoggedIn");
+  let IsHODLoggedIn = localStorage.getItem("IsHODLoggedIn");
+
   let isloggedin = localStorage.getItem("IsLoggedIn");
   const navigate = useNavigate();
   return (
@@ -74,7 +77,7 @@ function App() {
       <Route
         path="/Committee/"
         element={
-          <ProtectedRoute IsLoggedIn={isloggedin}>
+          <ProtectedRoute IsLoggedIn={IsCommitteeLoggedIn}>
             
             <Committee_Navbar />
           </ProtectedRoute>
@@ -98,7 +101,7 @@ function App() {
       <Route
         path="/Hod/"
         element={
-          <ProtectedRoute IsLoggedIn={isloggedin}>
+          <ProtectedRoute IsLoggedIn={IsHODLoggedIn}>
             
             <Hod_navbar />
           </ProtectedRoute>

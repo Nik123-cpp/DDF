@@ -64,11 +64,7 @@ function Faculty_NewRequest() {
 
     let isloggedIn = localStorage.getItem('IsLoggedIn')
     useEffect(()=>{
-        if(isloggedIn===null || isloggedIn==='false')
-        {
-            navigate('/')
-
-        }
+      
 
     },[])
 

@@ -19,10 +19,7 @@ function Faculty_ReqDetails() {
     const [request,setrequest] = useState({})
 
     useEffect(()=>{
-      if ( isloggedIn ===null || isloggedIn === 'false'  ){
-        console.log("came ");
-        navigate('/');
-      }else {
+       
         const url = "/request/" + request_id
         fetch(url)
           .then((res) => res.json())
@@ -30,7 +27,7 @@ function Faculty_ReqDetails() {
             setrequest(request)
             }
           );
-      }
+      
 
     },[])
 

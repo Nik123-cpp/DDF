@@ -71,17 +71,15 @@ function Faculty_AllRequests() {
 
   useEffect(() => {
 
-    if(isloggedIn===null || isloggedIn ==='false'){
-      navigate('/')
-    }
-    else{
+    
+    
       const url = "/allrequest/personal/" + faculty_email
       fetch(url)
         .then((res) => res.json())
         .then((d) => {
           setdata(d)}
           );
-    }
+    
 
    
   }, []);
