@@ -10,6 +10,7 @@ function Home() {
   const navigate = useNavigate()
 
   const nav_Login_page = () => {
+    localStorage.setItem('IsLoggedIn',false)
     navigate('/Login')
   }
 

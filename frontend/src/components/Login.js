@@ -53,11 +53,13 @@ function Login() {
         else if(user.password === password){
 
           if(email_address === 'committee_cse@iith.ac.in') {
+            localStorage.setItem('IsLoggedIn',true) 
             nav_committee_home(user.username)
             alert(`Committe Head , ${user.username}  Succesfully Loged in`)
           }
           else {
             nav_faculty_home(user.username)
+            localStorage.setItem('IsLoggedIn',true) 
             alert(`Faculty, ${user.username}  Succesfully Loged in`)
           }
           localStorage.setItem('IsLoggedIn',true)  
