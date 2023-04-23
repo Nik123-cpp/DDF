@@ -1,7 +1,7 @@
 import './Faculty_Styles/DDF_NewRequest.css'
 
 import React , {useEffect, useState} from 'react'
-import { Container, Row, Col, Form} from 'react-bootstrap';
+import { Paper, Grid, TextField, MenuItem, InputAdornment, Button} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 function Faculty_NewRequest() {
@@ -72,57 +72,102 @@ function Faculty_NewRequest() {
 
     },[])
 
+    const paperstyle = {padding: '30px 20px', margin:'auto auto', maxWidth:'600px'};
+    const Req_Type = [
+        {
+          value: 'Public',
+          label: 'Public',
+        },
+        {
+          value: 'Personal',
+          label: 'Personal',
+        },
+      ];
+
     
 
     return (
-      <div>
+        <Paper elevation={20} style={paperstyle} sx={{maxWidth:'900px',minWidth: '250px'}}>
+        <h2>Request Form</h2>
+        <hr/>
 
-        <Container className="reqform">
-            <Form className="form-horizontal" onSubmit={handle_submit}>
-                <Form.Group as={Row}>
-                    <Form.Label htmlFor="reqtype" className="control-label col-sm-2">Request Type:</Form.Label>
-                    <Col sm={10}>
-                        <Form.Select id="reqtype"  onChange={handle_request_type}>
-                            <option>Public</option>
-                            <option>Personal</option>
-                        </Form.Select>
-                    </Col>
-                </Form.Group>
+      <Grid container spacing={3}>
+      <Grid item xs={12}>
+        <TextField
+                    id="reqtype"
+                    fullWidth
+                    select
+                    label="Request Type"
+                    defaultValue='public'
+                    onChange={handle_request_type}
+                    // helperText="Select request type"
+                >
+                {Req_Type.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                    </MenuItem>
+          ))}
+        </TextField>
+        </Grid>
 
-                <Form.Group as={Row}>
-                    <Form.Label htmlFor="title" className="control-label col-sm-2">Title</Form.Label>
-                    <Col sm={10}>
-                        <Form.Control type="text" id="title" placeholder="Enter Request Title" name="title"  onChange={handle_title}/>
-                    </Col>
-                </Form.Group>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="title"
+            name="title"
+            label="Title"
+            fullWidth
+            variant="outlined"
+            onChange={handle_title}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            id="amount"
+            required
+            name="amount"
+            label="Amount"
+            type='number'
+            fullWidth
+            variant="outlined"
+            onChange={handle_amount}
+            InputProps={{
+                startAdornment: <InputAdornment position="start">Rs</InputAdornment>,
+              }}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            id="doclink"
+            name="doclink"
+            label="Document Link"
+            fullWidth
+            variant="outlined"
+            onChange={handle_doc_link}
+            helperText="Provide Drive Link to the required document"
+          />
+        </Grid>
+        <Grid item xs={12}>
+        <TextField
+          id="desc"
+          fullWidth
+          label="Description"
+          required
+          placeholder="Write Proper Description to Your Request here ....."
+          multiline
+          minRows={3}
+          variant="outlined"
+          onChange={handle_description}
+        />
+        </Grid>
 
-                <Form.Group as={Row}>
-                    <Form.Label htmlFor="amount" className="control-label col-sm-2">Amount</Form.Label>
-                    <Col sm={10}>
-                        <Form.Control type="number" id="amount" placeholder="Enter Request Amount" name="amount" onChange={handle_amount} />
-                    </Col>
-                </Form.Group>
-
-                <Form.Group as={Row}>
-                    <Form.Label htmlFor="docs" className="control-label col-sm-2">Document Link</Form.Label>
-                    <Col sm={10}>
-                        <Form.Control type="text" id="docs" placeholder="Provide Documents Drive link" name="docs" onChange={handle_doc_link}/>
-                    </Col>
-                </Form.Group>
-
-                <Form.Group as={Row}>
-                    <Form.Label htmlFor="desc" className="control-label col-sm-2">Description</Form.Label>
-                    <Col sm={10}>
-                        <Form.Control as="textarea" cols="20" rows="10" placeholder="Describe Request ...." onChange={handle_description} />
-                    </Col>
-                </Form.Group>
-
-                <Form.Group className="col-md-12 text-center">
-                <input type="submit" value='Submit Request' name="submit" />
-                </Form.Group>
-            </Form>
-        </Container>
-      </div>
+        <Grid item>
+            <Button type='submit' variant='contained' color='success' onClick={handle_submit}>Submit Request</Button>
+        </Grid>
+        
+      </Grid>
+      </Paper>
     )
 
 }
