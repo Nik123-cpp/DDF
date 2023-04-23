@@ -7,7 +7,8 @@ function Faculty_Navbar() {
 
   const navigate = useNavigate()
   const params = useParams()
-  const user_id = params.user_id
+  const user_id = localStorage.getItem('FacultyUsername')
+  //localStorage.getItem('FacultyUsername')
 
   const url1 = "/Faculty"
   const url2 = url1 + '/AllRequests'

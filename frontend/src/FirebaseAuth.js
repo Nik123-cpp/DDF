@@ -31,9 +31,9 @@ export const signwithgoogle = () => {
     const email= result.user.email
     const displayname = result.user.displayName
     const Profile_pic = result.user.photoURL
-    localStorage.setItem("Faculty_email_address",email)
-    localStorage.setItem("FacultyName",displayname)
-    localStorage.setItem("Profile_pic", Profile_pic)
+    //localStorage.setItem("Faculty_email_address",email)
+    //localStorage.setItem("FacultyName",displayname)
+    //localStorage.setItem("Profile_pic", Profile_pic)
 
     
 

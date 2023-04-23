@@ -7,7 +7,7 @@ function Committee_Navbar() {
 
     const navigate = useNavigate()
     const params = useParams()
-    const user_name = params.user_name
+    const user_name = localStorage.getItem('CommitteeUsername')
 
     const url1 = "/Committee/"
     const url2 = url1 + 'AllRequests'

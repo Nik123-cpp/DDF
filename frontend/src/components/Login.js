@@ -47,7 +47,7 @@ function Login() {
     navigate('/Hod/')
   }
 
-
+  const [userType,SetuserType] = useState(0)
   const handle_submit = event => {
 
       event.preventDefault();
@@ -60,6 +60,9 @@ function Login() {
       localStorage.setItem("UserEmail",email_address)
       localStorage.setItem('IsLoggedIn',false)
 
+
+      
+
       fetch(url)
       .then((response) => response.json())
       .then( data => {
@@ -71,14 +74,18 @@ function Login() {
 
           if(email_address === 'committee_cse@iith.ac.in') {
             localStorage.setItem('IsCommitteeLoggedIn',true) 
+            localStorage.setItem('committeeEmail',email_address)
+            localStorage.setItem('CommitteeUsername',user.username)
+            SetuserType(2)
             nav_committee_home(user.username)
             alert(`Committee Head , ${user.username}  Succesfully Logged in`)
           }
           else if(email_address == 'hod_cse@iith.ac.in') {
 
-
-
             localStorage.setItem('IsHODLoggedIn',true)
+            localStorage.getItem('hodEmail',email_address)
+            localStorage.setItem('HodUsername',user.username)
+            SetuserType(3)
             nav_hod_home()
             alert('Hod successfully logged in ')
           }
@@ -86,6 +93,9 @@ function Login() {
           else{
             nav_faculty_home(user.username)
             localStorage.setItem('IsLoggedIn',true) 
+            localStorage.setItem('FacultyEmail',email_address)
+            localStorage.setItem('FacultyUsername',user.username)
+            SetuserType(1)
             alert(`Faculty, ${user.username}  Succesfully Loged in`)
           }
           localStorage.setItem('IsLoggedIn',true)  
@@ -96,6 +106,40 @@ function Login() {
         }
       })
       console.log("End")
+
+      const getdetails = async () => {
+        const url = "/profile/" + email_address;
+        const response = await fetch("http://localhost:8000" + url, {
+          mode: "cors",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            const user = data.User;
+            console.log(user.username)
+            if (user === null) {
+              alert(`User with ${data} doesnot exist`);
+            }
+            if(userType==0)
+            {
+              console.log('did reached ')
+            }
+            if (userType==1) {
+              localStorage.setItem('FacultyUsername',user.username)
+            }
+            else if (userType==2) {
+              localStorage.setItem('CommitteeUsername',data)
+
+            }
+            else{
+              localStorage.setItem('HodUsername',data)
+            }
+            //localStorage.setItem()
+            //console.log(user)
+            
+          });
+      };
+
+      //getdetails();
 
       
   }

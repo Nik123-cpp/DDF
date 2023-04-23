@@ -4,7 +4,7 @@ import { Container, Nav, Navbar, Button } from "react-bootstrap";
 
 function Hod_navbar() {
   const navigate = useNavigate();
-  let user_id = "123";
+  let user_id = localStorage.getItem('HodUsername');
   const url1 = "/hod/"
   const url2 = url1 + "AllRequests";
   const url3 = url1 + "PendingRequests";

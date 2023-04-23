@@ -9,6 +9,8 @@ import { Button, Form, Container } from "react-bootstrap";
 function Profile() {
   const [UserName, setusername] = useState("");
   const location = useLocation();
+  //console.log(location.pathname);
+
   //let data=location.state;
   let result_email = localStorage.getItem("UserEmail");
   if (result_email == null) {
@@ -37,10 +39,21 @@ function Profile() {
   };
 
   useEffect(() => {
-    if (isloggedIn === null || isloggedIn === "false") {
-      navigate("/");
-    } else {
-      getdetails();
+    // if (isloggedIn === null || isloggedIn === "false") {
+    //   navigate("/");
+    // } else {
+    //   getdetails();
+    // }
+
+    if (location.pathname=='/Committee/Profile') {
+      setusername(localStorage.getItem('CommitteeUsername'))
+    }
+    else if (location.pathname=='/hod/Profile') {
+      setusername(localStorage.getItem('HodUsername'))
+    }
+    else
+    {
+      setusername(localStorage.getItem('FacultyUsername'))
     }
   }, []);
 
