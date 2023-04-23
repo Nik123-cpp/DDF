@@ -8,19 +8,38 @@
 
 }
 .Profile_block_inner{
+    border: 5px grey;
     align-items: center;
     align-content: center;
     justify-content: center;
     justify-items: center;
     position: relative;
     width: 80%;
-    left: 40%;
+    
+    background-color: aquamarine;
+    margin:auto;
+    
+}
+
+.Profile_title{
+    width: 100%;
+    margin:auto;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    
+
+}
+.Image{
+    width: 100%;
 }
 
 .Profile_content{
     align-content: center;
     justify-content: center;
     align-items: center;
+    margin:auto;
 }
 
 .Profile_label{

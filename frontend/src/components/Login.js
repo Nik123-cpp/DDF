@@ -33,14 +33,18 @@ function Login() {
 
   const nav_faculty_home = (username) => {
     console.log("start navigation")
-    navigate('/Faculty/' + username )
+    navigate('/Faculty/' )
     
   }
 
   const nav_committee_home = (username) => {
     console.log("start navigation")
-    navigate('/Committee/' + username )
+    navigate('/Committee/'  )
     
+  }
+  const nav_hod_home = () =>{
+    console.log('going to hod home')
+    navigate('/Hod/')
   }
 
 
@@ -70,10 +74,19 @@ function Login() {
             nav_committee_home(user.username)
             alert(`Committee Head , ${user.username}  Succesfully Logged in`)
           }
-          else {
+          else if(email_address == 'hod_cse@iith.ac.in') {
+
+
+
+            localStorage.setItem('IsLoggedIn',true)
+            nav_hod_home()
+            alert('Hod successfully logged in ')
+          }
+          
+          else{
             nav_faculty_home(user.username)
             localStorage.setItem('IsLoggedIn',true) 
-            alert(`Faculty, ${user.username}  Succesfully Logged in`)
+            alert(`Faculty, ${user.username}  Succesfully Loged in`)
           }
           localStorage.setItem('IsLoggedIn',true)  
           
