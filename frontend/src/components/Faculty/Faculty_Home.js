@@ -19,7 +19,7 @@ function Faculty_Home() {
       }
 
     },[])
-    console.log('Hello backer')
+    
    
     return (
       <div>
