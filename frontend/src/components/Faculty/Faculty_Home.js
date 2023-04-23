@@ -13,7 +13,7 @@ function Faculty_Home() {
     let isloggedIn=localStorage.getItem('IsLoggedIn')
 
     useEffect(()=>{
-      if ( isloggedIn ==null || isloggedIn == 'false'  ){
+      if ( isloggedIn === null || isloggedIn === 'false'  ){
         console.log("came ");
         navigate('/');
       }
