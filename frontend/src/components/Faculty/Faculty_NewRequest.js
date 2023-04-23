@@ -72,7 +72,7 @@ function Faculty_NewRequest() {
 
     },[])
 
-    const paperstyle = {padding: '30px 20px', margin:'auto auto', maxWidth:'600px'};
+    const paperstyle = { padding: '30px 20px', maxWidth:'600px'};
     const Req_Type = [
         {
           value: 'Public',
@@ -87,6 +87,14 @@ function Faculty_NewRequest() {
     
 
     return (
+      <Grid   
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        style={{ minHeight: '100vh' }}
+      >
         <Paper elevation={20} style={paperstyle} sx={{maxWidth:'900px',minWidth: '250px'}}>
         <h2>Request Form</h2>
         <hr/>
@@ -168,6 +176,7 @@ function Faculty_NewRequest() {
         
       </Grid>
       </Paper>
+      </Grid>
     )
 
 }
