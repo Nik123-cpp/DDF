@@ -12,9 +12,9 @@ function Hod_navbar() {
   const url5 = url1 + "Profile";
 
   const nav_home = () => {
-    localStorage.setItem('IsLoggedIn',false) 
-    localStorage.setItem('FacultyEmail',null)
-    localStorage.setItem('FacultyUsername',null)
+    localStorage.setItem('IsHODLoggedIn',false)
+    localStorage.getItem('hodEmail',null)
+    localStorage.setItem('HodUsername',null)
     navigate("/");
   };
 
