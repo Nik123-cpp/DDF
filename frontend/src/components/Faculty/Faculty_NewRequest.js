@@ -1,7 +1,7 @@
 import './Faculty_Styles/DDF_NewRequest.css'
 
 import React , {useEffect, useState} from 'react'
-import { Paper, Grid, TextField, MenuItem, InputAdornment, Button} from '@mui/material';
+import { Paper, Grid, TextField, MenuItem, InputAdornment, Button, Box} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 function Faculty_NewRequest() {
@@ -157,8 +157,10 @@ function Faculty_NewRequest() {
         />
         </Grid>
 
-        <Grid item>
+        <Grid item xs={12}>
+        <Box display="flex"   justifyContent="center" alignItems="center">
             <Button type='submit' variant='contained' color='success' onClick={handle_submit}>Submit Request</Button>
+        </Box>
         </Grid>
         
       </Grid>

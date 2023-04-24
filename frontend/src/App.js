@@ -25,6 +25,8 @@ import HOD_DDF from "./components/HOD/Hod_DDF_page";
 import Hod_navbar from "./components/HOD/hod_navbar";
 
 import ProtectedRoute from "./components/ProtectedRoute";
+import Committee_ReqDetails from "./components/Committee/Committee_ReqDetails";
+import HOD_ReqDetails from "./components/HOD/hod_ReqDetails";
 function App() {
   let IsCommitteeLoggedIn = localStorage.getItem("IsCommitteeLoggedIn");
   let IsHODLoggedIn = localStorage.getItem("IsHODLoggedIn");
@@ -87,12 +89,12 @@ function App() {
 
         <Route path="AllRequests">
           <Route path="" element={<Committe_Allrequests />} />
-          <Route path=":request_id" element={<Faculty_ReqDetails />} />
+          <Route path=":request_id" element={<Committee_ReqDetails />} />
         </Route>
 
         <Route path="PendingRequests">
           <Route path="" element={<Committee_PendingRequests />} />
-          <Route path=":request_id" element={<Faculty_ReqDetails />} />
+          <Route path=":request_id" element={<Committee_ReqDetails />} />
         </Route>
 
         <Route path="Profile" element={<Profile />} />
@@ -109,6 +111,7 @@ function App() {
       >
         <Route path="" element={<HOD_Home />} />
         <Route path="PendingRequests" element={<HOD_PendingRequest />} />
+        <Route path="PendingRequests/:request_id" element={<HOD_ReqDetails />}/>
         <Route path="AllRequests" element={<HOD_AllRequests />} />
         <Route path="DDF" element={<HOD_DDF />} />
         <Route path="Profile" element={<Profile />} />
