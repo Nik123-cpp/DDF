@@ -50,9 +50,8 @@ const Faculty_PendingRequests = ()  =>{
 
   const navigate = useNavigate()
   //console.log("faculty data is ", faculty_email)
-  let faculty_email = localStorage.getItem("UserEmail")
+  let faculty_email = localStorage.getItem("FacultyEmail")
   
-  let isloggedIn = localStorage.getItem('IsLoggedIn')
   useEffect(() => {
       
       const url = "/pendingrequest/faculty/" + faculty_email

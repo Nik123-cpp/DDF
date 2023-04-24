@@ -4,15 +4,12 @@ import { useEffect } from 'react'
 import {Paper, TextField, Button, Box, Step, Stepper, StepLabel} from '@mui/material'
 import { Container } from 'react-bootstrap'
 import {Table, TableContainer, TableBody, TableCell, TableRow} from '@mui/material'
-import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/Send';
 
 function Faculty_ReqDetails() {
   
     const params = useParams()
     const request_id = params.request_id
     
-    const navigate = useNavigate()
     let isloggedIn=localStorage.getItem('IsLoggedIn')
 
 

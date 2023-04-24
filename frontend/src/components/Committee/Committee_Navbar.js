@@ -15,6 +15,9 @@ function Committee_Navbar() {
     const url4 = url1 + 'Profile'
 
     const nav_Home = () => {
+        localStorage.setItem('IsCommitteeLoggedIn',false) 
+        localStorage.setItem('committeeEmail',null)
+        localStorage.setItem('CommitteeUsername',null)
         navigate('/')
     }
 

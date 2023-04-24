@@ -5,17 +5,9 @@ import { useNavigate } from 'react-router-dom'
 
 
 function Faculty_Home() {
-    const params = useParams()
-    const user_id = params.user_id
-    const navigate = useNavigate()
-    let result_email = localStorage.getItem("UserEmail")
-    //console.log("user email is : ",result_email)
-    let isloggedIn=localStorage.getItem('IsLoggedIn')
 
-    useEffect(()=>{
     
-
-    },[])
+    let result_email = localStorage.getItem("FacultyEmail")
     
    
     return (

@@ -6,8 +6,7 @@ import Logo from '../Images_folder/IITH_Logo.png';
 function Faculty_Navbar() {
 
   const navigate = useNavigate()
-  const params = useParams()
-  const user_id = localStorage.getItem('FacultyUsername')
+  const user_name = localStorage.getItem('FacultyUsername')
   //localStorage.getItem('FacultyUsername')
 
   const url1 = "/Faculty"
@@ -38,7 +37,7 @@ function Faculty_Navbar() {
               className="d-inline-block align-top"
             >
             </img></a></div>
-            <h4 style={{marginTop:'12px', marginLeft:'100px'}}>Faculty : {user_id}</h4>
+            <h4 style={{marginTop:'12px', marginLeft:'100px'}}>Faculty : {user_name}</h4>
             </span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

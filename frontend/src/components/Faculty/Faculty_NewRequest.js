@@ -9,7 +9,7 @@ function Faculty_NewRequest() {
     
     //const faculty_email=location.state;
 
-    const faculty_email = localStorage.getItem("UserEmail")
+    const faculty_email = localStorage.getItem("FacultyEmail")
 
     const [request_type, setrequest_type] = useState("Public");
 
@@ -46,9 +46,6 @@ function Faculty_NewRequest() {
     const handle_submit = event => {
 
         event.preventDefault();
-        // const message = "Requesttype: "+ request_type + "\nTitle :" + title + "\nAmount :" + amount 
-        // alert(message)
-
         const url = "/faculty/create_request"
         const requestOptions = {
             method: 'POST',
@@ -61,12 +58,6 @@ function Faculty_NewRequest() {
         .then(data => alert(data.message))
 
     }
-
-    let isloggedIn = localStorage.getItem('IsLoggedIn')
-    useEffect(()=>{
-      
-
-    },[])
 
     const paperstyle = { padding: '30px 20px', maxWidth:'600px'};
     const Req_Type = [

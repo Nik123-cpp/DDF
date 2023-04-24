@@ -66,8 +66,7 @@ function Faculty_AllRequests() {
   const navigate = useNavigate()
  
   //console.log("faculty data is ", faculty_email)
-  let faculty_email = localStorage.getItem("UserEmail")
-  let isloggedIn=localStorage.getItem('IsLoggedIn')
+  let faculty_email = localStorage.getItem("FacultyEmail")
 
   useEffect(() => {
 

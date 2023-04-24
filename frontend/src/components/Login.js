@@ -57,8 +57,7 @@ function Login() {
       
       // local storage for accessing details anywhere in app
       let email_address = email_id.toLowerCase()
-      localStorage.setItem("UserEmail",email_address)
-      localStorage.setItem('IsLoggedIn',false)
+      
 
 
       
@@ -98,7 +97,6 @@ function Login() {
             SetuserType(1)
             alert(`Faculty, ${user.username}  Succesfully Loged in`)
           }
-          localStorage.setItem('IsLoggedIn',true)  
           
         }
         else {
