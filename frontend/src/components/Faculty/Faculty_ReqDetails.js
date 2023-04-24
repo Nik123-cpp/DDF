@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
 import {useNavigate, useParams} from 'react-router-dom'
 import { useEffect } from 'react'
-import {Paper, TextField, Button, Box, Step, Stepper, StepLabel} from '@mui/material'
+import {Paper, TextField, Button, Box, Step, Stepper, StepLabel,Grid, InputAdornment } from '@mui/material'
 import { Container } from 'react-bootstrap'
 import {Table, TableContainer, TableBody, TableCell, TableRow} from '@mui/material'
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
 
 function Faculty_ReqDetails() {
   
     const params = useParams()
     const request_id = params.request_id
     
+    const navigate = useNavigate()
     let isloggedIn=localStorage.getItem('IsLoggedIn')
 
 
@@ -35,16 +38,31 @@ function Faculty_ReqDetails() {
       'Accepted',
     ];
 
+    const title = String(request.title)
+    const reqtype = String(request.requestType)
+    const amount = String(request.amount)
+    const facname = String(request.faculty_name)
+    const fac_email = String(request.email_address)
+    // const review = String(request.review)
+    const doclink = String(request.documents)
+    const desc = String(request.description)
+    
     return (
-      
-      <Container >
-       
-        <TableContainer component={Paper} elevation={20} style={paperstyle} sx={{maxWidth:'900px',minWidth: '250px'}}>
-          <h2>
-            Request Details
-            {/* Request Details of Request id : {request_id} */}
-          </h2>
+      <Grid   
+      container
+      spacing={0}
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      style={{ minHeight: '100vh' }}
+    >
+      <Paper elevation={20} style={paperstyle} sx={{maxWidth:'900px',minWidth: '250px'}}>
+      <h2>Request Details</h2>
+      <hr/>
 
+    <Grid container spacing={2}>
+
+    <Grid item xs={12}>
           <Box sx={{ width: '100%' }} padding={5}>
             <Stepper activeStep={0} alternativeLabel>
               {steps.map((label) => (
@@ -54,181 +72,146 @@ function Faculty_ReqDetails() {
               ))}
             </Stepper>
           </Box>
+      </Grid>
 
-        <Table  aria-label="simple table">
-          {/* <TableHead>
-            <TableRow>
-              <TableCell>Dessert (100g serving)</TableCell>
-              <TableCell align="right">Calories</TableCell>
-            </TableRow>
-          </TableHead> */}
-          <TableBody>
+    <Grid item xs={12} sm={8}>
+      <TextField
+                  id="reqid"
+                  fullWidth
+                  label="Request ID"
+                  value={request_id}
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  // helperText="Select request type"
+      >
+      </TextField>
+      </Grid>
 
-            <TableRow>
-                <TableCell align="left" scope="row">
-                  Request ID
-                </TableCell>
-                <TableCell align='center'>
-                  <TextField
-                    id="standard-read-only-input"
-                    value={request_id}
-                    fullWidth
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                    variant="outlined"
-                  >
-                  </TextField>
-                </TableCell>
-            </TableRow>
+    <Grid item xs={12} sm={4}>
+      <TextField
+                  id="reqtype"
+                  fullWidth
+                  label="Request Type"
+                  value={reqtype}
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  // helperText="Select request type"
+      >
+      </TextField>
+      </Grid>
 
-            <TableRow>
-                <TableCell align="left" scope="row">
-                  Faculty
-                </TableCell>
-                <TableCell align='center'>
-                  <TextField
-                    id="standard-read-only-input"
-                    // label="Name of Faculty"
-                    value={'getname'}
-                    fullWidth
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                    variant="outlined"
-                  >
-                  </TextField>
-                </TableCell>
-            </TableRow>
+      <Grid item xs={12} sm={4}>
+      <TextField
+                  id="facname"
+                  fullWidth
+                  label="Faculty Name"
+                  value={facname}
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  // helperText="Select request type"
+      >
+      </TextField>
+      </Grid>
 
-            <TableRow>
-                <TableCell align="left" scope="row">
-                  Title
-                </TableCell>
-                <TableCell align='center'>
-                  <TextField
-                    id="standard-read-only-input"
-                    // label="Request Title"
-                    value={request.title}
-                    fullWidth
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                    variant="outlined"
-                  >
-                  </TextField>
-                </TableCell>
-            </TableRow>
+    <Grid item xs={12} sm={8}>
+      <TextField
+                  id="mailid"
+                  fullWidth
+                  label="Mail ID"
+                  value={fac_email}
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  // helperText="Select request type"
+      >
+      </TextField>
+      </Grid>
 
-            <TableRow>
-                <TableCell align="left" scope="row">
-                  Request Type
-                </TableCell>
-                <TableCell align='center'>
-                  <TextField
-                    id="standard-read-only-input"
-                    // label="Type of Request"
-                    value={request.requestType}
-                    fullWidth
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                    variant="outlined"
-                  >
-                  </TextField>
-                </TableCell>
-            </TableRow>
+      <Grid item xs={12} sm={6}>
+        <TextField
+          id="title"
+          name="title"
+          label="Title"
+          fullWidth
+          variant="outlined"
+          value = {title}
+          InputProps={{
+            readOnly: true,
+          }}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        <TextField
+          id="amount"
+          name="amount"
+          label="Amount"
+          fullWidth
+          variant="outlined"
+          value={amount}
+          InputProps={{
+              startAdornment: <InputAdornment position="start">Rs</InputAdornment>,
+              readOnly: true,
+            }}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <TextField
+          id="doclink"
+          name="doclink"
+          label="Document Link"
+          fullWidth
+          variant="outlined"
+          value={doclink}
+          InputProps={{
+            readOnly: true,
+          }}   
+        />
+      </Grid>
+      <Grid item xs={12}>
+      <TextField
+        id="desc"
+        fullWidth
+        label="Description"
+        multiline
+        minRows={3}
+        variant="outlined"
+        value={desc}
+        InputProps={{
+          readOnly: true,
+        }}
+      />
+      </Grid>
+      </Grid>
 
-            <TableRow>
-                <TableCell align="left" scope="row">
-                  Amount
-                </TableCell>
-                <TableCell align='center'>
-                  <TextField
-                    id="standard-read-only-input"
-                    // label="Type of Request"
-                    value={request.amount}
-                    fullWidth
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                    variant="outlined"
-                  >
-                  </TextField>
-                </TableCell>
-            </TableRow>
+      <hr></hr>
+      <h3>Review</h3>
+      <br></br>
+  
+    <Grid container>
+    <Grid item xs={12}>
+      <TextField
+        id="review"
+        fullWidth
+        label="Review From Committee"
+        multiline
+        minRows={3}
+        variant="outlined"
+        value="getreview"
+        InputProps={{
+          readOnly: true,
+        }}
+      />
+    </Grid>
+    </Grid>
 
-            <TableRow>
-                <TableCell align="left" scope="row">
-                  Document Link
-                </TableCell>
-                <TableCell align='center'>
-                  <TextField
-                    id="standard-read-only-input"
-                    // label="Type of Request"
-                    value={request.documents}
-                    fullWidth
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                    variant="outlined"
-                  >
-                  </TextField>
-                </TableCell>
-            </TableRow>
+    <hr></hr>
 
-            <TableRow>
-                <TableCell align="left" scope="row">
-                  Description
-                </TableCell>
-                <TableCell align='center'>
-                  <TextField
-                    id="outlined-textarea"
-                    value={request.description}
-                    fullWidth
-                    multiline
-                    minRows={4}
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                  />
-                </TableCell>
-            </TableRow>
+    </Paper>
+    </Grid>
 
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TableContainer component={Paper} elevation={20} style={paperstyle} sx={{maxWidth:'900px',minWidth: '250px'}}>
-          <h2>
-            Review
-          </h2>
-          
-          {/* sx={{ minWidth: 650 }} */}
-        <Table  aria-label="simple table">
-          <TableBody>
-
-            <TableRow>
-                <TableCell align="left" scope="row">
-                  Review
-                </TableCell>
-                <TableCell align='center'>
-                  <TextField
-                    id="outlined-textarea"
-                    value={'getReview'}
-                    fullWidth
-                    multiline
-                    minRows={4}
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                  />
-                </TableCell>
-            </TableRow>
-
-          </TableBody>
-        </Table>
-      </TableContainer>
-  </Container>
   )
 }
 
