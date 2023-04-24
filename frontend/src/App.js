@@ -113,6 +113,7 @@ function App() {
         <Route path="PendingRequests" element={<HOD_PendingRequest />} />
         <Route path="PendingRequests/:request_id" element={<HOD_ReqDetails />}/>
         <Route path="AllRequests" element={<HOD_AllRequests />} />
+        <Route path="AllRequests/:request_id" element={<HOD_ReqDetails />} />
         <Route path="DDF" element={<HOD_DDF />} />
         <Route path="Profile" element={<Profile />} />
       </Route>
