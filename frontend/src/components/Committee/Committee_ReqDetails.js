@@ -4,8 +4,8 @@ import { useEffect } from 'react'
 import {Paper, TextField, Button, Box, Step, Stepper, StepLabel,Grid, InputAdornment } from '@mui/material'
 import { Container } from 'react-bootstrap'
 import {Table, TableContainer, TableBody, TableCell, TableRow} from '@mui/material'
-import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/Send';
+import { ThumbDown } from '@mui/icons-material';
+import SendIcon  from '@mui/icons-material/Send';
 
 function Committee_ReqDetails() {
   
@@ -204,11 +204,11 @@ function Committee_ReqDetails() {
       />
     </Grid>
     <Grid item xs={12} sm={6}>
-    <Button type='submit' variant='contained' color='success'>Reject</Button>
+    <Button type='submit' variant='contained' color='error' endIcon={<ThumbDown/>}>Reject</Button>
     </Grid>
     <Grid item xs={12} sm={6}>
     <Box display="flex" justifyContent="flex-end">
-    <Button type='submit' variant='contained' color='success'>Verified</Button>
+    <Button type='submit' variant='contained' color='success' endIcon={<SendIcon/>}>Verified</Button>
     </Box>
     </Grid>
     </Grid>

@@ -3,9 +3,7 @@ import {useNavigate, useParams} from 'react-router-dom'
 import { useEffect } from 'react'
 import {Paper, TextField, Button, Box, Step, Stepper, StepLabel,Grid, InputAdornment } from '@mui/material'
 import { Container } from 'react-bootstrap'
-import {Table, TableContainer, TableBody, TableCell, TableRow} from '@mui/material'
-import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/Send';
+
 
 function Faculty_ReqDetails() {
   
