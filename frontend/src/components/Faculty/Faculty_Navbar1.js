@@ -19,6 +19,8 @@ function Faculty_Navbar() {
 
   const nav_Home= () => {   
     localStorage.setItem('IsLoggedIn',false) 
+    localStorage.setItem('FacultyEmail',null)
+    localStorage.setItem('FacultyUsername',null)
     navigate('/')
   }
 
