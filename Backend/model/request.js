@@ -13,13 +13,13 @@ const requestSchema = Schema({
     amount: { type: Number, required: true },
     documents: [{ type: String }],
     description: { type: String, required: true },
-    review: { type: String },
+    review: { type: String , default : ""},
     status: {
         type: String,
         required: true,
-        enum: ["Requested", "Verified", "Approved"],
+        enum: ["Requested", "Verified" , "Denied", "Approved" , "Rejected"],
         default: "Requested"
     },
-    created : { type: Date, default: Date.now }
+    created : { type: Date, default: Date.now },
 })
 module.exports = mongoose.model("Request", requestSchema);
