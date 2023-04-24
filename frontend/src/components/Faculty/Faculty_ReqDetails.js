@@ -36,15 +36,6 @@ function Faculty_ReqDetails() {
       'Accepted',
     ];
 
-    const title = String(request.title)
-    const reqtype = String(request.requestType)
-    const amount = String(request.amount)
-    const facname = String(request.faculty_name)
-    const fac_email = String(request.email_address)
-    // const review = String(request.review)
-    const doclink = String(request.documents)
-    const desc = String(request.description)
-    
     return (
       <Grid   
       container
@@ -81,6 +72,9 @@ function Faculty_ReqDetails() {
                   InputProps={{
                     readOnly: true,
                   }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                   // helperText="Select request type"
       >
       </TextField>
@@ -91,9 +85,12 @@ function Faculty_ReqDetails() {
                   id="reqtype"
                   fullWidth
                   label="Request Type"
-                  value={reqtype}
+                  value={request.requestType}
                   InputProps={{
                     readOnly: true,
+                  }}
+                  InputLabelProps={{
+                    shrink: true,
                   }}
                   // helperText="Select request type"
       >
@@ -105,9 +102,12 @@ function Faculty_ReqDetails() {
                   id="facname"
                   fullWidth
                   label="Faculty Name"
-                  value={facname}
+                  value={request.faculty_name}
                   InputProps={{
                     readOnly: true,
+                  }}
+                  InputLabelProps={{
+                    shrink: true,
                   }}
                   // helperText="Select request type"
       >
@@ -119,9 +119,12 @@ function Faculty_ReqDetails() {
                   id="mailid"
                   fullWidth
                   label="Mail ID"
-                  value={fac_email}
+                  value={request.email_address}
                   InputProps={{
                     readOnly: true,
+                  }}
+                  InputLabelProps={{
+                    shrink: true,
                   }}
                   // helperText="Select request type"
       >
@@ -135,9 +138,12 @@ function Faculty_ReqDetails() {
           label="Title"
           fullWidth
           variant="outlined"
-          value = {title}
+          value = {request.title}
           InputProps={{
             readOnly: true,
+          }}
+          InputLabelProps={{
+            shrink: true,
           }}
         />
       </Grid>
@@ -148,11 +154,14 @@ function Faculty_ReqDetails() {
           label="Amount"
           fullWidth
           variant="outlined"
-          value={amount}
+          value={request.amount}
           InputProps={{
               startAdornment: <InputAdornment position="start">Rs</InputAdornment>,
               readOnly: true,
             }}
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
       </Grid>
       <Grid item xs={12}>
@@ -162,10 +171,13 @@ function Faculty_ReqDetails() {
           label="Document Link"
           fullWidth
           variant="outlined"
-          value={doclink}
+          value={request.documents}
           InputProps={{
             readOnly: true,
           }}   
+          InputLabelProps={{
+          shrink: true,
+        }}
         />
       </Grid>
       <Grid item xs={12}>
@@ -176,9 +188,12 @@ function Faculty_ReqDetails() {
         multiline
         minRows={3}
         variant="outlined"
-        value={desc}
+        value={request.description}
         InputProps={{
           readOnly: true,
+        }}
+        InputLabelProps={{
+          shrink: true,
         }}
       />
       </Grid>
@@ -197,9 +212,12 @@ function Faculty_ReqDetails() {
         multiline
         minRows={3}
         variant="outlined"
-        value="getreview"
+        value={request.review}
         InputProps={{
           readOnly: true,
+        }}
+        InputLabelProps={{
+          shrink: true,
         }}
       />
     </Grid>

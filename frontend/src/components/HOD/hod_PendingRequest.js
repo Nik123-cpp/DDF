@@ -47,10 +47,9 @@ const columns = [
 
   const HOD_Pending_requests = () =>{
     const [data,setdata] = useState([])
-    let email_address = localStorage.getItem("UserEmail")
 
     useEffect( ()=>{
-        const url = "/pendingrequest/faculty/"+email_address
+        const url = "/pendingrequest/hod"
         fetch(url).then((res)=>res.json() )
         .then((d)=>{
             setdata(d)

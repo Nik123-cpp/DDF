@@ -17,6 +17,34 @@ function HOD_ReqDetails() {
 
     const [request,setrequest] = useState({})
 
+    function handle_approve(event) {
+      event.preventDefault();
+      const url = "/hod/approve/" + request_id
+      const requestOptions = {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+      };
+
+      fetch(url, requestOptions)
+      .then(res => res.json())
+      .then(data => alert(data.message))
+    }
+
+    function handle_reject(event) {
+
+      event.preventDefault();
+      const url = "/hod/reject/" + request_id
+      const requestOptions = {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+      };
+
+      fetch(url, requestOptions)
+      .then(res => res.json())
+      .then(data => alert(data.message))
+
+    }
+
     useEffect(()=>{
        
         const url = "/request/" + request_id
@@ -59,132 +87,155 @@ function HOD_ReqDetails() {
       <h2>Request Details</h2>
       <hr/>
 
-    <Grid container spacing={2}>
+      <Grid container spacing={2}>
 
-    <Grid item xs={12}>
-          <Box sx={{ width: '100%' }} padding={5}>
-            <Stepper activeStep={0} alternativeLabel>
-              {steps.map((label) => (
-                <Step key={label}>
-                    <StepLabel>{label}</StepLabel>
-                </Step>
-              ))}
-            </Stepper>
-          </Box>
-      </Grid>
+<Grid item xs={12}>
+      <Box sx={{ width: '100%' }} padding={5}>
+        <Stepper activeStep={0} alternativeLabel>
+          {steps.map((label) => (
+            <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </Box>
+  </Grid>
 
-    <Grid item xs={12} sm={8}>
-      <TextField
-                  id="reqid"
-                  fullWidth
-                  label="Request ID"
-                  value={request_id}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                  // helperText="Select request type"
-      >
-      </TextField>
-      </Grid>
+<Grid item xs={12} sm={8}>
+  <TextField
+              id="reqid"
+              fullWidth
+              label="Request ID"
+              value={request_id}
+              InputProps={{
+                readOnly: true,
+              }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              // helperText="Select request type"
+  >
+  </TextField>
+  </Grid>
 
-    <Grid item xs={12} sm={4}>
-      <TextField
-                  id="reqtype"
-                  fullWidth
-                  label="Request Type"
-                  value={reqtype}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                  // helperText="Select request type"
-      >
-      </TextField>
-      </Grid>
+<Grid item xs={12} sm={4}>
+  <TextField
+              id="reqtype"
+              fullWidth
+              label="Request Type"
+              value={request.requestType}
+              InputProps={{
+                readOnly: true,
+              }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              // helperText="Select request type"
+  >
+  </TextField>
+  </Grid>
 
-      <Grid item xs={12} sm={4}>
-      <TextField
-                  id="facname"
-                  fullWidth
-                  label="Faculty Name"
-                  value={facname}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                  // helperText="Select request type"
-      >
-      </TextField>
-      </Grid>
+  <Grid item xs={12} sm={4}>
+  <TextField
+              id="facname"
+              fullWidth
+              label="Faculty Name"
+              value={request.faculty_name}
+              InputProps={{
+                readOnly: true,
+              }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              // helperText="Select request type"
+  >
+  </TextField>
+  </Grid>
 
-    <Grid item xs={12} sm={8}>
-      <TextField
-                  id="mailid"
-                  fullWidth
-                  label="Mail ID"
-                  value={fac_email}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                  // helperText="Select request type"
-      >
-      </TextField>
-      </Grid>
+<Grid item xs={12} sm={8}>
+  <TextField
+              id="mailid"
+              fullWidth
+              label="Mail ID"
+              value={request.email_address}
+              InputProps={{
+                readOnly: true,
+              }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              // helperText="Select request type"
+  >
+  </TextField>
+  </Grid>
 
-      <Grid item xs={12} sm={6}>
-        <TextField
-          id="title"
-          name="title"
-          label="Title"
-          fullWidth
-          variant="outlined"
-          value = {title}
-          InputProps={{
-            readOnly: true,
-          }}
-        />
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <TextField
-          id="amount"
-          name="amount"
-          label="Amount"
-          fullWidth
-          variant="outlined"
-          value={amount}
-          InputProps={{
-              startAdornment: <InputAdornment position="start">Rs</InputAdornment>,
-              readOnly: true,
-            }}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField
-          id="doclink"
-          name="doclink"
-          label="Document Link"
-          fullWidth
-          variant="outlined"
-          value={doclink}
-          InputProps={{
-            readOnly: true,
-          }}   
-        />
-      </Grid>
-      <Grid item xs={12}>
-      <TextField
-        id="desc"
-        fullWidth
-        label="Description"
-        multiline
-        minRows={3}
-        variant="outlined"
-        value={desc}
-        InputProps={{
+  <Grid item xs={12} sm={6}>
+    <TextField
+      id="title"
+      name="title"
+      label="Title"
+      fullWidth
+      variant="outlined"
+      value = {request.title}
+      InputProps={{
+        readOnly: true,
+      }}
+      InputLabelProps={{
+        shrink: true,
+      }}
+    />
+  </Grid>
+  <Grid item xs={12} sm={6}>
+    <TextField
+      id="amount"
+      name="amount"
+      label="Amount"
+      fullWidth
+      variant="outlined"
+      value={request.amount}
+      InputProps={{
+          startAdornment: <InputAdornment position="start">Rs</InputAdornment>,
           readOnly: true,
         }}
-      />
-      </Grid>
-      </Grid>
-
+      InputLabelProps={{
+        shrink: true,
+      }}
+    />
+  </Grid>
+  <Grid item xs={12}>
+    <TextField
+      id="doclink"
+      name="doclink"
+      label="Document Link"
+      fullWidth
+      variant="outlined"
+      value={request.documents}
+      InputProps={{
+        readOnly: true,
+      }}   
+      InputLabelProps={{
+      shrink: true,
+    }}
+    />
+  </Grid>
+  <Grid item xs={12}>
+  <TextField
+    id="desc"
+    fullWidth
+    label="Description"
+    multiline
+    minRows={3}
+    variant="outlined"
+    value={request.description}
+    InputProps={{
+      readOnly: true,
+    }}
+    InputLabelProps={{
+      shrink: true,
+    }}
+  />
+  </Grid>
+  </Grid>
       <hr></hr>
       <br></br>
       <h3>Review</h3>
@@ -199,18 +250,21 @@ function HOD_ReqDetails() {
         multiline
         minRows={3}
         variant="outlined"
-        value="getreview"
+        value={request.review}
         InputProps={{
           readOnly: true,
+        }}
+        InputLabelProps={{
+          shrink: true,
         }}
       />
     </Grid>
     <Grid item xs={12} sm={6}>
-    <Button type='submit' variant='contained' color='error'endIcon={<ThumbDown/>}>Reject</Button>
+    <Button type='submit' variant='contained' color='error'endIcon={<ThumbDown/>} onClick={handle_reject}>Reject</Button>
     </Grid>
     <Grid item xs={12} sm={6}>
     <Box display="flex" justifyContent="flex-end">
-    <Button type='submit' variant='contained' color='success' endIcon={<ThumbUp/>}>Approve</Button>
+    <Button type='submit' variant='contained' color='success' endIcon={<ThumbUp/>} onClick={handle_approve}>Approve</Button>
     </Box>
     </Grid>
     </Grid>
