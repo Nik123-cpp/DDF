@@ -38,32 +38,17 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/Login" element={<Login />} />
 
-      <Route
-        path="/Faculty"
-        element={
+
+      {/* Routes to Faculty Pages  */}
+      <Route path="/Faculty" element={
           <ProtectedRoute IsLoggedIn={isloggedin}>
             <Faculty_Navbar />
-          </ProtectedRoute>
+          </ProtectedRoute>  
         }
       >
-        <Route
-          path=""
-          element={
-            <ProtectedRoute IsLoggedIn={isloggedin}>
-              <Faculty_Home />
-            </ProtectedRoute>
-          }
-        />
-
+        <Route path="" element={<Faculty_Home />}/>
         <Route path="AllRequests">
-          <Route
-            path=""
-            element={
-              <ProtectedRoute IsLoggedIn={isloggedin}>
-                <Faculty_AllRequests />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="" element={<Faculty_AllRequests />}/>
           <Route path=":request_id" element={<Faculty_ReqDetails />} />
         </Route>
 
@@ -74,13 +59,13 @@ function App() {
 
         <Route path="NewRequest" element={<Faculty_NewRequest />} />
         <Route path="Profile" element={<Profile />} />
+
       </Route>
 
-      <Route
-        path="/Committee/"
-        element={
+
+      {/* Routes to Committee Pages  */}
+      <Route path="/Committee/" element={
           <ProtectedRoute IsLoggedIn={IsCommitteeLoggedIn}>
-            
             <Committee_Navbar />
           </ProtectedRoute>
         }
@@ -100,22 +85,29 @@ function App() {
         <Route path="Profile" element={<Profile />} />
       </Route>
 
-      <Route
-        path="/Hod/"
-        element={
-          <ProtectedRoute IsLoggedIn={IsHODLoggedIn}>
-            
+
+      {/* Routes to HOD Pages  */}
+      <Route path="/Hod/" element={
+          <ProtectedRoute IsLoggedIn={IsHODLoggedIn}>  
             <Hod_navbar />
           </ProtectedRoute>
         }
       >
         <Route path="" element={<HOD_Home />} />
-        <Route path="PendingRequests" element={<HOD_PendingRequest />} />
-        <Route path="PendingRequests/:request_id" element={<HOD_ReqDetails />}/>
-        <Route path="AllRequests" element={<HOD_AllRequests />} />
-        <Route path="AllRequests/:request_id" element={<HOD_ReqDetails />} />
+
+        <Route path="PendingRequests">
+          <Route path="" element={<HOD_PendingRequest />} />
+          <Route path=":request_id" element={<HOD_ReqDetails />} />
+        </Route>
+
+        <Route path="AllRequests">
+          <Route path="" element={<HOD_AllRequests />} />
+          <Route path=":request_id" element={<HOD_ReqDetails />} />
+        </Route>
+
         <Route path="DDF" element={<HOD_DDF />} />
         <Route path="Profile" element={<Profile />} />
+
       </Route>
 
       <Route path="*" element={<NP />} />
