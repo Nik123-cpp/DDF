@@ -325,13 +325,11 @@ function Committee_ReqDetails() {
     <Grid item xs={12}>
       {review_comp(request)}
     </Grid>
-    <Grid item xs={12} sm={6}>
+    <Grid item xs={12} sm={6} display="flex" justifyContent="center" alignItems="center">
     <Button type='submit' variant='contained' color='error' disabled={verified} endIcon={<ThumbDown/> } onClick={handle_deny}>Reject</Button>
     </Grid>
-    <Grid item xs={12} sm={6}>
-    <Box display="flex" justifyContent="flex-end">
+    <Grid item xs={12} sm={6} display="flex" justifyContent="center" alignItems="center">
     <Button type='submit' variant='contained' color='success' disabled={verified} endIcon={<SendIcon/>} onClick={handle_verify}>Verified</Button>
-    </Box>
     </Grid>
     </Grid>
 

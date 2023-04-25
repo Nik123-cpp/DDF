@@ -284,13 +284,11 @@ function HOD_ReqDetails() {
         }}
       />
     </Grid>
-    <Grid item xs={12} sm={6}>
+    <Grid item xs={12} sm={6} display="flex" justifyContent="center" alignItems="center">
     <Button type='submit' variant='contained' color='error' disabled={approved} endIcon={<ThumbDown/>} onClick={handle_reject}>Reject</Button>
     </Grid>
-    <Grid item xs={12} sm={6}>
-    <Box display="flex" justifyContent="flex-end">
+    <Grid item xs={12} sm={6} display="flex" justifyContent="center" alignItems="center"> 
     <Button type='submit' variant='contained' color='success' disabled={approved} endIcon={<ThumbUp/>} onClick={handle_approve}>Approve</Button>
-    </Box>
     </Grid>
     </Grid>
 
