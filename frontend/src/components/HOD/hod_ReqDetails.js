@@ -17,6 +17,19 @@ function HOD_ReqDetails() {
 
     const [request,setrequest] = useState({})
     const [approved,setapproved] = useState(true)
+    const [isfailed,setfailed]  = useState(false)
+    const [activeStep,setactiveStep] = useState(1)
+
+    var getactivestep = {}
+    getactivestep["Requested"] = 1
+
+    getactivestep["Verified"] = 2
+    getactivestep["Denied"] = 2
+
+    getactivestep["Approved"] = 3
+    getactivestep["Rejected"] = 3
+
+    const message = ["Denied by committee" , "Rejected by HOD"]
 
     function handle_approve(event) {
       event.preventDefault();
@@ -54,6 +67,8 @@ function HOD_ReqDetails() {
           .then((request) => {
             setrequest(request);
             setapproved(request.status!=="Verified")
+            setfailed(request.status==="Denied" || request.status==="Rejected");
+            setactiveStep(getactivestep[request.status])
             }
           );
       
@@ -82,17 +97,34 @@ function HOD_ReqDetails() {
 
       <Grid container spacing={2}>
 
-<Grid item xs={12}>
-      <Box sx={{ width: '100%' }} padding={5}>
-        <Stepper activeStep={0} alternativeLabel>
-          {steps.map((label) => (
-            <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-      </Box>
-  </Grid>
+      <Grid item xs={12}>
+        <Box sx={{ width: '100%' }} padding={5}>
+          <Stepper activeStep={activeStep} alternativeLabel>
+            {steps.map((label,index) => {
+              if(isfailed && index == activeStep-1){
+                console.log(index)
+
+                return (
+                  (
+                  <Step key={message[index-1]}>
+                      <StepLabel error={true}>{message[index-1]}</StepLabel>
+                  </Step>
+                  )
+              )
+              }
+              else if(isfailed && index > activeStep-1)
+              {
+                return
+              }
+              
+              return (
+              <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+              </Step>
+            )})}
+          </Stepper>
+        </Box>
+      </Grid>
 
 <Grid item xs={12} sm={8}>
   <TextField

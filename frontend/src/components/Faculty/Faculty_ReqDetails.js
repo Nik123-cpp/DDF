@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {useNavigate, useParams} from 'react-router-dom'
+import {useAsyncError, useNavigate, useParams} from 'react-router-dom'
 import { useEffect } from 'react'
 import {Paper, TextField, Button, Box, Step, Stepper, StepLabel,Grid, InputAdornment } from '@mui/material'
 import { Container } from 'react-bootstrap'
@@ -15,6 +15,20 @@ function Faculty_ReqDetails() {
 
 
     const [request,setrequest] = useState({})
+    const [isfailed,setfailed]  = useState(false)
+    const [activeStep,setactiveStep] = useState(1)
+
+    var getactivestep = {}
+    getactivestep["Requested"] = 1
+
+    getactivestep["Verified"] = 2
+    getactivestep["Denied"] = 2
+
+    getactivestep["Approved"] = 3
+    getactivestep["Rejected"] = 3
+
+    const message = ["Denied by committee" , "Rejected by HOD"]
+
 
     useEffect(()=>{
        
@@ -22,7 +36,10 @@ function Faculty_ReqDetails() {
         fetch(url)
           .then((res) => res.json())
           .then((request) => {
-            setrequest(request)
+            setrequest(request);
+            setfailed(request.status==="Denied" || request.status==="Rejected");
+            setactiveStep(getactivestep[request.status])
+
             }
           );
       
@@ -53,12 +70,29 @@ function Faculty_ReqDetails() {
 
     <Grid item xs={12}>
           <Box sx={{ width: '100%' }} padding={5}>
-            <Stepper activeStep={0} alternativeLabel>
-              {steps.map((label) => (
+            <Stepper activeStep={activeStep} alternativeLabel>
+              {steps.map((label,index) => {
+                if(isfailed && index == activeStep-1){
+                  console.log(index)
+
+                  return (
+                    (
+                    <Step key={message[index-1]}>
+                        <StepLabel error={true}>{message[index-1]}</StepLabel>
+                    </Step>
+                    )
+                )
+                }
+                else if(isfailed && index > activeStep-1)
+                {
+                  return
+                }
+                
+                return (
                 <Step key={label}>
                     <StepLabel>{label}</StepLabel>
                 </Step>
-              ))}
+              )})}
             </Stepper>
           </Box>
       </Grid>

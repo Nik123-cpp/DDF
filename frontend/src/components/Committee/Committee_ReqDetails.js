@@ -18,6 +18,19 @@ function Committee_ReqDetails() {
 
     const [review,setreview] = useState("")
     const [verified,setverified] = useState(true)
+    const [isfailed,setfailed]  = useState(false)
+    const [activeStep,setactiveStep] = useState(1)
+
+    var getactivestep = {}
+    getactivestep["Requested"] = 1
+
+    getactivestep["Verified"] = 2
+    getactivestep["Denied"] = 2
+
+    getactivestep["Approved"] = 3
+    getactivestep["Rejected"] = 3
+
+    const message = ["Denied by committee" , "Rejected by HOD"]
 
     function handle_review(event) {
       setreview(event.target.value)
@@ -106,7 +119,9 @@ function Committee_ReqDetails() {
           .then((res) => res.json())
           .then((request) => {
             setrequest(request);
-            setverified(request.status!=="Requested")
+            setverified(request.status!=="Requested");
+            setfailed(request.status==="Denied" || request.status==="Rejected");
+            setactiveStep(getactivestep[request.status])
             }
           );
       
@@ -136,17 +151,34 @@ function Committee_ReqDetails() {
 
       <Grid container spacing={2}>
 
-<Grid item xs={12}>
-      <Box sx={{ width: '100%' }} padding={5}>
-        <Stepper activeStep={0} alternativeLabel>
-          {steps.map((label) => (
-            <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-      </Box>
-  </Grid>
+      <Grid item xs={12}>
+          <Box sx={{ width: '100%' }} padding={5}>
+            <Stepper activeStep={activeStep} alternativeLabel>
+              {steps.map((label,index) => {
+                if(isfailed && index === activeStep-1){
+                  console.log(index)
+
+                  return (
+                    (
+                    <Step key={message[index-1]}>
+                        <StepLabel error={true}>{message[index-1]}</StepLabel>
+                    </Step>
+                    )
+                )
+                }
+                else if(isfailed && index > activeStep-1)
+                {
+                  return
+                }
+                
+                return (
+                <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                </Step>
+              )})}
+            </Stepper>
+          </Box>
+        </Grid>
 
 <Grid item xs={12} sm={8}>
   <TextField
