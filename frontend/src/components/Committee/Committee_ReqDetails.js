@@ -17,7 +17,7 @@ function Committee_ReqDetails() {
    
 
     const [review,setreview] = useState("")
-
+    const [verified,setverified] = useState(true)
 
     function handle_review(event) {
       setreview(event.target.value)
@@ -35,6 +35,8 @@ function Committee_ReqDetails() {
       fetch(url, requestOptions)
       .then(res => res.json())
       .then(data => alert(data.message))
+
+
     }
 
     function handle_deny(event) {
@@ -56,7 +58,7 @@ function Committee_ReqDetails() {
     function review_comp(request)  {
 
       console.log(request)
-      if(request.status == "Requested"){
+      if(request.status === "Requested"){
     
         return (
           <TextField
@@ -103,7 +105,8 @@ function Committee_ReqDetails() {
         fetch(url)
           .then((res) => res.json())
           .then((request) => {
-            setrequest(request)
+            setrequest(request);
+            setverified(request.status!=="Requested")
             }
           );
       
@@ -291,11 +294,11 @@ function Committee_ReqDetails() {
       {review_comp(request)}
     </Grid>
     <Grid item xs={12} sm={6}>
-    <Button type='submit' variant='contained' color='error' endIcon={<ThumbDown/> } onClick={handle_deny}>Reject</Button>
+    <Button type='submit' variant='contained' color='error' disabled={verified} endIcon={<ThumbDown/> } onClick={handle_deny}>Reject</Button>
     </Grid>
     <Grid item xs={12} sm={6}>
     <Box display="flex" justifyContent="flex-end">
-    <Button type='submit' variant='contained' color='success' endIcon={<SendIcon/>} onClick={handle_verify}>Verified</Button>
+    <Button type='submit' variant='contained' color='success' disabled={verified} endIcon={<SendIcon/>} onClick={handle_verify}>Verified</Button>
     </Box>
     </Grid>
     </Grid>

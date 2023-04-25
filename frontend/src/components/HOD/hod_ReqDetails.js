@@ -16,6 +16,7 @@ function HOD_ReqDetails() {
 
 
     const [request,setrequest] = useState({})
+    const [approved,setapproved] = useState(true)
 
     function handle_approve(event) {
       event.preventDefault();
@@ -51,7 +52,8 @@ function HOD_ReqDetails() {
         fetch(url)
           .then((res) => res.json())
           .then((request) => {
-            setrequest(request)
+            setrequest(request);
+            setapproved(request.status!=="Verified")
             }
           );
       
@@ -64,15 +66,6 @@ function HOD_ReqDetails() {
       'Verified',
       'Accepted',
     ];
-
-    const title = String(request.title)
-    const reqtype = String(request.requestType)
-    const amount = String(request.amount)
-    const facname = String(request.faculty_name)
-    const fac_email = String(request.email_address)
-    // const review = String(request.review)
-    const doclink = String(request.documents)
-    const desc = String(request.description)
     
     return (
       <Grid   
@@ -260,11 +253,11 @@ function HOD_ReqDetails() {
       />
     </Grid>
     <Grid item xs={12} sm={6}>
-    <Button type='submit' variant='contained' color='error'endIcon={<ThumbDown/>} onClick={handle_reject}>Reject</Button>
+    <Button type='submit' variant='contained' color='error' disabled={approved} endIcon={<ThumbDown/>} onClick={handle_reject}>Reject</Button>
     </Grid>
     <Grid item xs={12} sm={6}>
     <Box display="flex" justifyContent="flex-end">
-    <Button type='submit' variant='contained' color='success' endIcon={<ThumbUp/>} onClick={handle_approve}>Approve</Button>
+    <Button type='submit' variant='contained' color='success' disabled={approved} endIcon={<ThumbUp/>} onClick={handle_approve}>Approve</Button>
     </Box>
     </Grid>
     </Grid>
