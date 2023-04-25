@@ -4,6 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/Login";
+import SignUp from "./components/SignUp";
+
 import Faculty_Home from "./components/Faculty/Faculty_Home";
 import Faculty_AllRequests from "./components/Faculty/Faculty_AllRequests";
 import Faculty_NewRequest from "./components/Faculty/Faculty_NewRequest";
@@ -37,7 +39,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/Login" element={<Login />} />
-
+      <Route path="/Signup" element={<SignUp/>}/>
 
       {/* Routes to Faculty Pages  */}
       <Route path="/Faculty" element={
