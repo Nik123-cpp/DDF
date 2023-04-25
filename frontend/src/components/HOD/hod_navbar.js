@@ -1,10 +1,12 @@
 import React, { Component, useState } from "react";
 import { useParams, useNavigate, Link ,Outlet } from "react-router-dom";
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
+import Logo from '../Images_folder/IITH_Logo.png';
+
 
 function Hod_navbar() {
   const navigate = useNavigate();
-  let user_id = localStorage.getItem('HodUsername');
+  let user_name = localStorage.getItem('HodUsername');
   const url1 = "/hod/"
   const url2 = url1 + "AllRequests";
   const url3 = url1 + "PendingRequests";
@@ -20,9 +22,20 @@ function Hod_navbar() {
 
   return (
     <div>
-  <Navbar sticky="top" bg="light" expand="lg" variant="light">
+  <Navbar sticky="fixed" bg="dark" expand="lg" variant="dark">
     <Container>
-      <Navbar.Brand>HOD : {user_id}</Navbar.Brand>
+      <Navbar.Brand >
+            <span>
+            <div style={{float:'left'}}><a href='https://cse.iith.ac.in/' target='_blank'><img 
+              alt='nologo' src={Logo}
+              width="50"
+              height="50"
+              className="d-inline-block align-top"
+            >
+            </img></a></div>
+            <h4 style={{marginTop:'12px', marginLeft:'100px'}}>HOD : {user_name}</h4>
+            </span>
+          </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto">

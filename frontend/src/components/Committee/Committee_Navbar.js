@@ -1,6 +1,7 @@
 import React from 'react'
 import { Outlet, useNavigate, Link , useParams} from 'react-router-dom'
 import { Container , Nav , Navbar , Button } from 'react-bootstrap';
+import Logo from '../Images_folder/IITH_Logo.png';
 
 function Committee_Navbar() {
 
@@ -23,9 +24,20 @@ function Committee_Navbar() {
 
     return (
         <div>
-            <Navbar sticky="top" bg="light" expand="lg" variant='light'>
+            <Navbar sticky="fixed" bg="dark" expand="lg" variant='dark'>
                 <Container>
-                <Navbar.Brand >Committe : {user_name}</Navbar.Brand>
+                <Navbar.Brand >
+                    <span>
+                    <div style={{float:'left'}}><a href='https://cse.iith.ac.in/' target='_blank'><img 
+                    alt='nologo' src={Logo}
+                    width="50"
+                    height="50"
+                    className="d-inline-block align-top"
+                    >
+                    </img></a></div>
+                    <h4 style={{marginTop:'12px', marginLeft:'100px'}}>Committee : {user_name}</h4>
+                    </span>
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" >
                     <Nav className="ms-auto">
