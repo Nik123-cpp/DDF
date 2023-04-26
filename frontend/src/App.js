@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/Login";
-import Faculty_Home from "./components/Faculty/Faculty_Home";
+import Faculty_MyRequests from "./components/Faculty/Faculty_MyRequests";
 import Faculty_AllRequests from "./components/Faculty/Faculty_AllRequests";
 import Faculty_NewRequest from "./components/Faculty/Faculty_NewRequest";
 import Profile from "./components/Profile";
@@ -46,7 +46,11 @@ function App() {
           </ProtectedRoute>  
         }
       >
-        <Route path="" element={<Faculty_Home />}/>
+        <Route path="MyRequests" >
+          <Route path="" element={<Faculty_MyRequests />}/>
+          <Route path=":request_id" element={<Faculty_ReqDetails />} />
+        </Route>
+
         <Route path="AllRequests">
           <Route path="" element={<Faculty_AllRequests />}/>
           <Route path=":request_id" element={<Faculty_ReqDetails />} />
