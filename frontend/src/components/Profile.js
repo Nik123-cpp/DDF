@@ -6,7 +6,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 // On click of Change password button new component will be shown/Added with new password fields
 import { Grid, Paper, Box, TextField, Button} from "@mui/material";
 import Profileimg from "./Images_folder/Profile_alternative.png"
-import CssBaseline from '@mui/material/CssBaseline';
+
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
 
 
 function Profile() {
@@ -60,7 +64,10 @@ function Profile() {
       setCurrentEmail(localStorage.getItem('FacultyEmail'));
     }
   }, []);
-  const [change_pwd_button_popup, set_popup_change_pwd] = useState(false);
+
+  const [openchpswd, setOpenchpswd] = React.useState(false);
+  const [opench_uname, setOpench_uname] = React.useState(false);
+
   return (
     <Grid   
     container
@@ -103,7 +110,7 @@ function Profile() {
               id="facname"
               fullWidth
               label="Name"
-              value="getfacname"
+              value={UserName}
               InputProps={{
                 readOnly: true,
               }}
@@ -120,7 +127,7 @@ function Profile() {
               id="mailid"
               fullWidth
               label="Mail ID"
-              value="getfacmail"
+              value={CurrentEmail}
               InputProps={{
                 readOnly: true,
               }}
@@ -133,11 +140,75 @@ function Profile() {
             </Grid>
 
             <Grid item xs={12} md={6} display="flex" justifyContent="center" alignItems="center">
-              <Button type='submit' variant='contained' color='primary'>Change Username</Button>
+              <Button type='submit' variant='contained' color='primary' onClick={ () => {setOpench_uname(true);}}>Change Username</Button>
+              <Dialog open={opench_uname} onClose={ () => {setOpench_uname(false);}}>
+                    <DialogTitle><h3>Change Username</h3></DialogTitle>
+                    <DialogContent>
+                      <Grid container spacing={2}>
+                          <Grid item xs={12}>
+                          <hr></hr>
+                            <TextField
+                              required
+                              id="newusername"
+                              name="newusername"
+                              label="New Username"
+                              fullWidth
+                              variant="outlined"
+                            />
+                          </Grid>
+          </Grid>
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={() => {setOpench_uname(false);}} color="error" variant='contained'>Close</Button>
+                <Button onClick={() => {setOpench_uname(false);}} color="success" variant='contained'>Save Changes</Button>
+            </DialogActions>
+          </Dialog>
             </Grid>
 
             <Grid item xs={12} md={6} display="flex" justifyContent="center" alignItems="center">
-                  <Button type='submit' variant='contained' color='primary'>Change Password</Button>
+                  <Button type='submit' variant='contained' color='primary'onClick={() => {setOpenchpswd(true);}}>Change Password</Button>
+                  <Dialog open={openchpswd} onClose={() => {setOpenchpswd(false);}}>
+                    <DialogTitle><h3>Change Password</h3></DialogTitle>
+                    <DialogContent>
+                      <Grid container spacing={2}>
+                          <Grid item xs={12}>
+                          <hr></hr>
+                            <TextField
+                              required
+                              id="oldpswd"
+                              name="oldpswd"
+                              label="Old Password"
+                              fullWidth
+                              variant="outlined"
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <TextField
+                              required
+                              id="newpswd"
+                              name="newpswd"
+                              label="New Password"
+                              fullWidth
+                              variant="outlined"
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <TextField
+                              required
+                              id="repswd"
+                              name="repswd"
+                              label="Re Enter New Password"
+                              fullWidth
+                              variant="outlined"
+                            />
+                          </Grid>
+          </Grid>
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={() => {setOpenchpswd(false);}} color="error" variant='contained'>Close</Button>
+                <Button onClick={() => {setOpenchpswd(false);}} color="success" variant='contained'>Save Changes</Button>
+            </DialogActions>
+          </Dialog>
             </Grid>
           </Grid>
       </Box>
@@ -146,77 +217,7 @@ function Profile() {
       
 
     </Grid>
-    // <div>
-    //   <Container>
-    //     <div className="Container">
-    //       <div className="Profile_block_inner">
-    //         <div className="Profile_title">
-    //           <h2>Profile Page</h2>
-    //         </div>
-    //         <div className="Image">
-    //           <img src="" alt="Profile Pic" />
-    //         </div>
-    //         <div className="Profile_content">
-    //           <div className="Profile_label">Name :</div> <div>{UserName}</div>
-    //           <div className="Profile_label">Email address :</div>
-    //           <div> {data}</div>
-    //           <div className="Profile_label">contact :</div> <div> {} </div>
-    //         </div>
-    //         <div>
-    //           <button onClick={() => set_popup_change_pwd(true)}>
-    //             Change password
-    //           </button>
-    //           <Popup_change_password
-    //             trigger={change_pwd_button_popup}
-    //             setTrigger={set_popup_change_pwd}
-    //           >
-    //             <Change_password></Change_password>
-    //           </Popup_change_password>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </Container>
-  // </div>
-
   );
 }
 
 export default Profile;
-
-function Popup_change_password(props) {
-  return props.trigger ? (
-    <div className="popup_change_password">
-      <div className="popup_change_password_inner_elements">
-        <button
-          className="popup_change_password_close_button"
-          onClick={() => props.setTrigger(false)}
-        >
-          close
-        </button>
-        {props.children}
-      </div>
-    </div>
-  ) : (
-    ""
-  );
-}
-
-function Change_password() {
-  return (
-    <div className="changePassword_fields">
-      <div className="Password_fields">
-        <div className="Password_fields_labels">Old password</div>
-        <input type="text" name="" id="" />
-      </div>
-      <div className="Password_fields">
-        <div className="Password_fields_labels">New password</div>
-        <input type="password" name="" id="" />
-      </div>
-
-      <div className="Password_fields">
-        <div className="Password_fields_labels">Reenter New password </div>
-        <input type="password" name="" id="" />
-      </div>
-    </div>
-  );
-}
