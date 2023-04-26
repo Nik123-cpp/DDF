@@ -46,7 +46,7 @@ function Faculty_Navbar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" >
             <Nav className="ms-auto"
-              defaultactiveKey={'myreq'}
+              defaultActiveKey={'myreq'}
               onSelect={(selectedKey) => console.log(`selected ${selectedKey}`)}
             >
               <Nav.Link as={Link} to={url1} eventKey={'myreq'} >MyRequests</Nav.Link>
@@ -59,7 +59,6 @@ function Faculty_Navbar() {
               <Button  variant="danger" size="sm" onClick={nav_Home}>Logout</Button>
             </Nav>
           </Navbar.Collapse>
-
         </Container>
       </Navbar>
       <Outlet />

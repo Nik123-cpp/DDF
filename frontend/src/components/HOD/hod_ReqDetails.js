@@ -115,7 +115,7 @@ function HOD_ReqDetails() {
         disableElevation
         disableRipple
         variant='contained'
-        sx={{"&:hover": {backgroundColor:getstatuscolor[request.status]}}}
+        style={{cursor:"default"}}
         color={getstatuscolor[request.status]}
       >
         {request.status}

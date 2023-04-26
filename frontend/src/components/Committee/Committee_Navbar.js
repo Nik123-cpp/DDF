@@ -41,7 +41,7 @@ function Committee_Navbar() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" >
                     <Nav className="ms-auto"
-                    defaultactiveKey={'home'}
+                    defaultActiveKey={'home'}
                     onSelect={(selectedKey) => console.log(`selected ${selectedKey}`)}
                     >
                     <Nav.Link as={Link} to={url1} eventKey={'home'} >Home</Nav.Link>
@@ -53,7 +53,6 @@ function Committee_Navbar() {
                     <Button  variant="danger" size="sm" onClick={nav_Home}>Logout</Button>
                     </Nav>
                 </Navbar.Collapse>
-
                 </Container>
             </Navbar>
             <Outlet />

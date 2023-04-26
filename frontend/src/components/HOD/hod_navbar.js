@@ -39,7 +39,7 @@ function Hod_navbar() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto"
-          defaultactiveKey={'home'}
+          defaultActiveKey={'home'}
           onSelect={(selectedKey) => console.log(`selected ${selectedKey}`)}
         >
           <Nav.Link as={Link} to={url1} eventKey={'home'}>

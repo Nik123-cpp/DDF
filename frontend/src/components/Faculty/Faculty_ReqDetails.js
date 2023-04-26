@@ -86,8 +86,9 @@ function Faculty_ReqDetails() {
       <Button
         disableElevation
         disableRipple
+        disableFocusRipple
         variant='contained'
-        sx={{"&:hover": {backgroundColor:getstatuscolor[request.status]}}}
+        style={{cursor:"default"}}
         color={getstatuscolor[request.status]}
       >
         {request.status}

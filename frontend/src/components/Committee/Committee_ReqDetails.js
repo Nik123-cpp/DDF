@@ -168,6 +168,7 @@ function Committee_ReqDetails() {
         disableElevation
         disableRipple
         variant='contained'
+        style={{cursor:"default"}}
         color={getstatuscolor[request.status]}
       >
         {request.status}
