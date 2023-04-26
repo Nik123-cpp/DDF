@@ -5,6 +5,8 @@ import {Paper, TextField, Button, Box, Step, Stepper, StepLabel,Grid, InputAdorn
 import { Container } from 'react-bootstrap'
 import {Table, TableContainer, TableBody, TableCell, TableRow} from '@mui/material'
 import { ThumbDown, ThumbUp } from '@mui/icons-material';
+import { teal } from '@mui/material/colors'
+import { createTheme, ThemeProvider} from '@mui/material'
 
 function HOD_ReqDetails() {
   
@@ -28,6 +30,15 @@ function HOD_ReqDetails() {
 
     getactivestep["Approved"] = 3
     getactivestep["Rejected"] = 3
+
+    const theme = createTheme({palette: {secondary: teal},});
+
+    var getstatuscolor = {}
+    getstatuscolor["Requested"] = "primary"
+    getstatuscolor["Verified"] = "primary"
+    getstatuscolor["Denied"] = "error"
+    getstatuscolor["Approved"] = "success"
+    getstatuscolor["Rejected"] = "error"
 
     const message = ["Denied by committee" , "Rejected by HOD"]
 
@@ -79,7 +90,7 @@ function HOD_ReqDetails() {
     const steps = [
       'Requested',
       'Verified',
-      'Accepted',
+      'Approved',
     ];
     
     return (
@@ -96,8 +107,25 @@ function HOD_ReqDetails() {
       <hr/>
 
       <Grid container spacing={2}>
+      <Grid item xs={12} sm={6} display="flex" justifyContent="flex-start" alignItems="center">
+      <h2>Request Details</h2>
+      </Grid>
 
+    <Grid item xs={12} sm={6} display="flex" justifyContent="flex-end" alignItems="center">
+    <ThemeProvider theme={theme}>
+      <Button
+        disableElevation
+        disableRipple
+        variant='contained'
+        sx={{"&:hover": {backgroundColor:getstatuscolor[request.status]}}}
+        color={getstatuscolor[request.status]}
+      >
+        {request.status}
+      </Button>
+      </ThemeProvider>
+    </Grid>
       <Grid item xs={12}>
+        <hr></hr>
         <Box sx={{ width: '100%' }} padding={5}>
           <Stepper activeStep={activeStep} alternativeLabel>
             {steps.map((label,index) => {
