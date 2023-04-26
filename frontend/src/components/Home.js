@@ -13,8 +13,16 @@ function Home() {
 
   const navigate = useNavigate()
 
-  const nav_Login_page = () => {
-    navigate('/Login')
+  const nav_faculty = () => {
+    navigate('/Faculty/MyRequests')
+  }
+
+  const nav_committe = () => {
+    navigate('/Committee')
+  }
+
+  const nav_hod = () => {
+    navigate('/Hod')
   }
 
   return (
@@ -37,17 +45,17 @@ function Home() {
       </Button>
       </Grid> */}
       <Grid item xs={12} md={4} display="flex" justifyContent="center" alignItems="center">
-      <Button variant='contained' color='primary' sx={{ width: "80%", height: "25%", opacity:0.7,}} onClick={nav_Login_page} endIcon={<PersonIcon/>}>
+      <Button variant='contained' color='primary' sx={{ width: "80%", height: "25%", opacity:0.7,}} onClick={nav_faculty} endIcon={<PersonIcon/>}>
         Faculty
       </Button>
       </Grid>
       <Grid item xs={12} md={4} display="flex" justifyContent="center" alignItems="center">
-      <Button variant='contained' color='primary' sx={{ width: "80%", height: "25%",opacity:0.7,}} onClick={nav_Login_page} endIcon={<GroupsIcon/>}>
+      <Button variant='contained' color='primary' sx={{ width: "80%", height: "25%",opacity:0.7,}} onClick={nav_committe} endIcon={<GroupsIcon/>}>
         Committee
       </Button>
       </Grid>
       <Grid item xs={12} md={4} display="flex" justifyContent="center" alignItems="center">
-      <Button variant='contained' color='primary' sx={{ width: "80%", height: "25%",opacity:0.7,}} onClick={nav_Login_page}  endIcon={<PersonIcon/>}>
+      <Button variant='contained' color='primary' sx={{ width: "80%", height: "25%",opacity:0.7,}} onClick={nav_hod}  endIcon={<PersonIcon/>}>
         HOD
       </Button>
       </Grid>
