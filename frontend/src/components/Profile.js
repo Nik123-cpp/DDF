@@ -1,12 +1,13 @@
 import React from "react";
 import "../Styles/Profile.css";
-import "./ProfileBeta.css";
-import ProfileBeta from "./ProfileBeta";
+
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 // On click of Change password button new component will be shown/Added with new password fields
-import { Button, Form, Container } from "react-bootstrap";
-import Profile_pic from './Images_folder/Profile_alternative.png'
+import { Grid, Paper, Box, TextField, Button} from "@mui/material";
+import Profileimg from "./Images_folder/Profile_alternative.png"
+import CssBaseline from '@mui/material/CssBaseline';
+
 
 function Profile() {
   const [UserName, setusername] = useState("");
@@ -59,95 +60,124 @@ function Profile() {
       setCurrentEmail(localStorage.getItem('FacultyEmail'));
     }
   }, []);
-
   const [change_pwd_button_popup, set_popup_change_pwd] = useState(false);
-
   return (
-    <div>
-      {/* <Container>
-        <div className="Container">
-          <div className="Profile_block_inner">
-            <div className="Profile_title">
-              <h2>Profile Page</h2>
-            </div>
-            <div className="Image">
-              <img src="" alt="Profile Pic" />
-            </div>
-            <div className="Profile_content">
-              <div className="Profile_label">Name :</div> <div>{UserName}</div>
-              <div className="Profile_label">Email address :</div>
-              <div> {CurrentEmail}</div>
-              <div className="Profile_label">contact :</div> <div> {} </div>
-            </div>
-            <div>
-              <button onClick={() => set_popup_change_pwd(true)}>
-                Change password
-              </button>
-              <Popup_change_password
-                trigger={change_pwd_button_popup}
-                setTrigger={set_popup_change_pwd}
+    <Grid   
+    container
+    spacing={0}
+    direction="column"
+    alignItems="center"
+    justifyContent="center"
+    style={{ minHeight: '100vh' }}
+    >
+      
+    <Grid  container component={Paper} elevation={20} style={{padding: '30px 20px'}} sx={{maxWidth:'960px',minWidth: '250px'}}>
+      <Grid
+        item
+        sm={4}
+        md={4}
+        justifyContent="center"
+        display="flex"
+      >
+        <Box display="flex" justifyContent="center" alignItems="center">
+        <img src={Profileimg} alt="noimg" style={{height:"80%", width:"80%"}}></img>
+        </Box>
+      </Grid>
+      <Grid item xs={12} sm={8} md={8} square>
+      <Box
+          sx={{
+            my: 4,
+            mx: 4,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Grid container spacing={3}>
+          <Grid item xs={12}>
+              <h1>Profile</h1>
+            </Grid>
+
+            <Grid item xs={12}>
+              <TextField
+              id="facname"
+              fullWidth
+              label="Name"
+              value="getfacname"
+              InputProps={{
+                readOnly: true,
+              }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              // helperText="Select request type"
               >
-                <Change_password></Change_password>
-              </Popup_change_password>
-            </div>
-          </div>
-        </div>
-      </Container> */}
-      <div className="container mt-4 mb-4 p-3 d-flex justify-content-center">
-        <div className="card p-4">
-          <div className=" image d-flex flex-column justify-content-center align-items-center">
-            <button className="btn btn-secondary">
-              <img
-                src={Profile_pic}
-                height="200"
-                width="200"
-              />
-            </button>
-            <span className="name mt-3">{UserName}</span>
-            <div className="Contents">
-                <div className="InnerContents">
-                  Email 
-                </div>
-                <div className="InnerContents">
-                  {CurrentEmail}
-                </div>
-                <div className="InnerContents">
-                  Contact
-                </div>
-                <div className="InnerContents">
-                  1234567890
-                </div>
-            </div>
-            
-            <div className="d-flex flex-row justify-content-center align-items-center gap-2">
-              
-              <span>
-                <i className="fa fa-copy"></i>
-              </span>
-            </div>
-            <div className="d-flex flex-row justify-content-center align-items-center mt-3">
-              
-            </div>
-            <div className=" d-flex mt-2">
-              <button className="btn1 btn-dark" onClick={() => set_popup_change_pwd(true)}>Change_password</button>
-              <Popup_change_password
-                trigger={change_pwd_button_popup}
-                setTrigger={set_popup_change_pwd}
+              </TextField>
+            </Grid>
+
+            <Grid item xs={12}>
+             <TextField
+              id="mailid"
+              fullWidth
+              label="Mail ID"
+              value="getfacmail"
+              InputProps={{
+                readOnly: true,
+              }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              // helperText="Select request type"
               >
-                <Change_password></Change_password>
-              </Popup_change_password>
-            </div>
-            <div className="text mt-3">
-              <span></span>
-            </div>
-            <div className="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center">
-             
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
+              </TextField>
+            </Grid>
+
+            <Grid item xs={12} md={6} display="flex" justifyContent="center" alignItems="center">
+              <Button type='submit' variant='contained' color='primary'>Change Username</Button>
+            </Grid>
+
+            <Grid item xs={12} md={6} display="flex" justifyContent="center" alignItems="center">
+                  <Button type='submit' variant='contained' color='primary'>Change Password</Button>
+            </Grid>
+          </Grid>
+      </Box>
+      </Grid>
+      </Grid>
+      
+
+    </Grid>
+    // <div>
+    //   <Container>
+    //     <div className="Container">
+    //       <div className="Profile_block_inner">
+    //         <div className="Profile_title">
+    //           <h2>Profile Page</h2>
+    //         </div>
+    //         <div className="Image">
+    //           <img src="" alt="Profile Pic" />
+    //         </div>
+    //         <div className="Profile_content">
+    //           <div className="Profile_label">Name :</div> <div>{UserName}</div>
+    //           <div className="Profile_label">Email address :</div>
+    //           <div> {data}</div>
+    //           <div className="Profile_label">contact :</div> <div> {} </div>
+    //         </div>
+    //         <div>
+    //           <button onClick={() => set_popup_change_pwd(true)}>
+    //             Change password
+    //           </button>
+    //           <Popup_change_password
+    //             trigger={change_pwd_button_popup}
+    //             setTrigger={set_popup_change_pwd}
+    //           >
+    //             <Change_password></Change_password>
+    //           </Popup_change_password>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </Container>
+  // </div>
+
   );
 }
 

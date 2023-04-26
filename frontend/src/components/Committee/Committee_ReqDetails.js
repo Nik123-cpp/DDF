@@ -6,6 +6,8 @@ import { Container } from 'react-bootstrap'
 import {Table, TableContainer, TableBody, TableCell, TableRow} from '@mui/material'
 import { ThumbDown } from '@mui/icons-material';
 import SendIcon  from '@mui/icons-material/Send';
+import { teal } from '@mui/material/colors'
+import { createTheme, ThemeProvider} from '@mui/material'
 
 
 
@@ -29,6 +31,15 @@ function Committee_ReqDetails() {
 
     getactivestep["Approved"] = 3
     getactivestep["Rejected"] = 3
+
+    const theme = createTheme({palette: {secondary: teal},});
+
+    var getstatuscolor = {}
+    getstatuscolor["Requested"] = "primary"
+    getstatuscolor["Verified"] = "primary"
+    getstatuscolor["Denied"] = "error"
+    getstatuscolor["Approved"] = "success"
+    getstatuscolor["Rejected"] = "error"
 
     const message = ["Denied by committee" , "Rejected by HOD"]
 
@@ -132,7 +143,7 @@ function Committee_ReqDetails() {
     const steps = [
       'Requested',
       'Verified',
-      'Accepted',
+      'Approved',
     ];
 
     
@@ -146,12 +157,26 @@ function Committee_ReqDetails() {
       style={{ minHeight: '100vh' }}
     >
       <Paper elevation={20} style={paperstyle} sx={{maxWidth:'900px',minWidth: '250px'}}>
-      <h2>Request Details</h2>
-      <hr/>
-
       <Grid container spacing={2}>
+      <Grid item xs={12} sm={6} display="flex" justifyContent="flex-start" alignItems="center">
+      <h2>Request Details</h2>
+      </Grid>
+
+    <Grid item xs={12} sm={6} display="flex" justifyContent="flex-end" alignItems="center">
+    <ThemeProvider theme={theme}>
+      <Button
+        disableElevation
+        disableRipple
+        variant='contained'
+        color={getstatuscolor[request.status]}
+      >
+        {request.status}
+      </Button>
+      </ThemeProvider>
+    </Grid>
 
       <Grid item xs={12}>
+        <hr></hr>
           <Box sx={{ width: '100%' }} padding={5}>
             <Stepper activeStep={activeStep} alternativeLabel>
               {steps.map((label,index) => {
@@ -325,13 +350,11 @@ function Committee_ReqDetails() {
     <Grid item xs={12}>
       {review_comp(request)}
     </Grid>
-    <Grid item xs={12} sm={6}>
+    <Grid item xs={12} sm={6} display="flex" justifyContent="center" alignItems="center">
     <Button type='submit' variant='contained' color='error' disabled={verified} endIcon={<ThumbDown/> } onClick={handle_deny}>Reject</Button>
     </Grid>
-    <Grid item xs={12} sm={6}>
-    <Box display="flex" justifyContent="flex-end">
+    <Grid item xs={12} sm={6} display="flex" justifyContent="center" alignItems="center">
     <Button type='submit' variant='contained' color='success' disabled={verified} endIcon={<SendIcon/>} onClick={handle_verify}>Verified</Button>
-    </Box>
     </Grid>
     </Grid>
 

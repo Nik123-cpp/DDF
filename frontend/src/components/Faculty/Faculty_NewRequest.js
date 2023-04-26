@@ -159,7 +159,7 @@ function Faculty_NewRequest() {
         </Grid>
 
         <Grid item xs={12}>
-        <Box display="flex"   justifyContent="center" alignItems="center">
+        <Box display="flex" justifyContent="center" alignItems="center">
             <Button type='submit' variant='contained' color='success' onClick={handle_submit} endIcon={<SendIcon/>}>Submit Request</Button>
         </Box>
         </Grid>

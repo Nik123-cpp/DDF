@@ -9,11 +9,12 @@ function Faculty_Navbar() {
   const user_name = localStorage.getItem('FacultyUsername')
   //localStorage.getItem('FacultyUsername')
 
-  const url1 = "/Faculty"
-  const url2 = url1 + '/AllRequests'
-  const url3 = url1 + '/PendingRequests'
-  const url4 = url1 + '/NewRequest'
-  const url5 = url1 + '/Profile'
+  const url = "/Faculty"
+  const url1 = url + "/MyRequests"
+  const url2 = url + '/AllRequests'
+  const url3 = url + '/PendingRequests'
+  const url4 = url + '/NewRequest'
+  const url5 = url +  '/Profile'
 
 
 
@@ -45,10 +46,10 @@ function Faculty_Navbar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" >
             <Nav className="ms-auto"
-              defaultactiveKey={'home'}
+              defaultactiveKey={'myreq'}
               onSelect={(selectedKey) => console.log(`selected ${selectedKey}`)}
             >
-              <Nav.Link as={Link} to={url1} eventKey={'home'} >Home</Nav.Link>
+              <Nav.Link as={Link} to={url1} eventKey={'myreq'} >MyRequests</Nav.Link>
               <Nav.Link as={Link} to={url2} eventKey={'allreq'} >AllRequests</Nav.Link>
               <Nav.Link as={Link} to={url3} eventKey={'pendreq'} >PendingRequests</Nav.Link>
               <Nav.Link as={Link} to={url4} eventKey={'newreq'} >New Request</Nav.Link>

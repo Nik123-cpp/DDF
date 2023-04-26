@@ -38,20 +38,23 @@ function Hod_navbar() {
           </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ms-auto">
-          <Nav.Link as={Link} to={url1}>
+        <Nav className="ms-auto"
+          defaultactiveKey={'home'}
+          onSelect={(selectedKey) => console.log(`selected ${selectedKey}`)}
+        >
+          <Nav.Link as={Link} to={url1} eventKey={'home'}>
             Home
           </Nav.Link>
-          <Nav.Link as={Link} to={url2}>
+          <Nav.Link as={Link} to={url2} eventKey={'allreq'} >
             AllRequests
           </Nav.Link>
-          <Nav.Link as={Link} to={url3}>
+          <Nav.Link as={Link} to={url3} eventKey={'pendreq'}>
             PendingRequests
           </Nav.Link>
-          <Nav.Link as={Link} to={url4}>
+          <Nav.Link as={Link} to={url4} eventKey={'DDF'}>
             DDF
           </Nav.Link>
-          <Nav.Link as={Link} to={url5}>
+          <Nav.Link as={Link} to={url5} eventKey={'profile'}>
             Profile
           </Nav.Link>
         </Nav>
