@@ -1,6 +1,6 @@
 const Profile = require('./model/profile');
 const Request = require('./model/request');
-
+const ddfbalance = require('./model/DDF')
 const mongoose = require('mongoose');
 
 mongoose.set("strictQuery", false);
@@ -12,8 +12,8 @@ try {
     console.log('MongoDB Connected');
     // suraj = profileCreate("suraj", "cs20btech11050@iith.ac.in", "bobby");
     // madhav = profileCreate("Nikhil", "cs20btech11036@iith.ac.in", "nikki");
-    requestCreate("cs20btech11036@iith.ac.in", "Travel fund", "Personal", 20000, ["doc1", "doc2"], "I need money for travel");
-    requestCreate("cs20btech11036@iith.ac.in", "Furniture fund for new lab", "Public", 200000, ["doc1", "doc2"], "I need money for furniture");
+    //requestCreate("cs20btech11036@iith.ac.in", "Travel fund", "Personal", 20000, ["doc1", "doc2"], "I need money for travel");
+    //requestCreate("cs20btech11036@iith.ac.in", "Furniture fund for new lab", "Public", 200000, ["doc1", "doc2"], "I need money for furniture");
 
 } catch (error) {
 	console.log(error);
