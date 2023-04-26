@@ -36,7 +36,7 @@ function Committee_ReqDetails() {
 
     var getstatuscolor = {}
     getstatuscolor["Requested"] = "primary"
-    getstatuscolor["Verified"] = "primary"
+    getstatuscolor["Verified"] = "secondary"
     getstatuscolor["Denied"] = "error"
     getstatuscolor["Approved"] = "success"
     getstatuscolor["Rejected"] = "error"

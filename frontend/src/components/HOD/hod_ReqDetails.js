@@ -35,7 +35,7 @@ function HOD_ReqDetails() {
 
     var getstatuscolor = {}
     getstatuscolor["Requested"] = "primary"
-    getstatuscolor["Verified"] = "primary"
+    getstatuscolor["Verified"] = "secondary"
     getstatuscolor["Denied"] = "error"
     getstatuscolor["Approved"] = "success"
     getstatuscolor["Rejected"] = "error"
@@ -103,8 +103,6 @@ function HOD_ReqDetails() {
       style={{ minHeight: '100vh' }}
     >
       <Paper elevation={20} style={paperstyle} sx={{maxWidth:'900px',minWidth: '250px'}}>
-      <h2>Request Details</h2>
-      <hr/>
 
       <Grid container spacing={2}>
       <Grid item xs={12} sm={6} display="flex" justifyContent="flex-start" alignItems="center">
@@ -289,12 +287,12 @@ function HOD_ReqDetails() {
   />
   </Grid>
   </Grid>
-      <hr></hr>
-      <br></br>
-      <h3>Review</h3>
-      <br></br>
-  
     <Grid container spacing={6}>
+    <Grid item xs={12}>
+      <hr></hr>
+      <h3>Review</h3>
+      </Grid>
+      
     <Grid item xs={12}>
     <TextField
         id="review"
