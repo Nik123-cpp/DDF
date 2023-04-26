@@ -33,17 +33,7 @@ const Example = (props) => {
     data={rows} 
     
     enableRowNumbers
-    // enableRowActions
-    // renderRowActions={({ row }) => (
-    //   <Box>
-    //     <OpenInNewSharpIcon onClick={() => {
-    //       console.log(row.original._id)
-    //       nav_req_details(row.original._id)
-    //       }}>
-    //       View
-    //     </OpenInNewSharpIcon>
-    //   </Box>
-    // )}
+    initialState={{ columnVisibility: { _id: false, email_address: false} }} 
 
     muiTableBodyRowProps={({ row }) => ({
     onClick: (event) => { nav_req_details(row.original._id)
