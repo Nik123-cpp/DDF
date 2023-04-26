@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { Grid, Button } from '@mui/material'
 import PersonIcon from '@mui/icons-material/Person';
 import GroupsIcon from '@mui/icons-material/Groups';
-import Csedept from "./Images_folder/CSE_Dept.jpg" 
+import Csedept from "./Images_folder/Signin_Bg.jpg" 
 
 
 function Home() {
@@ -25,7 +25,7 @@ function Home() {
             backgroundSize:'cover'
       }}
     >
-      <Grid item xs={12}  display="flex"  justifyContent="center">
+      {/* <Grid item xs={12}  display="flex"  justifyContent="center">
           <Button
         disableElevation
         disableRipple
@@ -35,19 +35,19 @@ function Home() {
       >
         CSE DDF Management System
       </Button>
-      </Grid>
+      </Grid> */}
       <Grid item xs={12} md={4} display="flex" justifyContent="center" alignItems="center">
-      <Button variant='contained' color='primary' sx={{ width: "80%", height: "40%", opacity:0.7,}} endIcon={<PersonIcon/>}>
+      <Button variant='contained' color='primary' sx={{ width: "80%", height: "25%", opacity:0.7,}} onClick={nav_Login_page} endIcon={<PersonIcon/>}>
         Faculty
       </Button>
       </Grid>
       <Grid item xs={12} md={4} display="flex" justifyContent="center" alignItems="center">
-      <Button variant='contained' color='primary' sx={{ width: "80%", height: "40%",opacity:0.7,}} endIcon={<GroupsIcon/>}>
+      <Button variant='contained' color='primary' sx={{ width: "80%", height: "25%",opacity:0.7,}} onClick={nav_Login_page} endIcon={<GroupsIcon/>}>
         Committee
       </Button>
       </Grid>
       <Grid item xs={12} md={4} display="flex" justifyContent="center" alignItems="center">
-      <Button variant='contained' color='primary' sx={{ width: "80%", height: "40%",opacity:0.7,}}  endIcon={<PersonIcon/>}>
+      <Button variant='contained' color='primary' sx={{ width: "80%", height: "25%",opacity:0.7,}} onClick={nav_Login_page}  endIcon={<PersonIcon/>}>
         HOD
       </Button>
       </Grid>
