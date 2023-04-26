@@ -82,7 +82,7 @@ function Login() {
           else if(email_address == 'hod_cse@iith.ac.in') {
 
             localStorage.setItem('IsHODLoggedIn',true)
-            localStorage.getItem('hodEmail',email_address)
+            localStorage.setItem('hodEmail',email_address)
             localStorage.setItem('HodUsername',user.username)
             SetuserType(3)
             nav_hod_home()
