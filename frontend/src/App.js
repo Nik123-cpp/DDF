@@ -27,6 +27,8 @@ import Hod_navbar from "./components/HOD/hod_navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Committee_ReqDetails from "./components/Committee/Committee_ReqDetails";
 import HOD_ReqDetails from "./components/HOD/hod_ReqDetails";
+
+import SignUp from "./components/SignUp";
 function App() {
   let IsCommitteeLoggedIn = localStorage.getItem("IsCommitteeLoggedIn");
   let IsHODLoggedIn = localStorage.getItem("IsHODLoggedIn");
