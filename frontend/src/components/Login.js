@@ -95,7 +95,7 @@ function Login() {
             localStorage.setItem('FacultyEmail',email_address)
             localStorage.setItem('FacultyUsername',user.username)
             SetuserType(1)
-            alert(`Faculty, ${user.username}  Succesfully Loged in`)
+            alert(`Faculty, ${user.username}  Succesfully Logged in`)
           }
           
         }

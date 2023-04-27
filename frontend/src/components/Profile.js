@@ -1,9 +1,7 @@
 import React from "react";
-import "../Styles/Profile.css";
-
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-// On click of Change password button new component will be shown/Added with new password fields
+
 import { Grid, Paper, Box, TextField, Button} from "@mui/material";
 import Profileimg from "./Images_folder/Profile_alternative.png"
 
@@ -90,7 +88,7 @@ function Profile() {
         <img src={Profileimg} alt="noimg" style={{height:"80%", width:"80%"}}></img>
         </Box>
       </Grid>
-      <Grid item xs={12} sm={8} md={8} square>
+      <Grid item xs={12} sm={8} md={8}>
       <Box
           sx={{
             my: 4,
@@ -159,8 +157,8 @@ function Profile() {
           </Grid>
             </DialogContent>
             <DialogActions>
-                <Button onClick={() => {setOpench_uname(false);}} color="error" variant='contained'>Close</Button>
-                <Button onClick={() => {setOpench_uname(false);}} color="success" variant='contained'>Save Changes</Button>
+                <Button onClick={() => {setOpench_uname(false);}} color="error" variant='outlined'>Close</Button>
+                <Button onClick={() => {setOpench_uname(false);}} color="success" variant='outlined'>Save Changes</Button>
             </DialogActions>
           </Dialog>
             </Grid>
@@ -205,8 +203,8 @@ function Profile() {
           </Grid>
             </DialogContent>
             <DialogActions>
-                <Button onClick={() => {setOpenchpswd(false);}} color="error" variant='contained'>Close</Button>
-                <Button onClick={() => {setOpenchpswd(false);}} color="success" variant='contained'>Save Changes</Button>
+                <Button onClick={() => {setOpenchpswd(false);}} color="error" variant='outlined'>Close</Button>
+                <Button onClick={() => {setOpenchpswd(false);}} color="success" variant='outlined'>Save Changes</Button>
             </DialogActions>
           </Dialog>
             </Grid>
