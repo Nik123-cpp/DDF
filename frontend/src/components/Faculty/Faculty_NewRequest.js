@@ -60,7 +60,7 @@ function Faculty_NewRequest() {
 
     }
 
-    const paperstyle = { padding: '30px 20px', maxWidth:'600px'};
+    const paperstyle = { padding: '30px 20px'};
     const Req_Type = [
         {
           value: 'Public',
@@ -83,18 +83,18 @@ function Faculty_NewRequest() {
         justifyContent="center"
         style={{ minHeight: '100vh' }}
       >
-        <Paper elevation={20} style={paperstyle} sx={{maxWidth:'900px',minWidth: '250px'}}>
+        <Paper elevation={20} style={paperstyle} sx={{maxWidth:'600px',minWidth: '250px'}}>
         <h2>Request Form</h2>
         <hr/>
 
-      <Grid container spacing={3}>
+      <Grid container component="form" spacing={3} onSubmit={handle_submit} autoComplete='off'>
       <Grid item xs={12}>
         <TextField
                     id="reqtype"
                     fullWidth
                     select
                     label="Request Type"
-                    defaultValue='public'
+                    defaultValue='Public'
                     onChange={handle_request_type}
                     // helperText="Select request type"
                 >
@@ -130,6 +130,7 @@ function Faculty_NewRequest() {
             InputProps={{
                 startAdornment: <InputAdornment position="start">Rs</InputAdornment>,
               }}
+            inputProps={{min:1,}}
           />
         </Grid>
         <Grid item xs={12}>
@@ -160,7 +161,7 @@ function Faculty_NewRequest() {
 
         <Grid item xs={12}>
         <Box display="flex" justifyContent="center" alignItems="center">
-            <Button type='submit' variant='contained' color='success' onClick={handle_submit} endIcon={<SendIcon/>}>Submit Request</Button>
+            <Button type='submit' variant='contained' color='success' endIcon={<SendIcon/>}>Submit Request</Button>
         </Box>
         </Grid>
         

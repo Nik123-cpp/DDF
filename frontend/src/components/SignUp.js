@@ -1,4 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
+
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
+
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import SignBg from './Images_folder/Signin_Bg.jpg'
+import {Link} from "react-router-dom"
 
 function SignUp() {
 
@@ -23,21 +40,142 @@ function SignUp() {
         
     }
 
-  return (
-    <div>
-        <form action="" method="post">
-            <label htmlFor="">UserName</label>
-            <input type="text" name="" id="" onChange={setusername}/>
-            <label htmlFor="">Email address</label>
-            <input type="email" name="" id="" onChange={handle_email}/>
-            <label htmlFor="">Password</label>
-            <input type="password" name="" id="" onChange={handle_password}/>
-            <label htmlFor="">New Password</label>
-            <input type="password" name="" id="" onChange={handle_repassword}/>
-            <button type="submit" onClick={handle_register}>SignUp</button>
-        </form>
-    </div>
-  )
-}
+    function Copyright(props) {
+      return (
+        <Typography variant="body2" color="text.secondary" align="center" {...props}>
+          {'Copyright © '}
+          <Link color="inherit" href="https://mui.com/">
+            Your Website
+          </Link>{' '}
+          {new Date().getFullYear()}
+          {'.'}
+        </Typography>
+      );
+    }
+    
+    const theme = createTheme();
+  
+    return (
+  
+      <ThemeProvider theme={theme}>
+      <Grid container component="main" sx={{ height: '100vh' }}>
+        <CssBaseline />
+        <Grid
+          item
+          xs={false}
+          sm={4}
+          md={7}
+          sx={{
+            backgroundImage: `url(${SignBg})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: (t) =>
+              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={10} square>
+          <Box
+            sx={{
+              my: 8,
+              mx: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign Up
+            </Typography>
+            <Box component="form" noValidate sx={{ mt: 1 }}>
+              <Grid container spacing={2}>
+              <Grid item xs={12}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="uname"
+                label="User Name"
+                name="uname"
+                // onChange={handle_email}
+                autoFocus
+              />
+              </Grid>
+
+              <Grid item xs={12}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                onChange={handle_email}
+                autoFocus
+              />
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="pswd"
+                label="Password"
+                type="password"
+                id="pswd"
+                onChange={handle_password}
+              />
+              </Grid>
+
+              <Grid item xs={12} md={6}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="chg_pswd"
+                label="Confirm Password"
+                name="chg_pswd"
+                onChange={handle_email}
+                autoFocus
+              />
+              </Grid>
+            </Grid>
+              
+  
+          <Grid container spacing={2}>
+          <Grid item xs={12}>
+          <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color='secondary'
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign Up
+              </Button>
+  
+          </Grid>
+          </Grid>
+
+          <Grid container justifyContent="center">
+              <Grid item>
+                <Link href="#" variant="body2">
+                  Already have an account? Sign in
+                </Link>
+              </Grid>
+            </Grid>
+              <Copyright sx={{ mt: 5 }} />
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
+
+    )
+  }
 
 export default SignUp
