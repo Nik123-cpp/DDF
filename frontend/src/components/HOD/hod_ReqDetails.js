@@ -17,6 +17,7 @@ function HOD_ReqDetails() {
     const [approved,setapproved] = useState(true)
     const [isfailed,setfailed]  = useState(false)
     const [activeStep,setactiveStep] = useState(1)
+    const [needAmount,setNeedAmount] = useState(0)
 
     var getactivestep = {}
     getactivestep["Requested"] = 1
@@ -35,6 +36,7 @@ function HOD_ReqDetails() {
       const requestOptions = {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
+          body : JSON.stringify({name:"Request :"+request_id , DeductAmount:needAmount})
       };
 
       fetch(url, requestOptions)
@@ -67,6 +69,7 @@ function HOD_ReqDetails() {
             setapproved(request.status!=="Verified")
             setfailed(request.status==="Denied" || request.status==="Rejected");
             setactiveStep(getactivestep[request.status])
+            setNeedAmount(request.amount)
             }
           );
       

@@ -2,7 +2,7 @@ import React from 'react'
 
 function Committee_Home() {
     
-    let result_email = localStorage.getItem("UserEmail")
+    let result_email = localStorage.getItem("committeeEmail")
     
     return (
       <div>
