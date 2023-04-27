@@ -104,7 +104,7 @@ function HOD_ReqDetails() {
                 multiline
                 minRows={3}
                 variant="outlined"
-                value={request.review}
+                value={request.review || ''}
                 InputProps={{
                   readOnly: true,
                 }}

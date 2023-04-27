@@ -108,7 +108,7 @@ function Profile() {
               id="facname"
               fullWidth
               label="Name"
-              value={UserName}
+              value={UserName || ''}
               InputProps={{
                 readOnly: true,
               }}
@@ -125,7 +125,7 @@ function Profile() {
               id="mailid"
               fullWidth
               label="Mail ID"
-              value={CurrentEmail}
+              value={CurrentEmail || ''}
               InputProps={{
                 readOnly: true,
               }}

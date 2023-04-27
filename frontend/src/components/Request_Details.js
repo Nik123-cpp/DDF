@@ -80,7 +80,7 @@ const Req_Details = (props) => {
                     id="reqid"
                     fullWidth
                     label="Request ID"
-                    value={request._id}
+                    value={request._id || ''}
                     InputProps={{
                         readOnly: true,
                     }}
@@ -96,7 +96,7 @@ const Req_Details = (props) => {
                     id="reqtype"
                     fullWidth
                     label="Request Type"
-                    value={request.requestType}
+                    value={request.requestType || ''}
                     InputProps={{
                         readOnly: true,
                     }}
@@ -112,7 +112,7 @@ const Req_Details = (props) => {
                     id="facname"
                     fullWidth
                     label="Faculty Name"
-                    value={request.faculty_name}
+                    value={request.faculty_name || ''}
                     InputProps={{
                         readOnly: true,
                     }}
@@ -128,7 +128,7 @@ const Req_Details = (props) => {
                     id="mailid"
                     fullWidth
                     label="Mail ID"
-                    value={request.email_address}
+                    value={request.email_address || ''}
                     InputProps={{
                         readOnly: true,
                     }}
@@ -146,7 +146,7 @@ const Req_Details = (props) => {
                     label="Title"
                     fullWidth
                     variant="outlined"
-                    value = {request.title}
+                    value = {request.title || ''}
                     InputProps={{
                         readOnly: true,
                     }}
@@ -163,7 +163,7 @@ const Req_Details = (props) => {
                     label="Amount"
                     fullWidth
                     variant="outlined"
-                    value={request.amount}
+                    value={request.amount || ''}
                     InputProps={{
                         startAdornment: <InputAdornment position="start">Rs</InputAdornment>,
                         readOnly: true,
@@ -181,7 +181,7 @@ const Req_Details = (props) => {
                     label="Document Link"
                     fullWidth
                     variant="outlined"
-                    value={request.documents}
+                    value={request.documents || ''}
                     InputProps={{
                         readOnly: true,
                     }}   
@@ -199,7 +199,7 @@ const Req_Details = (props) => {
                     multiline
                     minRows={3}
                     variant="outlined"
-                    value={request.description}
+                    value={request.description || ''}
                     InputProps={{
                     readOnly: true,
                     }}
