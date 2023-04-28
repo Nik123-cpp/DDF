@@ -20,14 +20,13 @@ exports.user_datails = async (req, res, next) => {
 exports.register = async (req, res,next) => {
     profileObject = { username: req.params.username, email_address: req.params.email_address, password: req.params.password };
     const profile = new Profile(profileObject);
-    Profile.findOne({ email_address: req.params.email_address }).exec((err, profile) => {
-        if (err) {
+    Profile.findOne({ email_address: req.params.email_address }).exec((err, profiles) => {
+        if (profiles == null) {
             profile.save()
             res.json({ message: "Profile Created" });
         }
         else {
             res.status(500).json({ error: "user already exists" });
-            next(err);
         }
     });
 
