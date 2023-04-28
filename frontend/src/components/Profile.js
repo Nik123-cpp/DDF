@@ -140,11 +140,15 @@ function Profile() {
             <Grid item xs={12} md={6} display="flex" justifyContent="center" alignItems="center">
               <Button type='submit' variant='contained' color='primary' onClick={ () => {setOpench_uname(true);}}>Change Username</Button>
               <Dialog open={opench_uname} onClose={ () => {setOpench_uname(false);}}>
-                    <DialogTitle><h3>Change Username</h3></DialogTitle>
-                    <DialogContent>
-                      <Grid container spacing={2}>
-                          <Grid item xs={12}>
+                    <DialogTitle>
+                    <div style={{paddingTop : '0.5em' , paddingBottom: '0.5em',fontSize:'1.5em'}} >
+                          Change Username 
                           <hr></hr>
+                        </div>
+                    </DialogTitle>
+                    <DialogContent>
+                      <Grid container spacing={2} component="form" autoComplete="off">
+                          <Grid item xs={12}>
                             <TextField
                               required
                               id="newusername"
@@ -166,11 +170,15 @@ function Profile() {
             <Grid item xs={12} md={6} display="flex" justifyContent="center" alignItems="center">
                   <Button type='submit' variant='contained' color='primary'onClick={() => {setOpenchpswd(true);}}>Change Password</Button>
                   <Dialog open={openchpswd} onClose={() => {setOpenchpswd(false);}}>
-                    <DialogTitle><h3>Change Password</h3></DialogTitle>
-                    <DialogContent>
-                      <Grid container spacing={2}>
-                          <Grid item xs={12}>
+                    <DialogTitle>
+                        <div style={{paddingTop : '0.5em' , paddingBottom: '0.5em',fontSize:'1.5em'}} >
+                          Change Password 
                           <hr></hr>
+                        </div>
+                      </DialogTitle>
+                    <DialogContent>
+                      <Grid container spacing={2} component="form" autoComplete="off">
+                          <Grid item xs={12}>
                             <TextField
                               required
                               id="oldpswd"

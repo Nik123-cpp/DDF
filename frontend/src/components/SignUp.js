@@ -35,6 +35,11 @@ function SignUp() {
     const handle_repassword = (event)=>{
         setRepassword(event.target.value);
     }
+
+    const handle_uname = (event) => {
+      setusername(event.target.value);
+    };
+
     const handle_register=(event)=>{
         //api call
         
@@ -90,8 +95,8 @@ function SignUp() {
             <Typography component="h1" variant="h5">
               Sign Up
             </Typography>
-            <Box component="form" noValidate sx={{ mt: 1 }}>
-              <Grid container spacing={2}>
+            <Box  sx={{ mt: 1 }}>
+              <Grid container spacing={1} component="form"  autoComplete='off'>
               <Grid item xs={12}>
               <TextField
                 margin="normal"
@@ -100,13 +105,14 @@ function SignUp() {
                 id="uname"
                 label="User Name"
                 name="uname"
-                // onChange={handle_email}
+                onChange={handle_uname}
                 autoFocus
               />
               </Grid>
 
               <Grid item xs={12}>
               <TextField
+                type='email'
                 margin="normal"
                 required
                 fullWidth
@@ -139,28 +145,24 @@ function SignUp() {
                 id="chg_pswd"
                 label="Confirm Password"
                 name="chg_pswd"
-                onChange={handle_email}
+                onChange={handle_repassword}
                 autoFocus
               />
               </Grid>
-            </Grid>
-              
-  
-          <Grid container spacing={2}>
-          <Grid item xs={12}>
-          <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color='secondary'
-                sx={{ mt: 3, mb: 2 }}
-              >
+
+              <Grid item xs={12}>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color='secondary'
+                    sx={{ mt: 3, mb: 2 }}
+                   >
                 Sign Up
               </Button>
-  
           </Grid>
-          </Grid>
-
+            </Grid>
+              
           <Grid container justifyContent="center">
               <Grid item>
                 <Link href="#" variant="body2">
