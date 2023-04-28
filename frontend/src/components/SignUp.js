@@ -26,7 +26,7 @@ function SignUp() {
     const [username,setusername] = useState("");
 
     const handle_email = (event) => {
-        setEmail(event.target.value);
+        setEmail(event.target.value.toLowerCase());
       };
     
     const handle_password = (event) => {
@@ -41,7 +41,29 @@ function SignUp() {
     };
 
     const handle_register=(event)=>{
-        //api call
+      event.preventDefault();
+
+      if(password !== Repassword){
+        alert("Password Mismatch")
+        return
+      }
+      const url  = "/profile/Register";
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: username ,email_address: email_id , password: password })
+      };
+
+      try{
+        fetch(url, requestOptions)
+        .then(res => res.json())
+        .then(data => alert(data.message))
+      }
+      catch(err){
+        console.log(err)
+      }
+
+
         
     }
 
@@ -95,8 +117,8 @@ function SignUp() {
             <Typography component="h1" variant="h5">
               Sign Up
             </Typography>
-            <Box  sx={{ mt: 1 }}>
-              <Grid container spacing={1} component="form"  autoComplete='off'>
+            <Box  sx={{ mt: 1 , width:'8x0%' }}>
+              <Grid container spacing={1} component="form"  autoComplete='off' onSubmit={handle_register}>
               <Grid item xs={12}>
               <TextField
                 margin="normal"
@@ -165,7 +187,7 @@ function SignUp() {
               
           <Grid container justifyContent="center">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link to="/Login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

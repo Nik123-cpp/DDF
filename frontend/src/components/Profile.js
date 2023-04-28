@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import { Grid, Paper, Box, TextField, Button} from "@mui/material";
 import Profileimg from "./Images_folder/Profile_alternative.png"
@@ -23,38 +23,12 @@ function Profile() {
     result_email = "123@iith.ac.in";
   }
 
-  let isloggedIn = localStorage.getItem("IsLoggedIn");
-  const navigate = useNavigate();
-  //console.log("user email is :" , result_email)
-  let data = result_email;
-  // Function to collect data
-  const getdetails = async () => {
-    const url = "/profile/" + data;
-    const response = await fetch("http://localhost:8000" + url, {
-      mode: "cors",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const user = data.User;
-        if (user === null) {
-          alert(`User with ${data} doesnot exist`);
-        }
-        //console.log(user)
-        setusername(user.username);
-      });
-  };
-
   useEffect(() => {
-    // if (isloggedIn === null || isloggedIn === "false") {
-    //   navigate("/");
-    // } else {
-    //   getdetails();
-    // }
 
-    if (location.pathname == "/Committee/Profile") {
+    if (location.pathname === "/Committee/Profile") {
       setusername(localStorage.getItem("CommitteeUsername"));
       setCurrentEmail(localStorage.getItem("committeeEmail"));
-    } else if (location.pathname == "/hod/Profile") {
+    } else if (location.pathname === "/hod/Profile") {
       setusername(localStorage.getItem("HodUsername"));
       setCurrentEmail(localStorage.getItem('hodEmail'));
     } else {
