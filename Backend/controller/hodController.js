@@ -22,7 +22,7 @@ exports.approve = (req, res, next) => {
                         }
                         else {
                             console.log(record[0].balance)
-                            const ddf = new DDF_record({ request: request._id, amount: request.amount,balance: record[0].balance - request.amount });
+                            const ddf = new DDF_record({ request: request._id, amount: request.amount,balance: record[0].balance - request.amount ,transaction_type: "Debit"});
                             ddf.save();
                         }
                     });

@@ -17,23 +17,29 @@ function HOD_DDF_page() {
 
   const UpdataNewBalance = async (event) => {
     event.preventDefault();
-    const url = "http://localhost:8000/hod/ddf/updatebalance";
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: Source, NewBalance: parseInt(NewBalance) }),
-    };
+    if (Source=="" || NewBalance == 0) {
+      alert("Please enter all details")
+    } else {
+        const url = "http://localhost:8000/ddfrecords/add_ddf";
+        const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ Source: Source, Amount: parseInt(NewBalance) }),
+      };
 
-    fetch(url, requestOptions)
-      .then((res) => res.json())
-      .then((data) => alert(data.message));
-    setBalance(balance + parseInt(NewBalance));
-    setNewBalance("");
+      fetch(url, requestOptions)
+        .then((res) => res.json())
+        .then((data) => alert(data.message));
+      setBalance(balance + parseInt(NewBalance));
+      setNewBalance("");
+    }
+    
+    
     setOpenubaln(false);
   };
 
   useEffect(() => {
-    const url = "http://localhost:8000/hod/ddf/getbalance";
+    const url = "http://localhost:8000/ddfrecords/getbalance";
     const requestOptions = {
       method: "GET",
       headers: { "Content-Type": "application/json" },

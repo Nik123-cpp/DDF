@@ -39,3 +39,40 @@ exports.all_records = (req, res, next) => {
             }
         })
 }
+
+
+exports.Add_DDF = (req,res,next)=>{
+    let {Source,Amount}=req.body;
+
+    ddf_records.find()
+        .sort({ created: -1 })
+        .exec((err, record) => {
+            if (err) {
+                res.status(500).json({err : err});
+                next(err);
+            }
+            else {
+                console.log("last record balance is ",record[0].balance)
+                const ddf = new ddf_records({source :Source , amount: Amount ,   balance: record[0].balance +  Amount ,  transaction_type: "Credit"});
+                ddf.save();
+                res.status(200).json({ message: "Successfully Update" });
+            }
+        });
+
+}
+
+exports.Get_Balance = (req,res,next)=>{
+    ddf_records.find()
+    .sort({ created: -1 })
+    .exec((err, record) => {
+      if (err) {
+          res.status(500).json({err : err});
+          next(err);
+          }
+      else {
+          console.log('Returning balance',record[0].balance)
+          //const ddf = new DDF_record({ request: request._id, amount: request.amount,balance: record[0].balance - request.amount ,transaction_type: "Debit"});
+          res.status(200).json({ balance: record[0].balance })
+          }
+    });
+}
