@@ -9,10 +9,12 @@ function HOD_ReqDetails() {
   
     const params = useParams()
     const request_id = params.request_id
-    
+
     const navigate = useNavigate()
-
-
+    const nav_hod_pendingreq = () => {
+      navigate('/Hod/PendingRequests')
+    }
+  
     const [request,setrequest] = useState({})
     const [approved,setapproved] = useState(true)
     const [isfailed,setfailed]  = useState(false)
@@ -42,6 +44,7 @@ function HOD_ReqDetails() {
       fetch(url, requestOptions)
       .then(res => res.json())
       .then(data => alert(data.message))
+      .then(nav_hod_pendingreq)
     }
 
     function handle_reject(event) {
@@ -56,6 +59,7 @@ function HOD_ReqDetails() {
       fetch(url, requestOptions)
       .then(res => res.json())
       .then(data => alert(data.message))
+      .then(nav_hod_pendingreq)
 
     }
 

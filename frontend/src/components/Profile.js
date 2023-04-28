@@ -104,7 +104,7 @@ function Profile() {
     setOpenchpswd(false)
   }
 
-  if(state == -1) {
+  if(state === -1) {
     return (<></>)
   }
 
@@ -118,7 +118,7 @@ function Profile() {
     justifyContent="center"
     style={{ minHeight: '100vh' }}
     >
-      
+      <div data-testid={"Profile_test_email" }>hod_cse@iith.ac.in</div>
     <Grid  container component={Paper} elevation={20} style={{padding: '30px 20px'}} sx={{maxWidth:'960px',minWidth: '250px'}}>
       <Grid
         item
@@ -168,7 +168,8 @@ function Profile() {
               id="mailid"
               fullWidth
               label="Mail ID"
-              value={localStorage.getItem(useremails[state])}
+              
+              value={CurrentEmail || ''}
               InputProps={{
                 readOnly: true,
               }}

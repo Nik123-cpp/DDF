@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import {useParams} from 'react-router-dom'
-import { useEffect } from 'react'
+import {useParams, useNavigate} from 'react-router-dom'
+import { useEffect} from 'react'
 import {Paper, TextField, Button,Grid } from '@mui/material'
 import { ThumbDown } from '@mui/icons-material';
 import SendIcon  from '@mui/icons-material/Send';
@@ -11,6 +11,10 @@ function Committee_ReqDetails() {
   
     const params = useParams()
     const request_id = params.request_id
+    const navigate = useNavigate()
+    const nav_committee_pendingreq = () => {
+      navigate('/Committee/PendingRequests')
+    }
     
    
 
@@ -48,6 +52,7 @@ function Committee_ReqDetails() {
       fetch(url, requestOptions)
       .then(res => res.json())
       .then(data => alert(data.message))
+      .then(nav_committee_pendingreq)
 
 
     }
@@ -65,6 +70,7 @@ function Committee_ReqDetails() {
       fetch(url, requestOptions)
       .then(res => res.json())
       .then(data => alert(data.message))
+      .then(nav_committee_pendingreq)
 
     }
 
