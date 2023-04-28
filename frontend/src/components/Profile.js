@@ -104,7 +104,7 @@ function Profile() {
     setOpenchpswd(false)
   }
 
-  if(state == -1) {
+  if(state === -1) {
     return (<></>)
   }
 
@@ -167,7 +167,7 @@ function Profile() {
              <TextField
               id="mailid"
               fullWidth
-              label="Mail ID"
+              label="Mail ID" 
               data-testid="Profile_test_email"
               value={ localStorage.getItem(useremails[state])}
               InputProps={{

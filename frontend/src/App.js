@@ -76,7 +76,6 @@ function App() {
           </ProtectedRoute>
         }
       >
-        <Route path="" element={<Committe_Home />} />
 
         <Route path="AllRequests">
           <Route path="" element={<Committe_Allrequests />} />
@@ -99,7 +98,6 @@ function App() {
           </ProtectedRoute>
         }
       >
-        <Route path="" element={<HOD_Home />} />
 
         <Route path="PendingRequests">
           <Route path="" element={<HOD_PendingRequest />} />

@@ -7,13 +7,12 @@ function Committee_Navbar() {
 
 
     const navigate = useNavigate()
-    const params = useParams()
     const user_name = localStorage.getItem('CommitteeUsername')
 
-    const url1 = "/Committee/"
-    const url2 = url1 + 'AllRequests'
-    const url3 = url1 + 'PendingRequests'
-    const url4 = url1 + 'Profile'
+    const url = "/Committee/"
+    const url1 = url + 'PendingRequests'
+    const url2 = url + 'AllRequests'
+    const url3 = url + 'Profile'
 
     const nav_Home = () => {
         localStorage.setItem('IsCommitteeLoggedIn',false) 
@@ -41,13 +40,12 @@ function Committee_Navbar() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" >
                     <Nav className="ms-auto"
-                    defaultActiveKey={'home'}
+                    defaultActiveKey={'pendreq'}
                     onSelect={(selectedKey) => console.log(`selected ${selectedKey}`)}
                     >
-                    <Nav.Link as={Link} to={url1} eventKey={'home'} >Home</Nav.Link>
+                    <Nav.Link as={Link} to={url1} eventKey={'pendreq'}>PendingRequests</Nav.Link>
                     <Nav.Link as={Link} to={url2} eventKey={'allreq'} >AllRequests</Nav.Link>
-                    <Nav.Link as={Link} to={url3} eventKey={'pendreq'}>PendingRequests</Nav.Link>
-                    <Nav.Link as={Link} to={url4} eventKey={'profile'}>Profile</Nav.Link>
+                    <Nav.Link as={Link} to={url3} eventKey={'profile'}>Profile</Nav.Link>
                     </Nav>
                     <Nav>
                     <Button  variant="danger" size="sm" onClick={nav_Home}>Logout</Button>

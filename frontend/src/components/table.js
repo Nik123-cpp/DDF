@@ -31,9 +31,8 @@ const Example = (props) => {
 
     columns={columns} 
     data={rows} 
-    
     enableRowNumbers
-    initialState={{ columnVisibility: { _id: false, email_address: false} }} 
+    initialState={{ columnVisibility: { _id: false, email_address: false} , density: 'compact'  }} 
 
     muiTableBodyRowProps={({ row }) => ({
     onClick: (event) => { nav_req_details(row.original._id)

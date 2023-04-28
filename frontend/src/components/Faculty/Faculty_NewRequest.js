@@ -1,6 +1,6 @@
 import './Faculty_Styles/DDF_NewRequest.css'
 
-import React , {useEffect, useState} from 'react'
+import React , {useState} from 'react'
 import { Paper, Grid, TextField, MenuItem, InputAdornment, Button, Box} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import SendIcon  from '@mui/icons-material/Send';
@@ -8,7 +8,6 @@ import SendIcon  from '@mui/icons-material/Send';
 function Faculty_NewRequest() {
 
     
-    //const faculty_email=location.state;
 
     const faculty_email = localStorage.getItem("FacultyEmail")
 
@@ -23,6 +22,9 @@ function Faculty_NewRequest() {
     const [description,setdescription] = useState("");
 
     const navigate = useNavigate()
+    const nav_faculty = () => {
+      navigate('/Faculty/MyRequests')
+    }
 
     const handle_request_type = event => {
         setrequest_type(event.target.value)
@@ -57,6 +59,7 @@ function Faculty_NewRequest() {
         fetch(url, requestOptions)
         .then(res => res.json())
         .then(data => alert(data.message))
+        .then(nav_faculty)
 
     }
 

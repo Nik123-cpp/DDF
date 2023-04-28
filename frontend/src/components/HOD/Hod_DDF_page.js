@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Hod_navbar from "./hod_navbar";
-
-import { Outlet, useAsyncError } from "react-router-dom";
 import {Grid, TextField, InputAdornment, Button, Dialog, DialogTitle, DialogContent, DialogActions, Paper} from "@mui/material";
 
 function HOD_DDF_page() {
