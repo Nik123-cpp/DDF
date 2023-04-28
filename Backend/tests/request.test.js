@@ -63,4 +63,9 @@ describe("/request/:id", () => {
         expect(res.body).toHaveProperty("email_address", "cs20btech11050@iith.ac.in");
 
     });
+    test("handling non existing id", async () => {
+        const res = await supertest(app).get("/request/123456789");
+        expect(res.statusCode).toBe(500);
+        expect(res.body).toHaveProperty("message", "No such request exists");
+    });
 });
