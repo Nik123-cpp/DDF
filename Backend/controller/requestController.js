@@ -33,9 +33,10 @@ exports.delete_request = (req, res, next) => {
                 // next(err);
             }
             else {
-                   res.status(200).json({ message: "deleted" });
+                   res.status(200).json({ message: "Request deleted successfully" });
             }
         });
  
 }
+
 
