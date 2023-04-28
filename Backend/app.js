@@ -8,7 +8,7 @@ const committee_route = require("./routes/committeeroute.js")
 const hod_route = require("./routes/hodroute.js")
 const faculty_route = require("./routes/facultyroute.js")
 const request_route = require("./routes/requestroute.js")
-
+const ddfrecords_route = require("./routes/ddfrecordsroute.js")
 
 
 const app = express()
@@ -24,7 +24,8 @@ app.use("/pendingrequest", pendingrequest_route)
 app.use("/committee", committee_route)
 app.use("/hod", hod_route)
 app.use("/faculty", faculty_route)
-app.use("/request",request_route)
+app.use("/request", request_route)
+app.use("/ddfrecords",ddfrecords_route)
 
 app.get("/api", function(req,res) {
   console.log("Got Request")
