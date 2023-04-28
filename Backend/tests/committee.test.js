@@ -34,7 +34,7 @@ describe("/committee/verify/:request_id", () => {
         id = RegExp.$1;
     });
     afterAll(async () => {
-        await supertest(app).delete(`/faculty/delete_request/${id}`);
+        await supertest(app).delete(`/request/delete/${id}`);
         await mongoose.connection.close();
     });
     test("should verify a request", async () => {
@@ -72,7 +72,7 @@ describe("/committee/deny/:request_id", () => {
         id = res.body.message.split(": ")[1];
     });
     afterAll(async () => {
-        await supertest(app).delete(`/faculty/delete_request/${id}`);
+        await supertest(app).delete(`/request/delete/${id}`);
         await mongoose.connection.close();
     });
     test("should deny a request", async () => {
