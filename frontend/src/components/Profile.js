@@ -169,7 +169,7 @@ function Profile() {
               fullWidth
               label="Mail ID"
               
-              value={CurrentEmail || ''}
+              value={localStorage.getItem(useremails[state]) || ''}
               InputProps={{
                 readOnly: true,
               }}

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Profile = require('../model/profile');
 const Request = require('../model/request');
-const DDF_record = require("../model/ddf");
+const DDF_record = require("../model/DDF");
 //approve the request
 exports.approve = (req, res, next) => {
     
