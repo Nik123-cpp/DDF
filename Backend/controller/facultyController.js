@@ -10,7 +10,7 @@ exports.create_request = (req, res, next) => {
     Profile.findOne({ email_address: mail })
         .orFail()
         .exec((err, profile) => {
-        if (err) {
+            if (err) {
             res.status(500).json({ message: "No user with that email id exists" });
         }
         else {
