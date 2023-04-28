@@ -46,7 +46,7 @@ function Login() {
     console.log('going to hod home')
     navigate('/Hod/')
   }
-
+  
   const [userType,SetuserType] = useState(0)
   const handle_submit = event => {
 
@@ -200,8 +200,12 @@ function Login() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" noValidate sx={{ mt: 1 }}>
+          <Box sx={{ mt: 1 }} >
+
+        <Grid container component="form" spacing={1} onSubmit={handle_submit} autoComplete='off'>
+          <Grid item xs={12}>
             <TextField
+              type='email'
               margin="normal"
               required
               fullWidth
@@ -211,7 +215,10 @@ function Login() {
               onChange={handle_email}
               autoFocus
             />
-            <TextField
+          </Grid>
+
+          <Grid item xs={12}>
+          <TextField
               margin="normal"
               required
               fullWidth
@@ -221,18 +228,15 @@ function Login() {
               id="password"
               onChange={handle_password}
             />
+          </Grid>
 
-            
-
-        <Grid container spacing={2}>
         <Grid item xs={12}>
-        <Button
+            <Button
               type="submit"
               fullWidth
               variant="contained"
               color='secondary'
               sx={{ mt: 3, mb: 2 }}
-              onClick={handle_submit}
             >
               Sign In
             </Button>
@@ -246,21 +250,14 @@ function Login() {
                 style={{width:'100%'}}
             />     
         </Grid>
-        </Grid>
 
-       
-            {/* <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
+              <Grid item xs={12} display="flex" justifyContent="center" alignItems="center" sx={{mt:2}}>
                 <Link href="#" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
-            </Grid> */}
+        </Grid>
+
             <Copyright sx={{ mt: 5 }} />
           </Box>
         </Box>
