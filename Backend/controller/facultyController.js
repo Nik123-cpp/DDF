@@ -7,18 +7,19 @@ exports.create_request = (req, res, next) => {
     requestObject = { title: title, requestType: requestType, amount: amount, documents: documents, description: description };
     
     const mail = email_address;
-    const query = Profile.findOne({ email_address: mail });
-
-    query.exec((err, profile) => {
+    Profile.findOne({ email_address: mail })
+        .orFail()
+        .exec((err, profile) => {
         if (err) {
-            console.log(err);
-            next(err);
+            res.status(500).json({ message: "No user with that email id exists" });
         }
-        requestObject.faculty = profile._id;
-        console.log(`created the request ${profile._id}`);
-        const request = new Request(requestObject);
-        request.save();
-        console.log(`created the request ${title}`);
-        res.status(200).json({ message: "Request Succesfully Created with ID : " + request._id });
+        else {
+            requestObject.faculty = profile._id;
+            console.log(`created the request ${profile._id}`);
+            const request = new Request(requestObject);
+            request.save();
+            console.log(`created the request ${title}`);
+            res.status(200).json({ message: "Request Succesfully Created with ID : " + request._id });
+        }
     });
 }
