@@ -47,6 +47,11 @@ function Login() {
     navigate('/Hod/')
   }
   
+  const nav_Signup = () =>{
+    navigate('/Signup/')
+  }
+  
+
   const [userType,SetuserType] = useState(0)
   const handle_submit = event => {
 
@@ -79,7 +84,7 @@ function Login() {
             nav_committee_home(user.username)
             alert(`Committee Head , ${user.username}  Succesfully Logged in`)
           }
-          else if(email_address == 'hod_cse@iith.ac.in') {
+          else if(email_address === 'hod_cse@iith.ac.in') {
 
             localStorage.setItem('IsHODLoggedIn',true)
             localStorage.setItem('hodEmail',email_address)
@@ -104,40 +109,6 @@ function Login() {
         }
       })
       console.log("End")
-
-      const getdetails = async () => {
-        const url = "/profile/" + email_address;
-        const response = await fetch("http://localhost:8000" + url, {
-          mode: "cors",
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            const user = data.User;
-            console.log(user.username)
-            if (user === null) {
-              alert(`User with ${data} doesnot exist`);
-            }
-            if(userType==0)
-            {
-              console.log('did reached ')
-            }
-            if (userType==1) {
-              localStorage.setItem('FacultyUsername',user.username)
-            }
-            else if (userType==2) {
-              localStorage.setItem('CommitteeUsername',data)
-
-            }
-            else{
-              localStorage.setItem('HodUsername',data)
-            }
-            //localStorage.setItem()
-            //console.log(user)
-            
-          });
-      };
-
-      //getdetails();
 
       
   }
@@ -200,7 +171,7 @@ function Login() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box sx={{ mt: 1 }} >
+          <Box sx={{ mt: 1 , width:'80%'}} >
 
         <Grid container component="form" spacing={1} onSubmit={handle_submit} autoComplete='off'>
           <Grid item xs={12}>
@@ -252,7 +223,7 @@ function Login() {
         </Grid>
 
               <Grid item xs={12} display="flex" justifyContent="center" alignItems="center" sx={{mt:2}}>
-                <Link href="#" variant="body2">
+                <Link to="/Signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

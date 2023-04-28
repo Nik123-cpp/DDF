@@ -50,7 +50,7 @@ const Req_Details = (props) => {
                 <Box sx={{ width: '100%' }} padding={5}>
                     <Stepper activeStep={activeStep} alternativeLabel>
                     {steps.map((label,index) => {
-                        if(isfailed && index == activeStep-1){
+                        if(isfailed && index === activeStep-1){
                         console.log(index)
 
                         return (
@@ -63,7 +63,7 @@ const Req_Details = (props) => {
                         }
                         else if(isfailed && index > activeStep-1)
                         {
-                        return
+                        return (<></>)
                         }
                         
                         return (
