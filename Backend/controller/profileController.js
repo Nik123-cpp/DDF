@@ -38,15 +38,41 @@ exports.register = async (req, res,next) => {
 exports.change_password = async (req, res, next) => {
     email_id = req.params.email_id;
     email_id = email_id.toLowerCase();
+
+    const {oldpassword,newpassword} = req.body
+
     Profile.findOne({ email_address: email_id })
         .exec((err, profile) => {
             if (err) {
                 res.status(500).json({ error: "cannot find profile" });
                 next(err);
             }
-            profile.password = req.params.password;
+            if(profile.password !== oldpassword){
+                res.json({message : "Incorrect Password"})
+            }
+            else {
+                profile.password = newpassword;
+                profile.save();
+                res.status(200).json({ message: "Password Successfully Changed" });
+            }
+            
+     });
+}
+
+// change username
+exports.change_username = async (req, res, next) => {
+    email_id = req.params.email_id;
+    const username = req.body.username
+    email_id = email_id.toLowerCase();
+    Profile.findOne({ email_address: email_id  })
+        .exec((err, profile) => {
+            if (err) {
+                res.status(500).json({ error: "cannot find profile" });
+                next(err);
+            }
+            profile.username = username;
             profile.save();
-            res.status(200).json({ message: "Password Changed" });
+            res.status(200).json({ message: "Username is Succesfully Changed" });
      });
 }
 
