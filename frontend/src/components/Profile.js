@@ -104,7 +104,7 @@ function Profile() {
     setOpenchpswd(false)
   }
 
-  if(state == -1) {
+  if(state === -1) {
     return (<></>)
   }
 

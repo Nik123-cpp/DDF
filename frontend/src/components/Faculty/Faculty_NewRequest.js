@@ -23,6 +23,9 @@ function Faculty_NewRequest() {
     const [description,setdescription] = useState("");
 
     const navigate = useNavigate()
+    const nav_faculty = () => {
+      navigate('/Faculty/MyRequests')
+    }
 
     const handle_request_type = event => {
         setrequest_type(event.target.value)
@@ -57,6 +60,7 @@ function Faculty_NewRequest() {
         fetch(url, requestOptions)
         .then(res => res.json())
         .then(data => alert(data.message))
+        .then(nav_faculty)
 
     }
 
