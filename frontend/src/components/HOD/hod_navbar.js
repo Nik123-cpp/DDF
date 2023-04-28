@@ -1,5 +1,5 @@
-import React, { Component, useState } from "react";
-import { useParams, useNavigate, Link ,Outlet } from "react-router-dom";
+import React from "react";
+import { useNavigate, Link ,Outlet } from "react-router-dom";
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
 import Logo from '../Images_folder/IITH_Logo.png';
 
@@ -7,11 +7,11 @@ import Logo from '../Images_folder/IITH_Logo.png';
 function Hod_navbar() {
   const navigate = useNavigate();
   let user_name = localStorage.getItem('HodUsername');
-  const url1 = "/hod/"
-  const url2 = url1 + "AllRequests";
-  const url3 = url1 + "PendingRequests";
-  const url4 = url1 + "DDF";
-  const url5 = url1 + "Profile";
+  const url = "/hod/"
+  const url1 = url + "PendingRequests";
+  const url2 = url + "AllRequests";
+  const url3 = url + "DDF";
+  const url4 = url + "Profile";
 
   const nav_home = () => {
     localStorage.setItem('IsHODLoggedIn',false)
@@ -39,22 +39,19 @@ function Hod_navbar() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto"
-          defaultActiveKey={'home'}
+          defaultActiveKey={'pendreq'}
           onSelect={(selectedKey) => console.log(`selected ${selectedKey}`)}
         >
-          <Nav.Link as={Link} to={url1} eventKey={'home'}>
-            Home
+          <Nav.Link as={Link} to={url1} eventKey={'pendreq'}>
+            PendingRequests
           </Nav.Link>
           <Nav.Link as={Link} to={url2} eventKey={'allreq'} >
             AllRequests
           </Nav.Link>
-          <Nav.Link as={Link} to={url3} eventKey={'pendreq'}>
-            PendingRequests
-          </Nav.Link>
-          <Nav.Link as={Link} to={url4} eventKey={'DDF'}>
+          <Nav.Link as={Link} to={url3} eventKey={'DDF'}>
             DDF
           </Nav.Link>
-          <Nav.Link as={Link} to={url5} eventKey={'profile'}>
+          <Nav.Link as={Link} to={url4} eventKey={'profile'}>
             Profile
           </Nav.Link>
         </Nav>
