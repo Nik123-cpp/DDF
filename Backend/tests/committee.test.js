@@ -20,7 +20,7 @@ async function connect() {
 describe("/committee/verify/:request_id", () => {
     let id;
     beforeAll(async () => {
-        connect();
+        await connect();
         const newRequest = {
             "title": "chemistry conference",
             "requestType": "Public",
@@ -30,8 +30,8 @@ describe("/committee/verify/:request_id", () => {
             "email_address": "cs20btech11050@iith.ac.in"
         }
         const res = await supertest(app).post("/faculty/create_request/").send(newRequest);
-        res.body.message.match(/Request Successfully Created with ID : (.*)/);
-        id = RegExp.$1;
+        id = res.body.message.split(": ")[1];
+        
     });
     afterAll(async () => {
         await supertest(app).delete(`/request/delete/${id}`);

@@ -23,10 +23,11 @@ describe("/faculty/create_request", () => {
 
     let id;
     beforeAll(async () => {
-        connect();
+        await connect();
     });
     afterAll(async () => {
-        await supertest(app).delete(`/faculty/delete_request/${id}`).then(mongoose.connection.close());
+        await supertest(app).delete(`/request/delete/${id}`);
+        await mongoose.connection.close();
     });
     test("should create a request", async () => {
         const newRequest = {
@@ -40,16 +41,13 @@ describe("/faculty/create_request", () => {
         const res = await supertest(app).post("/faculty/create_request/").send(newRequest);
         expect(res.statusCode).toBe(200);
         expect(res.body).toHaveProperty("message");
-        if(res.body.message){
-            expect(res.body.message).toMatch(/Request Succesfully Created with ID : (.*)/);
-            id = RegExp.$0;
-        }
+        id = res.body.message.split(": ")[1];
     });
     test("when email id is not valid should not create a request", async () => {
         const newRequest = {
             "title": "chemistry conference",
             "requestType": "Public",
-            "amount": 200000,
+            "amount": 2000,
             "documents": ["previous_conference_budget.pdf"],
             "description": "For the ongoing connference on snjp",
             "email_address": "cs20btech11042@iith.ac.in"

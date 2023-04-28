@@ -24,10 +24,10 @@ exports.register = async (req, res,next) => {
     Profile.findOne({ email_address: req.body.email_address }).exec((err, profiles) => {
         if (profiles == null) {
             profile.save()
-            res.json({ message: "Profile Created" });
+            res.status(200).json({ message: "Profile Created" });
         }
         else {
-            res.json({message: "user already exists" });
+            res.status(500).json({message: "user already exists" });
         }
     });
 

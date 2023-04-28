@@ -18,7 +18,6 @@ async function connect() {
 }
 }
 
-connect()
 
 describe("/request/:id", () => {
     let id;
@@ -39,14 +38,14 @@ describe("/request/:id", () => {
 
     beforeAll(async () => {
         // create a request
-        await supertest(app).post("/profile/register/suraj/cs20btech11050@iith.ac.in/bobby");
+        await connect();
         const res = await supertest(app).post("/faculty/create_request/").send(newRequest);
-        id = res._body.message.split(": ")[1];
-        console.log(`id ${id}`);
+        id = res.body.message.split(": ")[1];
     })
     afterAll(async () => {
         //clean up request
         await supertest(app).delete(`/request/delete/${id}`);
+        await mongoose.connection.close();
     })
     test("should get request details for a request id", async () => {
 
@@ -89,11 +88,15 @@ describe("/request/delete/:req_id", () => {
 
     beforeAll(async () => {
         // create a request
-        await supertest(app).post("/profile/register/suraj/cs20btech11050@iith.ac.in/bobby");
+        await connect();
         const res = await supertest(app).post("/faculty/create_request/").send(newRequest);
         id = res._body.message.split(": ")[1];
         console.log(`id ${id}`);
     })
+    afterAll(async () => {
+        await mongoose.connection.close();
+    });
+
 
     test("should delete a request", async () => {
         const res = await supertest(app).delete(`/request/delete/${id}`);

@@ -9,7 +9,7 @@ exports.create_request = (req, res, next) => {
     const mail = email_address;
     Profile.findOne({ email_address: mail })
         .orFail()
-        .exec((err, profile) => {
+        .exec(async (err, profile) => {
             if (err) {
             res.status(500).json({ message: "No user with that email id exists" });
         }
@@ -17,7 +17,9 @@ exports.create_request = (req, res, next) => {
             requestObject.faculty = profile._id;
             console.log(`created the request ${profile._id}`);
             const request = new Request(requestObject);
-            request.save();
+            await request.save((err) => {
+                    console.log({saveerror: err});
+            });
             console.log(`created the request ${title}`);
             res.status(200).json({ message: "Request Successfully Created with ID : " + request._id });
         }

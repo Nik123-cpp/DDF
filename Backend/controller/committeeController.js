@@ -10,6 +10,7 @@ exports.verify = (req, res, next) => {
         .orFail()
         .exec((err, request) => {
             if (err) {
+                console.log(err)
                 res.status(500).json({ message: "No such request is Requested by any faculty" });
                 next(err);
             }
@@ -28,6 +29,7 @@ exports.deny= (req, res, next) => {
         .orFail()
         .exec((err, request) => {
             if (err) {
+                console.log(err)
                 res.status(500).json({ message: "No such request is Requested by any faculty" });
                 next(err);
             }

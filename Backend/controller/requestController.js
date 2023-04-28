@@ -11,7 +11,7 @@ exports.get_request = (req, res, next) => {
             if (err) {
                 // console.log(err);
                 res.status(500).json({ message: "No such request exists" });
-                // next(err);
+                // next(err);   
             }
             else {
                 request.faculty_name = request.faculty.username;
