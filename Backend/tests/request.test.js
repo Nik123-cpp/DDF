@@ -69,3 +69,42 @@ describe("/request/:id", () => {
         expect(res.body).toHaveProperty("message", "No such request exists");
     });
 });
+
+describe("/request/delete/:req_id", () => {
+    let id;
+    faculty = {
+    "_id": "643a49224caba5c6f475a3ed",
+    "username": "suraj",
+    "email_address": "cs20btech11050@iith.ac.in",
+    "password": "bobby"
+    }
+    newRequest = {
+    "title": "chemistry conference",
+    "requestType": "Public",
+    "amount": 200000,
+    "documents": ["previous_conference_budget.pdf"],
+    "description": "For the ongoing connference on snjp",
+    "email_address": "cs20btech11050@iith.ac.in"
+    }
+
+    beforeAll(async () => {
+        // create a request
+        await supertest(app).post("/profile/register/suraj/cs20btech11050@iith.ac.in/bobby");
+        const res = await supertest(app).post("/faculty/create_request/").send(newRequest);
+        id = res._body.message.split(": ")[1];
+        console.log(`id ${id}`);
+    })
+
+    test("should delete a request", async () => {
+        const res = await supertest(app).delete(`/request/delete/${id}`);
+        expect(res.statusCode).toBe(200);
+        expect(res.body).toHaveProperty("message", "Request deleted successfully");
+    });
+
+    test("handling non existing id delete", async () => {
+        const res = await supertest(app).delete("/request/delete/123456789");
+        expect(res.statusCode).toBe(500);
+        expect(res.body).toHaveProperty("message", "cannot delete non-existing request");
+    });
+        
+});
