@@ -39,16 +39,12 @@ function Login() {
 
   const nav_committee_home = (username) => {
     console.log("start navigation")
-    navigate('/Committee/'  )
+    navigate('/Committee/PendingRequests'  )
     
   }
   const nav_hod_home = () =>{
     console.log('going to hod home')
-    navigate('/Hod/')
-  }
-  
-  const nav_Signup = () =>{
-    navigate('/Signup/')
+    navigate('/Hod/Pendingrequests')
   }
   
 

@@ -1,6 +1,6 @@
 import './Faculty_Styles/DDF_NewRequest.css'
 
-import React , {useEffect, useState} from 'react'
+import React , {useState} from 'react'
 import { Paper, Grid, TextField, MenuItem, InputAdornment, Button, Box} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import SendIcon  from '@mui/icons-material/Send';
@@ -8,7 +8,6 @@ import SendIcon  from '@mui/icons-material/Send';
 function Faculty_NewRequest() {
 
     
-    //const faculty_email=location.state;
 
     const faculty_email = localStorage.getItem("FacultyEmail")
 
