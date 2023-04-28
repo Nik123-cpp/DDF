@@ -1,9 +1,9 @@
-import { Screen,render, cleanup, getByTestId } from "@testing-library/react";
+import { screen,render, cleanup, getByTestId , configure} from "@testing-library/react";
 import { Router } from "@mui/icons-material";
 import { waitFor } from "@testing-library/react";
 import Profile from "../components/Profile";
 import Dummyprofile from "./profile";
-import { Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, useLocation } from "react-router-dom";
 
 // test('Profile test 1', () => { 
 //     localStorage.setItem('hodEmail','hod_cse@iith.ac.in')
@@ -48,8 +48,11 @@ import { Routes, useLocation } from "react-router-dom";
 // import { render } from '@testing-library/react';
 // import MyComponent from './MyComponent';
 
+afterEach(cleanup);
+
 describe('Profile Page Tests', () => {
-  it('HOD Profile Email Address should Pass', () => {
+  it('HOD Profile Email Address should Pass', async() => {
+    
     // mock window.location.pathname
     localStorage.setItem('IsLoggedIn',true) 
     localStorage.setItem('hodEmail','hod_cse@iith.ac.in')
@@ -59,11 +62,28 @@ describe('Profile Page Tests', () => {
     window.location = { pathname }; 
 
     // render the component
-    const { queryByTestId } = render( <Router> <Profile/> </Router> ); 
+    render( <BrowserRouter> <Profile/> </BrowserRouter>); 
+
     
-    // assert that the component renders as expected
-    waitFor(() => expect(queryByTestId("Profile_test_email")).toBeInTheDocument());
-    waitFor(() => expect(Profile_email_address).toHaveTextContent('hod_cse@iith.ac.in'));
+    expect(screen.getByDisplayValue('hod_cse@iith.ac.in')).toBeInTheDocument();
+    
+    
+  });
+
+  it('Faculty Profile Email Address should Pass', () => {
+    // mock window.location.pathname
+    localStorage.setItem('IsLoggedIn',true) 
+    localStorage.setItem('FacultyEmail','cs20btech11050@iith.ac.in')
+    //localStorage.setItem('HodUsername','Varun')
+    const pathname = '/Faculty/Profile';
+    delete window.location;
+    window.location = { pathname }; 
+
+    // render the component
+    render( <BrowserRouter> <Profile/> </BrowserRouter>); 
+
+    
+    expect(screen.getByDisplayValue('cs20btech11050@iith.ac.in')).toBeInTheDocument();
   });
 
   it('Committee Profile Email Address should Pass', () => {
@@ -71,16 +91,15 @@ describe('Profile Page Tests', () => {
     localStorage.setItem('IsLoggedIn',true) 
     localStorage.setItem("committeeEmail",'committee_cse@iith.ac.in')
     // localStorage.setItem('HodUsername','Varun')
-    const pathname = '/Committee/Profile';
+    const pathname = '/Committee/Profile'; 
     delete window.location;
     window.location = { pathname }; 
 
     // render the component
-    const { queryByTestId } = render( <Router> <Profile/> </Router> ); 
+    render( <BrowserRouter> <Profile/> </BrowserRouter>); 
+
     
-    // assert that the component renders as expected
-    waitFor(() => expect(queryByTestId("Profile_test_email")).toBeInTheDocument());
-    waitFor(() => expect(Profile_email_address).toHaveTextContent('committee_cse@iith.ac.in'));
+    expect(screen.getByDisplayValue('committee_cse@iith.ac.in')).toBeInTheDocument();
   });
 });
 

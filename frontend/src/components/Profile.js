@@ -118,7 +118,7 @@ function Profile() {
     justifyContent="center"
     style={{ minHeight: '100vh' }}
     >
-      <div data-testid={"Profile_test_email" }>hod_cse@iith.ac.in</div>
+      
     <Grid  container component={Paper} elevation={20} style={{padding: '30px 20px'}} sx={{maxWidth:'960px',minWidth: '250px'}}>
       <Grid
         item
@@ -168,8 +168,8 @@ function Profile() {
               id="mailid"
               fullWidth
               label="Mail ID"
-              
-              value={CurrentEmail || ''}
+              data-testid="Profile_test_email"
+              value={ localStorage.getItem(useremails[state])}
               InputProps={{
                 readOnly: true,
               }}
