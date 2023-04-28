@@ -12,9 +12,15 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 function Profile() {
-  const [UserName, setusername] = useState("");
-  const [CurrentEmail,setCurrentEmail] = useState('');
+
+  const [state,setstate] = useState(-1)
   const location = useLocation();
+  const [Username, setUsername] = useState("");
+
+
+  const useremails = ["committeeEmail","hodEmail",'FacultyEmail']
+  const usernames  = ["CommitteeUsername","HodUsername",'FacultyUsername']
+
   //console.log(location.pathname);
 
   //let data=location.state;
@@ -26,21 +32,84 @@ function Profile() {
   useEffect(() => {
 
     if (location.pathname === "/Committee/Profile") {
-      setusername(localStorage.getItem("CommitteeUsername"));
-      setCurrentEmail(localStorage.getItem("committeeEmail"));
+      setstate(0)
     } else if (location.pathname === "/hod/Profile") {
-      setusername(localStorage.getItem("HodUsername"));
-      setCurrentEmail(localStorage.getItem('hodEmail'));
+      setstate(1)
     } else {
-      setusername(localStorage.getItem("FacultyUsername"));
-      setCurrentEmail(localStorage.getItem('FacultyEmail'));
+      setstate(2)
+
     }
   }, []);
 
   const [openchpswd, setOpenchpswd] = React.useState(false);
   const [opench_uname, setOpench_uname] = React.useState(false);
 
+  const handle_change_username = (event) => {
+    setUsername(event.target.value)
+  }
+
+  const  handle_submit_change_username = () => {
+    const url = '/profile/' + localStorage.getItem(useremails[state]) + '/changeusername'
+    const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: Username })
+    };
+    fetch(url, requestOptions)
+    .then(res => res.json())
+    .then((data) => {
+      localStorage.setItem(usernames[state],Username)
+    })
+    .then(() => {window.location.reload(false);})
+  }
+
+
+  const [oldpassword,setoldpassword] = useState("")
+  const [newpassword,setnewpassword] = useState("")
+  const [confirmpassword,setconfirmpassword] = useState("")
+
+  const handle_old_password = (event) => {
+    setoldpassword(event.target.value)
+  }
+
+
+  const handle_new_password = (event) => {
+    setnewpassword(event.target.value)
+
+  }
+
+  const handle_confirm_password = (event) => {
+    setconfirmpassword(event.target.value)
+
+  }
+
+  const handle_submit_change_password = () => {
+
+    if(newpassword !== confirmpassword){
+      alert("Password Mismatch")
+      return
+    }
+    const url = '/profile/' + localStorage.getItem(useremails[state]) + '/changepassword'
+    const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({oldpassword: oldpassword , newpassword: newpassword })
+    };
+    fetch(url, requestOptions)
+    .then(res => res.json())
+    .then((data) => {
+      alert(data.message)
+    })
+
+    setOpenchpswd(false)
+  }
+
+  if(state == -1) {
+    return (<></>)
+  }
+
   return (
+
     <Grid   
     container
     spacing={0}
@@ -82,7 +151,7 @@ function Profile() {
               id="facname"
               fullWidth
               label="Name"
-              value={UserName || ''}
+              value={localStorage.getItem(usernames[state]) || ''}
               InputProps={{
                 readOnly: true,
               }}
@@ -99,7 +168,7 @@ function Profile() {
               id="mailid"
               fullWidth
               label="Mail ID"
-              value={CurrentEmail || ''}
+              value={localStorage.getItem(useremails[state])}
               InputProps={{
                 readOnly: true,
               }}
@@ -115,13 +184,14 @@ function Profile() {
               <Button type='submit' variant='contained' color='primary' onClick={ () => {setOpench_uname(true);}}>Change Username</Button>
               <Dialog open={opench_uname} onClose={ () => {setOpench_uname(false);}}>
                     <DialogTitle>
-                    <div style={{paddingTop : '0.5em' , paddingBottom: '0.5em',fontSize:'1.5em'}} >
+                    <div style={{paddingTop : '0.2em' , paddingBottom: '0.2em',fontSize:'1.3em'}} >
                           Change Username 
                           <hr></hr>
                         </div>
                     </DialogTitle>
                     <DialogContent>
-                      <Grid container spacing={2} component="form" autoComplete="off">
+                    
+                      <Grid container spacing={2} component="form" autoComplete="off" sx={{mt:0.1,minWidth:'300px'}}>
                           <Grid item xs={12}>
                             <TextField
                               required
@@ -130,13 +200,14 @@ function Profile() {
                               label="New Username"
                               fullWidth
                               variant="outlined"
+                              onChange={handle_change_username}
                             />
                           </Grid>
-          </Grid>
+                      </Grid>
             </DialogContent>
             <DialogActions>
                 <Button onClick={() => {setOpench_uname(false);}} color="error" variant='outlined'>Close</Button>
-                <Button onClick={() => {setOpench_uname(false);}} color="success" variant='outlined'>Save Changes</Button>
+                <Button onClick={handle_submit_change_username} color="success" variant='outlined'>Save Changes</Button>
             </DialogActions>
           </Dialog>
             </Grid>
@@ -151,7 +222,7 @@ function Profile() {
                         </div>
                       </DialogTitle>
                     <DialogContent>
-                      <Grid container spacing={2} component="form" autoComplete="off">
+                      <Grid container spacing={2} component="form" autoComplete="off" sx={{mt:0.5,}}>
                           <Grid item xs={12}>
                             <TextField
                               required
@@ -160,6 +231,7 @@ function Profile() {
                               label="Old Password"
                               fullWidth
                               variant="outlined"
+                              onChange={handle_old_password}
                             />
                           </Grid>
                           <Grid item xs={12}>
@@ -170,6 +242,7 @@ function Profile() {
                               label="New Password"
                               fullWidth
                               variant="outlined"
+                              onChange={handle_new_password}
                             />
                           </Grid>
                           <Grid item xs={12}>
@@ -180,13 +253,14 @@ function Profile() {
                               label="Re Enter New Password"
                               fullWidth
                               variant="outlined"
+                              onChange={handle_confirm_password}
                             />
                           </Grid>
           </Grid>
             </DialogContent>
             <DialogActions>
                 <Button onClick={() => {setOpenchpswd(false);}} color="error" variant='outlined'>Close</Button>
-                <Button onClick={() => {setOpenchpswd(false);}} color="success" variant='outlined'>Save Changes</Button>
+                <Button onClick={handle_submit_change_password} color="success" variant='outlined'>Save Changes</Button>
             </DialogActions>
           </Dialog>
             </Grid>
