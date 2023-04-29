@@ -2,7 +2,6 @@ import { screen,render, cleanup, getByTestId , configure} from "@testing-library
 import { Router } from "@mui/icons-material";
 import { waitFor } from "@testing-library/react";
 import Profile from "../components/Profile";
-import Dummyprofile from "./profile";
 import { BrowserRouter, Routes, useLocation } from "react-router-dom";
 
 // test('Profile test 1', () => { 

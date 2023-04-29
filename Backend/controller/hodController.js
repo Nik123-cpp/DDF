@@ -5,7 +5,7 @@ const DDF_record = require("../model/ddf_records");
 //approve the request
 exports.approve = (req, res, next) => {
     
-    Request.findOneAndUpdate({ _id: req.params.request_id, status: "Verified" },{status: "Approved"},{ new: true })
+    Request.findOne({ _id: req.params.request_id, status: "Verified" })
         .orFail()
         .exec((err, request) => {
             if (err) {
@@ -20,13 +20,25 @@ exports.approve = (req, res, next) => {
                             res.status(500).json({err : err});
                             next(err);
                         }
+                        else if(request.amount > record[0].balance){
+                            res.status(200).json({message : "Funds Insufficient"})
+                        }
                         else {
-                            console.log(record[0].balance)
-                            const ddf = new DDF_record({ request: request._id, amount: request.amount,balance: record[0].balance - request.amount ,transaction_type: "Debit"});
-                            ddf.save();
+                            Request.findOneAndUpdate({ _id: req.params.request_id, status: "Verified" },{status: "Approved"},{ new: true })
+                            .exec((err, request) => {
+                                if (err) {
+                                    res.status(500).json({ message: "No such request is Requested by any faculty" });
+                                    next(err);
+                                }
+                                else {   
+                                    const ddf = new DDF_record({ request: request._id, amount: request.amount,balance: record[0].balance - request.amount ,transaction_type: "Debit"});
+                                    ddf.save();
+                                    res.status(200).json({ message: "Request Successfully Approved" });
+                                }}
+                            )
                         }
                     });
-                res.status(200).json({ message: "Request Successfully Approved" });
+                // res.status(200).json({ message: "Request Successfully Approved" });
             }
         });    
 }
