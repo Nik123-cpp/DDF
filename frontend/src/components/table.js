@@ -14,11 +14,6 @@ const Example = (props) => {
     [],
   );
 
-  // handle_OnClick = (req_id) => {
-
-  //   alert("You selected request with" + req_id)
-  // }
-
   const navigate = useNavigate()
 
   const  nav_req_details = (req_id) => {
@@ -38,7 +33,7 @@ const Example = (props) => {
     onClick: (event) => { nav_req_details(row.original._id)
     },
     sx: {
-      cursor: 'pointer', //you might want to change the cursor too when adding an onClick
+      cursor: 'pointer',
     },
   })}
 

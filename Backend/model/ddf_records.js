@@ -6,7 +6,8 @@ const ddfSchema = new mongoose.Schema({
         type: String,
         required: function() {
             return !this.request
-        }
+        },
+        default:"NA"
     },
     request: {
         type: Schema.Types.ObjectId,
@@ -15,7 +16,7 @@ const ddfSchema = new mongoose.Schema({
             return !this.source
         }
     },
-    created :   { type: Date, default: Date.now() },
+    created :   { type: Date, default: Date.now },
     transaction_type: {
         type: String,
         required: true,

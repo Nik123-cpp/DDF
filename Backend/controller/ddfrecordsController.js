@@ -32,6 +32,8 @@ exports.all_records = (req, res, next) => {
                         record.faculty_name = "NA"
                         record.request_title = "NA"
                     }
+
+                    if(record.source)
                     delete record.request;
     
                 });
@@ -53,7 +55,8 @@ exports.Add_DDF = (req,res,next)=>{
             }
             else {
                 console.log("last record balance is ",record[0].balance)
-                const ddf = new ddf_records({source :Source , amount: Amount ,   balance: record[0].balance +  Amount ,  transaction_type: "Credit"});
+                const prev_balance = record[0].balance
+                const ddf = new ddf_records({source :Source , amount: Amount ,   balance: prev_balance +  Amount ,  transaction_type: "Credit"});
                 ddf.save();
                 res.status(200).json({ message: "Successfully Update" });
             }

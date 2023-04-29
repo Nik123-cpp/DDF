@@ -100,7 +100,9 @@ function Profile() {
     .then((data) => {
       alert(data.message)
     })
-
+    setoldpassword("")
+    setnewpassword("")
+    setconfirmpassword("")
     setOpenchpswd(false)
   }
 

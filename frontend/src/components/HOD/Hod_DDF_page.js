@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {Grid, TextField, InputAdornment, Button, Dialog, DialogTitle, DialogContent, DialogActions, Paper} from "@mui/material";
+import { ddf_columns } from "../columns";
+import columns from '../columns'
+import MaterialReactTable from 'material-react-table';
+import { Container } from 'react-bootstrap';
 
 function HOD_DDF_page() {
-  let email_address = localStorage.getItem("UserEmail");
-  const [balance, setBalance] = useState(0);
   const [NewBalance, setNewBalance] = useState(0);
   const [Source, setSource] = useState("");
   const [openubaln, setOpenubaln] = React.useState(false);
@@ -29,64 +31,48 @@ function HOD_DDF_page() {
 
       fetch(url, requestOptions)
         .then((res) => res.json())
-        .then((data) => alert(data.message));
-      setBalance(balance + parseInt(NewBalance));
-      setNewBalance("");
+        .then((data) => alert(data.message))
+        .then(() => {window.location.reload(false);});
     }
     
     
     setOpenubaln(false);
   };
 
-  useEffect(() => {
-    const url = "http://localhost:8000/ddfrecords/getbalance";
-    const requestOptions = {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    };
+ 
+  const [transactions,setdata] = useState([{balance: 0}])
 
-    fetch(url, { mode: "cors" })
+  useEffect(() => {
+      
+    const url = "/ddfrecords/all_transactions"
+    fetch(url)
       .then((res) => res.json())
-      .then((data) => setBalance(data.balance));
-  }, []);
+      .then((data) => {
+        setdata(data)}
+        );
+  
+
+}, []);
+
 
   return (
+    <Container style={{ height: '70%', width: '100%' }}>
+
     <Grid
       container
-      spacing={0}
-      direction="column"
-      alignItems="center"
-      justifyContent="center"
-      style={{ minHeight: "100vh" }}
+      spacing={5}
+      mt={3}
+      // style={{ minHeight: "100vh" }}
     >
-      <Grid
-        container
-        spacing={3}
-        component={Paper}
-        elevation={20}
-        sx={{ padding: "30px 20px", maxWidth: "600px", minWidth: "250px" }}
-      >
-        <Grid
-          item
-          xs={12}
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Grid item xs={12} sm={8}>
           <h2>DDF Management Page</h2>
         </Grid>
 
-        <Grid
-          item
-          xs={12}
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Grid item xs={12} sm={2} display="flex" justifyContent="flex-end" alignItems="end">
           <TextField
             id="balance"
             label="Current DDF Balance"
-            value={balance}
+            value={transactions[0].balance}
             InputProps={{
               readOnly: true,
               startAdornment: (
@@ -98,22 +84,17 @@ function HOD_DDF_page() {
             }}
           />
         </Grid>
-        <Grid
-          item
-          xs={12}
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Grid item xs={12} sm={2} display="flex" justifyContent="flex-end">
           <Button
             type="submit"
             variant="contained"
             color="primary"
+            size="small"
             onClick={() => {
               setOpenubaln(true);
             }}
           >
-            Update DDF Balance
+            Add Fund
           </Button>
           <Dialog
             open={openubaln}
@@ -122,7 +103,7 @@ function HOD_DDF_page() {
             }}
           >
             <DialogTitle>
-              <h3>Update Balance</h3>
+              <h3>Add Fund</h3>
             </DialogTitle>
             <DialogContent>
               <Grid container spacing={2}>
@@ -174,28 +155,26 @@ function HOD_DDF_page() {
             </DialogActions>
           </Dialog>
         </Grid>
-      </Grid>
+        <Grid item xs={12} sm={12}>
+          <MaterialReactTable 
+            enableStickyHeader
+            enableStickyFooter
+
+            columns={ddf_columns} 
+            data={transactions} 
+            enableRowNumbers
+            initialState={{ columnVisibility: { _id: false} , density: 'compact'  }} 
+
+            getRowId={(originalRow) => originalRow._id}
+
+          />
+        </Grid>
+      
+      
     </Grid>
+    </Container>
 
-    // <div>
-    //   <h2>DDF management page</h2>
-    //   <div>
-    //     Balance : {balance}
-    //   </div>
-    //   <div>
-    //     Source:
-    //     <input type="text" onChange={handle_source_details}></input>
-    //   </div>
-    //   <div>
-    //     update balance :
-    //     <input type="text" onChange={handle_new_balance} />
-    //     <button type="submit" onClick={UpdataNewBalance} >Update</button>
-    //   </div>
-    //   <div>
 
-    //   </div>
-    //   <Outlet />
-    // </div>
   );
 }
 

@@ -18,11 +18,11 @@ function Home() {
   }
 
   const nav_committe = () => {
-    navigate('/Committee')
+    navigate('/Committee/PendingRequests')
   }
 
   const nav_hod = () => {
-    navigate('/Hod')
+    navigate('/Hod/PendingRequests')
   }
 
   return (
